@@ -7,3 +7,15 @@ What happens when a new tag is created?
 
 Which class is keeping track of the association between tags and files?
 
+What if a tag is not on any image?(Should it still be in the list of all tags?)
+
+What happens when we delete a tag from the list of tags?(Should the tag be deleted in all the photos.)
+
+Is it possible to search a tag but no file is displayed?
+
+
+Where should the old sets of tags stored?
+
+Should the user be able to clear the history of sets of tags for any file?
+
+
