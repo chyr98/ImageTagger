@@ -2,3 +2,7 @@ phase 1:
 When the user delete a tag from the tag list, we will throw a tag error if
 there are photos with the tag.(When the error is displayed, the user can 
 decide to keep the tag or remove the tag from the list and the photos.)
+
+We need to use JavaFX to build up an interface to manipulates the images.
+
+Implements Tag, File, TagManager, FileManager, Directory classes.
