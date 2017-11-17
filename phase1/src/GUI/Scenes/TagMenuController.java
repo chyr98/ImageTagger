@@ -1,6 +1,6 @@
 package GUI.Scenes;
 
-import GUI.Main;
+import GUI.GUIMain;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -27,7 +27,7 @@ public class TagMenuController {
 
     @FXML
     void Back() throws IOException {
-        Main.showMenu();
+        GUIMain.showMenu();
     }
 
 }

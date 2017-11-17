@@ -1,6 +1,6 @@
 package GUI.Scenes;
 
-import GUI.Main;
+import GUI.GUIMain;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -13,6 +13,8 @@ import javafx.stage.DirectoryChooser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 public class StartSceneController implements Initializable{
@@ -24,10 +26,8 @@ public class StartSceneController implements Initializable{
     private Button startButton;
 
     @FXML
-    void OpenDirectoryChooser(ActionEvent event) {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-    File selectedDirectory = directoryChooser.showDialog(Main.getPrimaryStage());
-
+    void OpenDirectoryChooser() {
+        File selectedDirectory = GUIMain.OpenDirectoryChooser();
         if(selectedDirectory != null){
             PathField.setText(selectedDirectory.getAbsolutePath());
         }
@@ -35,8 +35,12 @@ public class StartSceneController implements Initializable{
 
     @FXML
     void goMenu(ActionEvent event) throws IOException {
-        System.out.println(PathField.getText());
-        Main.showMenu();
+        File choosenFile = new File(PathField.getText());
+    if (choosenFile.exists()&&choosenFile.isDirectory()){
+        GUIMain.showMenu();
+    }
+    else
+        GUIMain.showStage("Scenes/PathNotAvalibleWarning.fxml","Warning");
     }
 
     @Override

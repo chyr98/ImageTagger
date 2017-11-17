@@ -1,6 +1,6 @@
 package GUI.Scenes;
 
-        import GUI.Main;
+        import GUI.GUIMain;
         import javafx.event.ActionEvent;
         import javafx.fxml.FXML;
         import javafx.scene.control.TableColumn;
@@ -19,7 +19,7 @@ public class NameHistoryController {
 
     @FXML
     void Cancel(ActionEvent event) throws IOException {
-    Main.showMenu();
+    GUIMain.showMenu();
     }
 
 }

@@ -1,6 +1,6 @@
 package GUI.Scenes;
 
-import GUI.Main;
+import GUI.GUIMain;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,17 +34,17 @@ public class MenuController implements Initializable{
 
     @FXML
     private void openTagMenu() throws IOException {
-       Main.showTagMenu();
+       GUIMain.showTagMenu();
     }
 
     @FXML
     private void openNameHistory() throws IOException {
-        Main.showNameHistory();
+        GUIMain.showNameHistory();
     }
 
     @FXML
     private void openMoveToStage() throws IOException {
-        Main.showMoveFileStage();
+        GUIMain.showStage("Scenes/MoveFileScene.fxml","Moving To..");
     }
 
     @Override
