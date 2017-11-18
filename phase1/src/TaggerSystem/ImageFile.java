@@ -1,5 +1,7 @@
 package TaggerSystem;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.io.Serializable;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ public class ImageFile implements Serializable{
      * */
     private ArrayList<ArrayList<Tag>> tags;
 
-    public ImageFile(String name, List<Tag> tags) {
+    public ImageFile(String name) {
         this.name = name;
         this.tags = new ArrayList<>();
     }
@@ -23,6 +25,7 @@ public class ImageFile implements Serializable{
             ArrayList<Tag> clone = this.tags.get(this.tags.size()-1);
             clone.add(tag);
             this.tags.add(clone);
+            RenameFile();
         } else {
             throw new IOException("The file already has this tag");
         }
@@ -33,7 +36,11 @@ public class ImageFile implements Serializable{
         return tags.get(tags.size()-1);
     }
 
-    public void RenameFile(String new_name) {
-        this.name = new_name;
+    public void RenameFile() {
+        String new_name = name;
+        for (Tag t:tags.get(tags.size()-1)){
+            new_name = new_name.concat("@"+t.getName());
+        }
+        //TODO: use the new_name to rename the file in the OS.
     }
 }
