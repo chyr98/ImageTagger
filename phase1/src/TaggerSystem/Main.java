@@ -16,7 +16,6 @@ public class Main {
 
   public static void main(String[] args) {
     // Read or create fileManager.
-    FileManager fileManager = null;
     try {
       // read fileManager from file.
       FileInputStream fis = new FileInputStream("fileManager.ser");
@@ -32,7 +31,6 @@ public class Main {
     }
 
     // Read or create tagManager.
-    TagManager tagManager = null;
     try {
       // read tagManager from file.
       FileInputStream fis = new FileInputStream("tagManager.ser");
