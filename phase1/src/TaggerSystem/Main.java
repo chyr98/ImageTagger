@@ -38,7 +38,7 @@ public class Main {
     } finally {
       // if tagManager is not found, then create one.
       if (tagManager == null) {
-        tagManager = new TagManager();
+        tagManager = new TagManager(new ArrayList<Tag>());
       }
     }
 
