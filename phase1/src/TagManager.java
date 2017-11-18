@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 import java.io.Serializable;
-
-public class TagManager implements Serializable {
-=======
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagManager {
+public class TagManager implements Serializable {
     private List<Tag> tags;
 
     public TagManager(List<Tag> tags) {
@@ -35,5 +31,4 @@ public class TagManager {
             this.tags.remove(tag);
         }
     }
->>>>>>> b9b1defd9f593f8c12f762b6afd400c236a6a22f
 }
