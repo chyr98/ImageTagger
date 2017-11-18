@@ -5,12 +5,11 @@ public class TagManager implements Serializable {
 =======
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TagManager {
-    private List<Tag> tags;
+    private ArrayList<Tag> tags;
 
-    public TagManager(List<Tag> tags) {
+    public TagManager(ArrayList<Tag> tags) {
         tags = new ArrayList<Tag>();
     }
 
