@@ -1,6 +1,7 @@
 package TaggerSystem;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * This is the class for all executions at the time the program is opened. It has the following
@@ -8,6 +9,10 @@ import java.io.*;
  * generate a tree of Files and Folders.
  */
 public class Main {
+
+  public static FileManager fileManager;
+
+  public static TagManager tagManager;
 
   public static void main(String[] args) {
     // Read or create fileManager.
@@ -38,7 +43,7 @@ public class Main {
     } finally {
       // if tagManager is not found, then create one.
       if (tagManager == null) {
-        tagManager = new TagManager();
+        tagManager = new TagManager(new ArrayList<Tag>());
       }
     }
 

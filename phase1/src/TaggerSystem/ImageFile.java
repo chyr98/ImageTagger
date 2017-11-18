@@ -20,14 +20,25 @@ public class ImageFile implements Serializable{
         this.tags = new ArrayList<>();
     }
 
+    public String getName(){
+        return name;
+    }
+
     public void AddTag(Tag tag) throws IOException {
-        if (!this.tags.get(this.tags.size()-1).contains(tag)) {
-            ArrayList<Tag> clone = this.tags.get(this.tags.size()-1);
-            clone.add(tag);
-            this.tags.add(clone);
-            RenameFile();
-        } else {
-            throw new IOException("The file already has this tag");
+        if (this.tags.isEmpty()) {
+            ArrayList<Tag> tags = new ArrayList<>();
+            tags.add(tag);
+            this.tags.add(tags);
+        }
+        else {
+            if (!this.tags.get(this.tags.size() - 1).contains(tag)) {
+                ArrayList<Tag> clone = this.tags.get(this.tags.size() - 1);
+                clone.add(tag);
+                this.tags.add(clone);
+                RenameFile();
+            } else {
+                throw new IOException("The file already has this tag");
+            }
         }
     }
 
