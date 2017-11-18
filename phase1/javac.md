@@ -16,17 +16,17 @@ To find out where `javac` is, type this (it’s probably something like `/local/
 
 ## The basics
 
-Create an IntelliJ project. Create a package in the project called `pack`. Create a class called `Main` with a `main` method.
+Create an IntelliJ project. Create a package in the project called `pack`. Create a class called `TaggerSystem.Main` with a `main` method.
 
 On the command line, use `cd` to change to the `src` directory in the project. When you type `ls`, you should see the package name.
 
 Now type this; it should exit silently:
 
-    javac pack/Main.java
+    javac pack/TaggerSystem.Main.java
 
-That creates file `Main.class` inside directory `pack`. To run it:
+That creates file `TaggerSystem.Main.class` inside directory `pack`. To run it:
   
-    java pack.Main
+    java pack.TaggerSystem.Main
 
 ## classpath
 

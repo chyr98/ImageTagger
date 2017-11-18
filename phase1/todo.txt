@@ -5,4 +5,4 @@ decide to keep the tag or remove the tag from the list and the photos.)
 
 We need to use JavaFX to build up an interface to manipulates the images.
 
-Implements Tag, File, TagManager, FileManager, Directory classes.
+Implements TaggerSystem.Tag, TaggerSystem.ImageFile, TaggerSystem.TagManager, FileManager, Directory classes.

@@ -1,8 +1,10 @@
+package TaggerSystem;
+
 import java.io.*;
 
 /**
  * This is the class for all executions at the time the program is opened. It has the following
- * responsibilities: 1) Store FileManager. 2) Store TagManager. 3) Read the information of files and
+ * responsibilities: 1) Store FileManager. 2) Store TaggerSystem.TagManager. 3) Read the information of files and
  * generate a tree of Files and Folders.
  */
 public class Main {
@@ -51,7 +53,7 @@ public class Main {
       e.printStackTrace();
     }
 
-    // Save TagManager.
+    // Save TaggerSystem.TagManager.
     try {
       // write object to file.
       FileOutputStream fos = new FileOutputStream("tagManager.ser");

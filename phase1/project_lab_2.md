@@ -1,4 +1,4 @@
-# Project Lab 2 instructions
+# TaggerSystem Lab 2 instructions
 
 ## Preamble: markdown
 
