@@ -21,13 +21,13 @@ public class TagMenuController {
     }
 
     @FXML
-    void DeleteTag(ActionEvent event) {
-
+    void DeleteTag(ActionEvent event) throws IOException {
+        GUIMain.showStage("Scenes/DeleteConfirmStage.fxml", "Confirmation");
     }
 
     @FXML
     void Back() throws IOException {
-        GUIMain.showMenu();
+        GUIMain.showScene("Scenes/Menu.fxml");
     }
 
 }

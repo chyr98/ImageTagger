@@ -19,7 +19,7 @@ public class NameHistoryController {
 
     @FXML
     void Cancel(ActionEvent event) throws IOException {
-    GUIMain.showMenu();
+    GUIMain.showScene("Scenes/Menu.fxml");
     }
 
 }

@@ -1,7 +1,6 @@
 package GUI;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -27,7 +26,8 @@ public class GUIMain extends Application {
             primaryStage.setTitle("Photo Tager");
             primaryStage.setResizable(false);
             primaryStage.setOnCloseRequest(event -> saving());
-            showStartMenu();
+            showScene("Scenes/StartScene.fxml");
+
     }
 
     private void saving(){
@@ -39,41 +39,16 @@ public class GUIMain extends Application {
         return directoryChooser.showDialog(GUIMain.primaryStage);
     }
 
-    private static void showStartMenu() throws IOException {
+    public static void showScene(String source) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/StartScene.fxml"));
-        mainLayout = loader.load();
-        Scene scene = new Scene(mainLayout);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void showMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
-        mainLayout = loader.load();
-        Scene scene = new Scene(mainLayout);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void showTagMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/TagScene.fxml"));
+        loader.setLocation(GUIMain.class.getResource(source));
         primaryStage.setScene(new Scene(loader.load()));
         primaryStage.show();
     }
 
-    public static void showNameHistory() throws IOException {
+    public static void showStage(String source, String title) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/NameHistoryScene.fxml"));
-        primaryStage.setScene(new Scene(loader.load()));
-        primaryStage.show();
-    }
-
-    public static void showStage(String scene, String title) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource(scene));
+        loader.setLocation(GUIMain.class.getResource(source));
 
         Stage stage = new Stage();
         stage.setTitle(title);

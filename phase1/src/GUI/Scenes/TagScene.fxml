@@ -17,8 +17,8 @@
           <TableColumn fx:id="TableOfAllTags" editable="false" prefWidth="310.0" text="Avaliable Tags" />
         </columns>
       </TableView>
-      <Button layoutX="420.0" layoutY="274.0" mnemonicParsing="false" onAction="#AddTag" text="Add Tag" />
-      <Button layoutX="414.0" layoutY="313.0" mnemonicParsing="false" onAction="#DeleteTag" text="Delete Tag" />
+      <Button layoutX="420.0" layoutY="274.0" mnemonicParsing="false" onAction="#AddTag" text="Add TaggerSystem.Tag" />
+      <Button layoutX="414.0" layoutY="313.0" mnemonicParsing="false" onAction="#DeleteTag" text="Delete TaggerSystem.Tag" />
       <Button layoutX="430.0" layoutY="347.0" mnemonicParsing="false" onAction="#Back" text="Back" />
    </children>
 </AnchorPane>

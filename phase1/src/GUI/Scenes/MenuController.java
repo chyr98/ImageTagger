@@ -34,12 +34,12 @@ public class MenuController implements Initializable{
 
     @FXML
     private void openTagMenu() throws IOException {
-       GUIMain.showTagMenu();
+       GUIMain.showScene("Scenes/TagScene.fxml");
     }
 
     @FXML
     private void openNameHistory() throws IOException {
-        GUIMain.showNameHistory();
+        GUIMain.showScene("Scenes/NameHistoryScene.fxml");
     }
 
     @FXML

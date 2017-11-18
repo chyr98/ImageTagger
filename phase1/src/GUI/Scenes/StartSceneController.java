@@ -37,7 +37,7 @@ public class StartSceneController implements Initializable{
     void goMenu(ActionEvent event) throws IOException {
         File choosenFile = new File(PathField.getText());
     if (choosenFile.exists()&&choosenFile.isDirectory()){
-        GUIMain.showMenu();
+        GUIMain.showScene("Scenes/Menu.fxml");
     }
     else
         GUIMain.showStage("Scenes/PathNotAvalibleWarning.fxml","Warning");
