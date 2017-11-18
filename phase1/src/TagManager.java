@@ -1,12 +1,11 @@
 import java.io.Serializable;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-public class TagManager implements Serializable {
-    private List<Tag> tags;
+public class TagManager implements Serializable{
+    private ArrayList<Tag> tags;
 
-    public TagManager(List<Tag> tags) {
+    public TagManager(ArrayList<Tag> tags) {
         tags = new ArrayList<Tag>();
     }
 
@@ -18,7 +17,7 @@ public class TagManager implements Serializable {
         }
     }
 
-    public List<Tag> getTagList() {
+    public ArrayList<Tag> getTagList() {
         return tags;
     }
 
