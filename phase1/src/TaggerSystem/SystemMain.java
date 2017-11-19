@@ -16,54 +16,47 @@ public class SystemMain {
 
   private static String[] suffixes = {"jpg", "png"};
 
+
   public SystemMain(String rootPath) {
 
     File rootFile = new File(rootPath);
 
-    // Read or create fileManager.
+    // Read or create Managers.
     try {
       // read fileManager from file.
-      FileInputStream fis = new FileInputStream(rootPath + "/fileManager.ser");
-      ObjectInputStream ois = new ObjectInputStream(fis);
-      fileManager = (FileManager) ois.readObject();
-    } catch (IOException | ClassNotFoundException e) {
-      e.printStackTrace();
-    }
+      FileInputStream fisF = new FileInputStream(rootPath + "/fileManager.ser");
+      ObjectInputStream oisF = new ObjectInputStream(fisF);
+      fileManager = (FileManager) oisF.readObject();
 
-    // Read or create tagManager.
-    try {
       // read tagManager from file.
-      FileInputStream fis = new FileInputStream(rootPath + "/tagManager.ser");
-      ObjectInputStream ois = new ObjectInputStream(fis);
-      tagManager = (TagManager) ois.readObject();
+      FileInputStream fisT = new FileInputStream(rootPath + "/tagManager.ser");
+      ObjectInputStream oisT = new ObjectInputStream(fisT);
+      tagManager = (TagManager) oisT.readObject();
+
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
     }
 
-    // Save fileManager.
+    // Save Managers.
     try {
-      // write object to file.
+      // write fileManager to file.
       File fileManagerSerFile = new File(rootFile, "fileManager.ser");
       // a new file will be created iff a file with this name does not yet exist.
       fileManagerSerFile.createNewFile();
-      FileOutputStream fos = new FileOutputStream(rootPath + "/fileManager.ser");
-      ObjectOutputStream oos = new ObjectOutputStream(fos);
-      oos.writeObject(fileManager);
-      oos.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+      FileOutputStream fosF = new FileOutputStream(rootPath + "/fileManager.ser");
+      ObjectOutputStream oosF = new ObjectOutputStream(fosF);
+      oosF.writeObject(fileManager);
+      oosF.close();
 
-    // Save TaggerSystem.TagManager.
-    try {
-      // write object to file.
+      // write tagManager to file.
       File tagManagerSerFile = new File(rootFile, "tagManager.ser");
       // a new file will be created iff a file with this name does not yet exist.
       tagManagerSerFile.createNewFile();
-      FileOutputStream fos = new FileOutputStream(rootPath + "/tagManager.ser");
-      ObjectOutputStream oos = new ObjectOutputStream(fos);
-      oos.writeObject(tagManager);
-      oos.close();
+      FileOutputStream fosT = new FileOutputStream(rootPath + "/tagManager.ser");
+      ObjectOutputStream oosT = new ObjectOutputStream(fosT);
+      oosT.writeObject(tagManager);
+      oosT.close();
+
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -72,11 +65,12 @@ public class SystemMain {
     Folder rootFolder = createFolder(rootFile);
   }
 
+
   private Folder createFolder(File file) {
-    File[] files = file.listFiles();
     ArrayList<Folder> folderList = new ArrayList<>();
     ArrayList<ImageFile> imageList = new ArrayList<>();
-    for (File f : files) {
+    // Nothing will happen if the directory is empty.
+    for (File f : file.listFiles()) {
       // Folder(String name, ArrayList<Folder> children, ArrayList<ImageFile> value)
       if (f.isDirectory()) {
         folderList.add(createFolder(f));
