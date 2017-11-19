@@ -129,8 +129,9 @@ public class ImageFile implements Serializable {
     return tags;
   }
 
-  // Rename this ImageFile to a give String in OS.
-  // Each time the renameTo is called, the info will be logged.
+  /** Rename this ImageFile to a give String in OS.
+   *  Each time the renameTo is called, the info will be logged.
+   */
   public void renameTo(String newName, String path) {
     File curr = new File(path);
     String oldName = curr.getName();
