@@ -6,32 +6,32 @@ import java.util.ArrayList;
 
 public class FileManager implements Serializable {
 
-    //The source folder that user has choose to work on.
-    private Folder folder;
+  //The source folder that user has choose to work on.
+  private Folder folder;
 
-    //The path of the source folder.
-    private String path;
+  //The path of the source folder.
+  private String path;
 
-    public FileManager(Folder folder, String path) {
-        this.folder = folder;
-        this.path = path;
-    }
+  public FileManager(Folder folder, String path) {
+    this.folder = folder;
+    this.path = path;
+  }
 
-    public Folder getFolder(){
-        return folder;
-    }
+  public Folder getFolder() {
+    return folder;
+  }
 
-    public void DeleteTag(Tag tag) throws IOException {
-        folder.deleteTag(tag);
-    }
+  public void deleteTag(Tag tag) throws IOException {
+    folder.deleteTag(tag);
+  }
 
-    public String getPath(){
-        return path;
-    }
+  public String getPath() {
+    return path;
+  }
 
-    public ArrayList<ImageFile> getFilesWithTag(Tag tag) {
-        return folder.getFileWithTag(tag);
-    }
+  public ArrayList<ImageFile> getFilesWithTag(Tag tag) {
+    return folder.getFileWithTag(tag);
+  }
 
 //    public ArrayList<ImageFile> getAllFiles() {
 //        FinalList = new ArrayList<ImageFile> ();

@@ -6,23 +6,35 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Scenes.TagMenuController">
-   <children>
-      <TableView fx:id="imageTagTable" layoutX="300.0" prefHeight="221.0" prefWidth="300.0" AnchorPane.bottomAnchor="179.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columns>
-          <TableColumn fx:id="TagsOfTheImage" editable="false" prefWidth="299.0" resizable="false" text="Tags In Image" />
-        </columns>
-      </TableView>
-      <TableView fx:id="allTagTable" prefHeight="350.0" prefWidth="300.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
-        <columns>
-          <TableColumn fx:id="AllAvailableTags" editable="false" prefWidth="310.0" text="Avaliable Tags" />
-        </columns>
-      </TableView>
-      <Button layoutX="420.0" layoutY="274.0" mnemonicParsing="false" onAction="#AddTag" text="Add Tag" />
-      <Button layoutX="414.0" layoutY="313.0" mnemonicParsing="false" onAction="#DeleteTag" text="Delete Tag" />
-      <Button layoutX="430.0" layoutY="347.0" mnemonicParsing="false" onAction="#Back" text="Back" />
-      <TextField fx:id="tagNameIn" layoutX="300.0" layoutY="221.0" prefHeight="25.0" prefWidth="300.0" />
-      <Button layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#DeleteTagFromAll" text="Delete Tag From All" />
-      <Button layoutX="181.0" layoutY="360.0" mnemonicParsing="false" text="View Files With Tag" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Scenes.TagMenuController">
+  <children>
+    <TableView fx:id="imageTagTable" layoutX="300.0" prefHeight="221.0" prefWidth="300.0"
+      AnchorPane.bottomAnchor="179.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0"
+      AnchorPane.topAnchor="0.0">
+      <columns>
+        <TableColumn fx:id="TagsOfTheImage" editable="false" prefWidth="299.0" resizable="false"
+          text="Tags In Image"/>
+      </columns>
+    </TableView>
+    <TableView fx:id="allTagTable" prefHeight="350.0" prefWidth="300.0"
+      AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0"
+      AnchorPane.topAnchor="0.0">
+      <columns>
+        <TableColumn fx:id="AllAvailableTags" editable="false" prefWidth="310.0"
+          text="Avaliable Tags"/>
+      </columns>
+    </TableView>
+    <Button layoutX="420.0" layoutY="274.0" mnemonicParsing="false" onAction="#AddTag"
+      text="Add Tag"/>
+    <Button layoutX="414.0" layoutY="313.0" mnemonicParsing="false" onAction="#DeleteTag"
+      text="Delete Tag"/>
+    <Button layoutX="430.0" layoutY="347.0" mnemonicParsing="false" onAction="#Back" text="Back"/>
+    <TextField fx:id="tagNameIn" layoutX="300.0" layoutY="221.0" prefHeight="25.0"
+      prefWidth="300.0"/>
+    <Button layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#DeleteTagFromAll"
+      text="Delete Tag From All"/>
+    <Button layoutX="181.0" layoutY="360.0" mnemonicParsing="false" text="View Files With Tag"/>
+  </children>
 </AnchorPane>

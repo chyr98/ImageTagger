@@ -21,33 +21,28 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TagMenuController implements Initializable{
+public class TagMenuController implements Initializable {
 
-    @FXML
-    private TableView<Tag> imageTagTable;
+  @FXML
+  private TableView<Tag> imageTagTable;
 
-    @FXML
-    private TableView<Tag> allTagTable;
+  @FXML
+  private TableView<Tag> allTagTable;
 
-    @FXML
-    private TableColumn<Tag, String> TagsOfTheImage;
+  @FXML
+  private TableColumn<Tag, String> TagsOfTheImage;
 
-    @FXML
-    private TableColumn<Tag, String> AllAvailableTags;
+  @FXML
+  private TableColumn<Tag, String> AllAvailableTags;
 
-    @FXML
-    private TextField tagNameIn;
+  @FXML
+  private TextField tagNameIn;
 
-    private ImageFile selectedImage;
+  private ImageFile selectedImage;
 
-    private MenuController parent;
-    /**
-     * This method accepts a image file to initialize the view with.
-     * */
-    public void initData(ImageFile image, MenuController parent){
-        selectedImage = image;
-        TagsOfTheImage.setCellValueFactory(new PropertyValueFactory<Tag,String>("name"));
+  private MenuController parent;
 
+<<<<<<< HEAD
         ObservableList<Tag> tags = FXCollections.observableArrayList();
         if (selectedImage!=null && selectedImage.getCurrentTagList()!=null)
             tags.addAll(selectedImage.getCurrentTagList());
@@ -66,54 +61,81 @@ public class TagMenuController implements Initializable{
             selectedImage.AddTag(allTagTable.getSelectionModel().getSelectedItem());
         }
         refresh();
+=======
+  /**
+   * This method accepts a image file to initialize the view with.
+   */
+  public void initData(ImageFile image, MenuController parent) {
+    selectedImage = image;
+    TagsOfTheImage.setCellValueFactory(new PropertyValueFactory<Tag, String>("name"));
+>>>>>>> fb9f59c786ececeb0343dd079a1dbbbc46ca68bb
+
+    ObservableList<Tag> tags = FXCollections.observableArrayList();
+    if (selectedImage != null && selectedImage.getCurrentTagList() != null) {
+      tags.addAll(selectedImage.getCurrentTagList());
+    }
+    imageTagTable.setItems(tags);
+    this.parent = parent;
+  }
+
+  @FXML
+  void AddTag(ActionEvent event) throws IOException {
+    if (allTagTable.getSelectionModel().getSelectedItem() != null) {
+      selectedImage.addTag(allTagTable.getSelectionModel().getSelectedItem());
+    } else if (!tagNameIn.getText().isEmpty()) {
+      selectedImage.addTag(new Tag(tagNameIn.getText()));
 
     }
+    refresh();
 
-    public void refresh(){
-        ObservableList<Tag> tags1 = FXCollections.observableArrayList();
-        tags1.addAll(selectedImage.getCurrentTagList());
-        imageTagTable.setItems(tags1);
-        ObservableList<Tag> tags2 = FXCollections.observableArrayList();
-        tags2.addAll(SystemMain.tagManager.getTagList());
-        allTagTable.setItems(tags2);
+  }
+
+  public void refresh() {
+    ObservableList<Tag> tags1 = FXCollections.observableArrayList();
+    tags1.addAll(selectedImage.getCurrentTagList());
+    imageTagTable.setItems(tags1);
+    ObservableList<Tag> tags2 = FXCollections.observableArrayList();
+    tags2.addAll(SystemMain.tagManager.getTagList());
+    allTagTable.setItems(tags2);
+  }
+
+  @FXML
+  void DeleteTag(ActionEvent event) throws IOException {
+    if (imageTagTable.getSelectionModel().getSelectedItem() != null) {
+      selectedImage.deleteTag(imageTagTable.getSelectionModel().getSelectedItem());
     }
+    refresh();
+  }
 
-    @FXML
-    void DeleteTag(ActionEvent event) throws IOException {
-        if (imageTagTable.getSelectionModel().getSelectedItem()!=null) {
-            selectedImage.deleteTag(imageTagTable.getSelectionModel().getSelectedItem());
-        }
-        refresh();
+  @FXML
+  void DeleteTagFromAll() throws IOException {
+    if (allTagTable.getSelectionModel().getSelectedItem() != null) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(GUIMain.class.getResource("Scenes/DeleteConfirmStage.fxml"));
+      Parent deleteConfirmationScene = loader.load();
+
+      DeleteConfirmController controller = loader.getController();
+      controller.initData(allTagTable.getSelectionModel().getSelectedItem(),
+          GUIMain.showStage(new Scene(deleteConfirmationScene), "Confirmation"), this);
     }
+  }
 
-    @FXML
-    void DeleteTagFromAll() throws IOException {
-        if (allTagTable.getSelectionModel().getSelectedItem()!=null) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(GUIMain.class.getResource("Scenes/DeleteConfirmStage.fxml"));
-            Parent deleteConfirmationScene = loader.load();
+  @FXML
+  void Back() throws IOException {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
+    GUIMain.showScene(new Scene(loader.load()));
+  }
 
-            DeleteConfirmController controller = loader.getController();
-            controller.initData(allTagTable.getSelectionModel().getSelectedItem(),
-                    GUIMain.showStage(new Scene(deleteConfirmationScene), "Confirmation"),this);
-        }
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    AllAvailableTags.setCellValueFactory(new PropertyValueFactory<Tag, String>("name"));
+
+    ObservableList<Tag> tags = FXCollections.observableArrayList();
+    if (SystemMain.tagManager != null) {
+      tags.addAll(SystemMain.tagManager.getTagList());
     }
-
-    @FXML
-    void Back() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
-        GUIMain.showScene(new Scene(loader.load()));
-    }
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        AllAvailableTags.setCellValueFactory(new PropertyValueFactory<Tag,String>("name"));
-
-        ObservableList<Tag> tags = FXCollections.observableArrayList();
-        if(SystemMain.tagManager!=null)
-            tags.addAll(SystemMain.tagManager.getTagList());
-        allTagTable.setItems(tags);
-    }
+    allTagTable.setItems(tags);
+  }
 }

@@ -4,33 +4,34 @@ import java.io.Serializable;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TagManager implements Serializable{
-    private ArrayList<Tag> tags;
+public class TagManager implements Serializable {
 
-    public TagManager(ArrayList<Tag> tags) {
-        this.tags = tags;
-    }
+  private ArrayList<Tag> tags;
 
-    public void AddTag(Tag tag) throws IOException {
-        if (!this.tags.contains(tag)) {
-            this.tags.add(tag);
-        } else {
-            throw new IOException("This tag is already in the list");
-        }
-    }
+  public TagManager(ArrayList<Tag> tags) {
+    this.tags = tags;
+  }
 
-    public ArrayList<Tag> getTagList() {
-        return tags;
+  public void addTag(Tag tag) throws IOException {
+    if (!this.tags.contains(tag)) {
+      this.tags.add(tag);
+    } else {
+      throw new IOException("This tag is already in the list");
     }
+  }
 
-    public Boolean HasTag(Tag tag) {
-        return this.tags.contains(tag);
-    }
+  public ArrayList<Tag> getTagList() {
+    return tags;
+  }
 
-    public void DeleteTag(Tag tag) throws IOException {
-        if (HasTag(tag)) {
-            this.tags.remove(tag);
-        }
-        SystemMain.fileManager.DeleteTag(tag);
+  public Boolean hasTag(Tag tag) {
+    return this.tags.contains(tag);
+  }
+
+  public void deleteTag(Tag tag) throws IOException {
+    if (hasTag(tag)) {
+      this.tags.remove(tag);
     }
+    SystemMain.fileManager.deleteTag(tag);
+  }
 }
