@@ -51,6 +51,23 @@ public class Folder implements Serializable {
 
   }
 
+  /**
+   * Return the path of this Folder.
+   */
+  public String getPath() {
+    String ret = name;
+
+    if(this.parent==null)
+      return SystemMain.fileManager.getPath();
+
+    Folder currParent = this.parent;
+    while (currParent.getParent() != null) {
+      ret = currParent.getName().concat("/" + ret);
+      currParent = currParent.getParent();
+    }
+    return SystemMain.fileManager.getPath().concat("/" + ret);
+  }
+
   public String getName() {
     return name;
   }
