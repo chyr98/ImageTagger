@@ -14,7 +14,7 @@ public class SystemMain {
 
   private static TagManager tagManager;
 
-  private static String[] suffixes = {".jpg", ".png"};
+  private static String[] suffixes = {"jpg", "png"};
 
   public SystemMain(String rootPath) {
 
