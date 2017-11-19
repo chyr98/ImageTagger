@@ -12,7 +12,7 @@ public class Main {
 
   public static FileManager fileManager;
 
-  public static TagManager tagManager;
+  public static TagManager tagManager = new TagManager(new ArrayList<>());
 
   public static void main(String[] args) {
     // Read or create fileManager.
@@ -23,11 +23,6 @@ public class Main {
       fileManager = (FileManager) ois.readObject();
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
-    } finally {
-      // if fileManager is not found, then create one.
-      if (fileManager == null) {
-        fileManager = new FileManager();
-      }
     }
 
     // Read or create tagManager.
