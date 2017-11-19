@@ -3,7 +3,13 @@ package TaggerSystem;
 import java.io.File;
 import java.io.Serializable;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class ImageFile implements Serializable {
 
@@ -30,17 +36,18 @@ public class ImageFile implements Serializable {
     return name;
   }
 
-    /**
-     * Return the path of this image file.*/
-    public String getPath(){
-        String ret = this.getCurrName();
-        Folder currParent = this.parent;
-        while (currParent.getParent()!=null){
-            ret = currParent.getName().concat("/"+ret);
-            currParent=currParent.getParent();
-        }
-        return SystemMain.fileManager.getPath().concat("/"+ret);
+  /**
+   * Return the path of this image file.
+   */
+  public String getPath() {
+    String ret = this.getCurrName();
+    Folder currParent = this.parent;
+    while (currParent.getParent() != null) {
+      ret = currParent.getName().concat("/" + ret);
+      currParent = currParent.getParent();
     }
+    return SystemMain.fileManager.getPath().concat("/" + ret);
+  }
 
   /**
    * Return the current name of the file(the name with current attached tags)
@@ -57,11 +64,11 @@ public class ImageFile implements Serializable {
    * Return the name of a file with given tags attached.
    */
   public String getNameWithTags(ArrayList<Tag> tags) {
-    String ret = name.substring(0, name.length()-4);
+    String ret = name.substring(0, name.length() - 4);
     for (Tag tag : tags) {
       ret = ret.concat(" @" + tag.getName());
     }
-    ret = ret.concat(name.substring(name.length()-4));
+    ret = ret.concat(name.substring(name.length() - 4));
     return ret;
   }
 
@@ -70,7 +77,7 @@ public class ImageFile implements Serializable {
   }
 
   public void addTag(Tag tag) throws IOException {
-    String path=getPath();
+    String path = getPath();
     if (!SystemMain.tagManager.hasTag(tag)) {
       SystemMain.tagManager.addTag(tag);
     }
@@ -87,7 +94,7 @@ public class ImageFile implements Serializable {
         throw new IOException("The file already has this tag");
       }
     }
-    renameTo(getCurrName(),path);
+    renameTo(getCurrName(), path);
   }
 
   public boolean hasTag(Tag tag) {
@@ -124,8 +131,27 @@ public class ImageFile implements Serializable {
 
   // TODO: line 84 and 103 has called rename method, but they take no parameter.
   // Rename this ImageFile to a give String in OS.
+  // Each time the renameTo is called, the info will be logged.
   public void renameTo(String newName, String path) {
     File curr = new File(path);
+    String currName = curr.getName();
     curr.renameTo(new File(curr.getParentFile(), newName));
+
+    // set Logger.
+    Logger nameLog = Logger.getLogger("nameLog.txt");
+    try {
+      FileHandler fileHandler = new FileHandler("nameLog.txt");
+      fileHandler.setFormatter(new SimpleFormatter());
+      nameLog.addHandler(fileHandler);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    // set message.
+    LocalDateTime currTime = LocalDateTime.now();
+    String msg =
+        currTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd H:m")) + "  Old: " + currName
+            + "; New: " + newName + ";";
+    nameLog.info(msg);
   }
 }

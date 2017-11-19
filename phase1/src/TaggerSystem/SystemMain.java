@@ -87,6 +87,7 @@ public class SystemMain {
         // So far we only add .jpg and .png files.
       } else if (f.getName().matches(".*\\." + String.join("|.*\\.", suffixes))) {
         imageList.add(new ImageFile(f.getName()));
+        System.out.println(f.getPath());
       }
     }
     return new Folder(file.getName(), folderList, imageList);
