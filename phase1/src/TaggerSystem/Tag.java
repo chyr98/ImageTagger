@@ -14,6 +14,7 @@ public class Tag implements Serializable {
     return name;
   }
 
+  @Override
   public boolean equals(Object other) {
     if (other instanceof Tag) {
       return ((Tag) other).getName().equals(this.name);
