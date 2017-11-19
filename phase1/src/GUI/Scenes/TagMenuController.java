@@ -107,6 +107,19 @@ public class TagMenuController implements Initializable {
     GUIMain.showScene(new Scene(loader.load()));
   }
 
+  @FXML
+  void goFilesWithTag() throws IOException {
+      if(allTagTable.getSelectionModel().getSelectedItem()!=null) {
+          FXMLLoader loader = new FXMLLoader();
+          loader.setLocation(GUIMain.class.getResource("Scenes/AllFilesWithTheTagScene.fxml"));
+          Parent scene = loader.load();
+
+          FilesWithTheTagController controller = loader.getController();
+          controller.initData(allTagTable.getSelectionModel().getSelectedItem(),
+          GUIMain.showStage(new Scene(scene),allTagTable.getSelectionModel().getSelectedItem().getName()),this);
+      }
+  }
+
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {

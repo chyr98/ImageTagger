@@ -116,7 +116,8 @@ public class MenuController implements Initializable {
                 imgDisplay.setImage(selectedImage);
               }
             });
-    tableOfFolders.getSelectionModel()
+    tableOfFolders
+        .getSelectionModel()
         .selectedItemProperty()
         .addListener(
             (obs, oldSelection, newSelection) -> {
@@ -126,7 +127,7 @@ public class MenuController implements Initializable {
                   refresh();
                 }
               } catch (IndexOutOfBoundsException e) {
-
+                System.out.println("error");
               }
             });
     refresh();
