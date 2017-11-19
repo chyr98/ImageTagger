@@ -18,25 +18,24 @@ public class DeleteConfirmController {
 
     private Stage stage;
 
-    public void initData(Tag tag, Stage stage){
+    private TagMenuController parent;
+
+    public void initData(Tag tag, Stage stage,TagMenuController parent){
         tagToDelete = tag;
         this.stage = stage;
+        this.parent = parent;
     }
 
     @FXML
     void confirm(ActionEvent event) throws IOException {
         SystemMain.tagManager.DeleteTag(tagToDelete);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/TagScene.fxml"));
-        GUIMain.showScene(new Scene(loader.load()));
+        parent.refresh();
         stage.close();
     }
 
     @FXML
     void reject(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/TagScene.fxml"));
-        GUIMain.showScene(new Scene(loader.load()));
+        parent.refresh();
         stage.close();
     }
 

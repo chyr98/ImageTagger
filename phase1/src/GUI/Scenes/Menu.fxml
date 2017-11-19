@@ -24,5 +24,6 @@
             <TableColumn fx:id="folderNames" prefWidth="143.0" text="Folders" />
          </columns>
       </TableView>
+      <Button layoutX="321.0" layoutY="361.0" mnemonicParsing="false" onAction="#goParent" text="Parent" />
    </children>
 </AnchorPane>

@@ -17,6 +17,7 @@ public class ImageFile implements Serializable{
     public ImageFile(String name) {
         this.name = name;
         this.tags = new ArrayList<>();
+        this.tags.add(new ArrayList<>());
     }
 
     /**
@@ -86,10 +87,12 @@ public class ImageFile implements Serializable{
     }
 
     public void deleteTag(Tag tag)throws IOException{
-        ArrayList<Tag> clone = this.tags.get(this.tags.size() - 1);
-        clone.remove(tag);
-        this.tags.add(clone);
-        RenameFile();
+        if ((!this.tags.isEmpty())&&this.tags.get(tags.size()-1).contains(tag)) {
+            ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
+            clone.remove(tag);
+            this.tags.add(clone);
+            RenameFile();
+        }
     }
 
     public ArrayList<Tag> getCurrentTagList() {

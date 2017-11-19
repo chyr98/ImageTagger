@@ -62,14 +62,21 @@ public class MenuController implements Initializable{
                             } catch (MalformedURLException e) {
                                 e.printStackTrace();
                             }
-                            imgDisplay.setImage(selectedImage);
+                            if (selectedImage!=null)
+                                imgDisplay.setImage(selectedImage);
                         });
         tableOfFolders.getSelectionModel()
                 .selectedItemProperty()
                 .addListener(
                         (obs, oldSelection, newSelection) -> {
-                            currentFolder=newSelection;
-                            refresh();
+                            try {
+                                if (newSelection != null) {
+                                    currentFolder = newSelection;
+                                    refresh();
+                                }
+                            }catch (IndexOutOfBoundsException e){
+
+                            }
                         });
     }
 
@@ -81,9 +88,17 @@ public class MenuController implements Initializable{
             Parent tagMenuParent = loader.load();
 
             TagMenuController controller = loader.getController();
-            controller.initData(FileTable.getSelectionModel().getSelectedItem());
+            controller.initData(FileTable.getSelectionModel().getSelectedItem(),this);
 
             GUIMain.showScene(new Scene(tagMenuParent));
+        }
+    }
+
+    @FXML
+    private void goParent(){
+        if (currentFolder.getParent()!=null) {
+            currentFolder = currentFolder.getParent();
+            refresh();
         }
     }
 
@@ -106,7 +121,11 @@ public class MenuController implements Initializable{
         if(FileTable.getSelectionModel().getSelectedItem()!=null) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(GUIMain.class.getResource("Scenes/MoveFileScene.fxml"));
-            GUIMain.showStage(loader.load(), "Moving To..");
+            Parent moveScene = loader.load();
+
+            MoveFileController controller=loader.getController();
+            controller.initData(FileTable.getSelectionModel().getSelectedItem(), this,
+                    GUIMain.showStage(new Scene(moveScene), "Moving To.."));
         }
     }
 
@@ -115,28 +134,21 @@ public class MenuController implements Initializable{
         refresh();
     }
 
-    private void refresh(){
+    public void refresh(){
         NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile,String>("currName"));
         folderNames.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
 
-        if (!currentFolder.getChildren().isEmpty()) {
-            ObservableList<Folder> folders = FXCollections.observableArrayList();
+        ObservableList<Folder> folders = FXCollections.observableArrayList();
+        if (currentFolder==null)
+            currentFolder=SystemMain.fileManager.getFolder();
+        if (currentFolder.getChildren()!=null){
+            if(!currentFolder.getChildren().isEmpty())
             folders.addAll(currentFolder.getChildren());
-            tableOfFolders.setItems(folders);
         }
+        tableOfFolders.setItems(folders);
         ObservableList<ImageFile> files = FXCollections.observableArrayList();
         files.addAll(currentFolder.getValue());
         FileTable.setItems(files);
 
-    }
-
-    private ObservableList<ImageFile> getDummy() throws IOException {
-        ObservableList<ImageFile> files = FXCollections.observableArrayList();
-        ImageFile image1 = new ImageFile("img001");
-        image1.AddTag(new Tag("tag1"));
-        files.add(image1);
-        files.add(new ImageFile("img002"));
-        files.add(new ImageFile("img003"));
-        return files;
     }
 }

@@ -34,7 +34,7 @@ public class SystemMain {
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
     }
-    
+
       // read tagManager from file.
     try{
       FileInputStream fis = new FileInputStream("tagManager.ser");

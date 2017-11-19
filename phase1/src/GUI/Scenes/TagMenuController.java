@@ -39,10 +39,12 @@ public class TagMenuController implements Initializable{
     private TextField tagNameIn;
 
     private ImageFile selectedImage;
+
+    private MenuController parent;
     /**
      * This method accepts a image file to initialize the view with.
      * */
-    public void initData(ImageFile image){
+    public void initData(ImageFile image, MenuController parent){
         selectedImage = image;
         TagsOfTheImage.setCellValueFactory(new PropertyValueFactory<Tag,String>("name"));
 
@@ -50,6 +52,7 @@ public class TagMenuController implements Initializable{
         if (selectedImage!=null && selectedImage.getCurrentTagList()!=null)
             tags.addAll(selectedImage.getCurrentTagList());
         imageTagTable.setItems(tags);
+        this.parent=parent;
     }
 
     @FXML
@@ -61,13 +64,17 @@ public class TagMenuController implements Initializable{
             selectedImage.AddTag(new Tag(tagNameIn.getText()));
 
         }
+        refresh();
+
+    }
+
+    public void refresh(){
         ObservableList<Tag> tags1 = FXCollections.observableArrayList();
         tags1.addAll(selectedImage.getCurrentTagList());
         imageTagTable.setItems(tags1);
         ObservableList<Tag> tags2 = FXCollections.observableArrayList();
         tags2.addAll(SystemMain.tagManager.getTagList());
         allTagTable.setItems(tags2);
-
     }
 
     @FXML
@@ -75,7 +82,7 @@ public class TagMenuController implements Initializable{
         if (imageTagTable.getSelectionModel().getSelectedItem()!=null) {
             selectedImage.deleteTag(imageTagTable.getSelectionModel().getSelectedItem());
         }
-        initData(selectedImage);
+        refresh();
     }
 
     @FXML
@@ -87,7 +94,7 @@ public class TagMenuController implements Initializable{
 
             DeleteConfirmController controller = loader.getController();
             controller.initData(allTagTable.getSelectionModel().getSelectedItem(),
-                    GUIMain.showStage(new Scene(deleteConfirmationScene), "Confirmation"));
+                    GUIMain.showStage(new Scene(deleteConfirmationScene), "Confirmation"),this);
         }
     }
 
