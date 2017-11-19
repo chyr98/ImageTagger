@@ -116,9 +116,7 @@ public class SystemMain {
 
     // set message.
     LocalDateTime currTime = LocalDateTime.now();
-    String msg =
-        currTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd H:m")) + "  Old: " + oldName
-            + "; New: " + newName + ";";
+    String msg = "Old: " + oldName + "; New: " + newName + ";";
     nameLog.info(msg);
   }
 
