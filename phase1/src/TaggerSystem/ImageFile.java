@@ -33,7 +33,7 @@ public class ImageFile implements Serializable {
     /**
      * Return the path of this image file.*/
     public String getPath(){
-        String ret = this.name;
+        String ret = this.getCurrName();
         Folder currParent = this.parent;
         while (currParent.getParent()!=null){
             ret = currParent.getName().concat("/"+ret);
@@ -57,10 +57,11 @@ public class ImageFile implements Serializable {
    * Return the name of a file with given tags attached.
    */
   public String getNameWithTags(ArrayList<Tag> tags) {
-    String ret = name;
+    String ret = name.substring(0, name.length()-4);
     for (Tag tag : tags) {
       ret = ret.concat(" @" + tag.getName());
     }
+    ret = ret.concat(name.substring(name.length()-4));
     return ret;
   }
 
@@ -69,6 +70,7 @@ public class ImageFile implements Serializable {
   }
 
   public void addTag(Tag tag) throws IOException {
+    String path=getPath();
     if (!SystemMain.tagManager.hasTag(tag)) {
       SystemMain.tagManager.addTag(tag);
     }
@@ -81,11 +83,11 @@ public class ImageFile implements Serializable {
         ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
         clone.add(tag);
         this.tags.add(clone);
-        renameTo(getNameWithTags(clone));
       } else {
         throw new IOException("The file already has this tag");
       }
     }
+    renameTo(getCurrName(),path);
   }
 
   public boolean hasTag(Tag tag) {
@@ -97,10 +99,11 @@ public class ImageFile implements Serializable {
 
   public void deleteTag(Tag tag) throws IOException {
     if ((!this.tags.isEmpty()) && this.tags.get(tags.size() - 1).contains(tag)) {
+      String path = getPath();
       ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
       clone.remove(tag);
       this.tags.add(clone);
-      renameTo(getNameWithTags(clone));
+      renameTo(getCurrName(), path);
     }
   }
 
@@ -121,8 +124,8 @@ public class ImageFile implements Serializable {
 
   // TODO: line 84 and 103 has called rename method, but they take no parameter.
   // Rename this ImageFile to a give String in OS.
-  public void renameTo(String newName) {
-    File curr = new File(this.getPath());
+  public void renameTo(String newName, String path) {
+    File curr = new File(path);
     curr.renameTo(new File(curr.getParentFile(), newName));
   }
 }
