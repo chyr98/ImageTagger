@@ -48,37 +48,6 @@ public class MenuController implements Initializable{
 
     private static Folder currentFolder = SystemMain.fileManager.getFolder();
 
-    public void initData(){
-
-        FileTable.getSelectionModel()
-                .selectedItemProperty()
-                .addListener(
-                        (obs, oldSelection, newSelection) -> {
-                            File image = new File(newSelection.getPath());
-                            Image selectedImage = null;
-                            try {
-                                String url = image.toURI().toURL().toString();
-                                selectedImage = new Image(url,287,213,false,true);
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            }
-                            if (selectedImage!=null)
-                                imgDisplay.setImage(selectedImage);
-                        });
-        tableOfFolders.getSelectionModel()
-                .selectedItemProperty()
-                .addListener(
-                        (obs, oldSelection, newSelection) -> {
-                            try {
-                                if (newSelection != null) {
-                                    currentFolder = newSelection;
-                                    refresh();
-                                }
-                            }catch (IndexOutOfBoundsException e){
-
-                            }
-                        });
-    }
 
     @FXML
     private void openTagMenu() throws IOException {
@@ -131,6 +100,34 @@ public class MenuController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        FileTable.getSelectionModel()
+                .selectedItemProperty()
+                .addListener(
+                        (obs, oldSelection, newSelection) -> {
+                            File image = new File(newSelection.getPath());
+                            Image selectedImage = null;
+                            try {
+                                String url = image.toURI().toURL().toString();
+                                selectedImage = new Image(url,287,213,false,true);
+                            } catch (MalformedURLException e) {
+                                e.printStackTrace();
+                            }
+                            if (selectedImage!=null)
+                                imgDisplay.setImage(selectedImage);
+                        });
+        tableOfFolders.getSelectionModel()
+                .selectedItemProperty()
+                .addListener(
+                        (obs, oldSelection, newSelection) -> {
+                            try {
+                                if (newSelection != null) {
+                                    currentFolder = newSelection;
+                                    refresh();
+                                }
+                            }catch (IndexOutOfBoundsException e){
+
+                            }
+                        });
         refresh();
     }
 

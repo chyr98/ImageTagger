@@ -48,8 +48,6 @@ public class StartSceneController implements Initializable{
         loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
         Parent menuScene = loader.load();
 
-        MenuController controller = loader.getController();
-        controller.initData();
         GUIMain.showScene(new Scene(menuScene));
     }
     else {

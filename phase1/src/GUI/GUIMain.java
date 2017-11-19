@@ -41,8 +41,6 @@ public class GUIMain extends Application {
                 loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
                 Parent menuScene = loader.load();
 
-                MenuController controller = loader.getController();
-                controller.initData();
                 GUIMain.showScene(new Scene(menuScene));
             }
 
