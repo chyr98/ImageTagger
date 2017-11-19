@@ -28,7 +28,7 @@ public class TagManager implements Serializable{
     }
 
     public void deleteTag(Tag tag) throws IOException {
-        if (HasTag(tag)) {
+        if (hasTag(tag)) {
             this.tags.remove(tag);
         }
         SystemMain.fileManager.deleteTag(tag);

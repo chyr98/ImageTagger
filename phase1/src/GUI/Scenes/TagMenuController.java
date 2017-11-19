@@ -58,10 +58,10 @@ public class TagMenuController implements Initializable{
     @FXML
     void AddTag(ActionEvent event) throws IOException {
         if(allTagTable.getSelectionModel().getSelectedItem()!=null){
-            selectedImage.AddTag(allTagTable.getSelectionModel().getSelectedItem());
+            selectedImage.addTag(allTagTable.getSelectionModel().getSelectedItem());
         }
         else if (!tagNameIn.getText().isEmpty()){
-            selectedImage.AddTag(new Tag(tagNameIn.getText()));
+            selectedImage.addTag(new Tag(tagNameIn.getText()));
 
         }
         refresh();

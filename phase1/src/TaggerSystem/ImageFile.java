@@ -61,8 +61,8 @@ public class ImageFile implements Serializable{
     }
 
     public void addTag(Tag tag) throws IOException {
-        if (!SystemMain.tagManager.HasTag(tag))
-            SystemMain.tagManager.AddTag(tag);
+        if (!SystemMain.tagManager.hasTag(tag))
+            SystemMain.tagManager.addTag(tag);
         if (this.tags.isEmpty()) {
             ArrayList<Tag> tags = new ArrayList<>();
             tags.add(tag);
@@ -73,7 +73,7 @@ public class ImageFile implements Serializable{
                 ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
                 clone.add(tag);
                 this.tags.add(clone);
-                RenameFile();
+                renameFile();
             } else {
                 throw new IOException("The file already has this tag");
             }
@@ -91,7 +91,7 @@ public class ImageFile implements Serializable{
             ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
             clone.remove(tag);
             this.tags.add(clone);
-            RenameFile();
+            renameFile();
         }
     }
 

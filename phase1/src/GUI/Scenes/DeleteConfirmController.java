@@ -28,7 +28,7 @@ public class DeleteConfirmController {
 
     @FXML
     void confirm(ActionEvent event) throws IOException {
-        SystemMain.tagManager.DeleteTag(tagToDelete);
+        SystemMain.tagManager.deleteTag(tagToDelete);
         parent.refresh();
         stage.close();
     }
