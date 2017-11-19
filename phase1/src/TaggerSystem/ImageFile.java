@@ -52,7 +52,7 @@ public class ImageFile implements Serializable{
     public String getNameWithTags(ArrayList<Tag> tags){
         String ret = name;
         for(Tag tag : tags)
-            ret = name.concat(" @"+tag.getName());
+            ret = ret.concat(" @"+tag.getName());
         return ret;
     }
 
