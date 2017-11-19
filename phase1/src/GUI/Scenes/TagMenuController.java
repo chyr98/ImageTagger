@@ -1,3 +1,4 @@
+//<<<<<<< HEAD
 package GUI.Scenes;
 
 import GUI.GUIMain;
@@ -132,3 +133,4 @@ public class TagMenuController implements Initializable {
     allTagTable.setItems(tags);
   }
 }
+
