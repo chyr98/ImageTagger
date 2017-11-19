@@ -42,53 +42,33 @@ public class TagMenuController implements Initializable {
 
   private MenuController parent;
 
-<<<<<<< HEAD
-        ObservableList<Tag> tags = FXCollections.observableArrayList();
-        if (selectedImage!=null && selectedImage.getCurrentTagList()!=null)
-            tags.addAll(selectedImage.getCurrentTagList());
-        imageTagTable.setItems(tags);
-        this.parent=parent;
-    }
+
 
     @FXML
     void AddTag(ActionEvent event) throws IOException {
 
-        if (!tagNameIn.getText().isEmpty()){
-            selectedImage.AddTag(new Tag(tagNameIn.getText()));
+        if (!tagNameIn.getText().isEmpty()) {
+            selectedImage.addTag(new Tag(tagNameIn.getText()));
             tagNameIn.setText("");
-        }
-        else if(allTagTable.getSelectionModel().getSelectedItem()!=null){
-            selectedImage.AddTag(allTagTable.getSelectionModel().getSelectedItem());
+        } else if (allTagTable.getSelectionModel().getSelectedItem() != null) {
+            selectedImage.addTag(allTagTable.getSelectionModel().getSelectedItem());
         }
         refresh();
-=======
+    }
   /**
    * This method accepts a image file to initialize the view with.
    */
   public void initData(ImageFile image, MenuController parent) {
     selectedImage = image;
     TagsOfTheImage.setCellValueFactory(new PropertyValueFactory<Tag, String>("name"));
->>>>>>> fb9f59c786ececeb0343dd079a1dbbbc46ca68bb
-
     ObservableList<Tag> tags = FXCollections.observableArrayList();
-    if (selectedImage != null && selectedImage.getCurrentTagList() != null) {
-      tags.addAll(selectedImage.getCurrentTagList());
-    }
+
+    if (selectedImage!=null && selectedImage.getCurrentTagList()!=null)
+        tags.addAll(selectedImage.getCurrentTagList());
     imageTagTable.setItems(tags);
-    this.parent = parent;
-  }
+    this.parent=parent;
+}
 
-  @FXML
-  void AddTag(ActionEvent event) throws IOException {
-    if (allTagTable.getSelectionModel().getSelectedItem() != null) {
-      selectedImage.addTag(allTagTable.getSelectionModel().getSelectedItem());
-    } else if (!tagNameIn.getText().isEmpty()) {
-      selectedImage.addTag(new Tag(tagNameIn.getText()));
-
-    }
-    refresh();
-
-  }
 
   public void refresh() {
     ObservableList<Tag> tags1 = FXCollections.observableArrayList();
