@@ -1,12 +1,14 @@
 package GUI.Scenes;
 
 import GUI.GUIMain;
+import TaggerSystem.SystemMain;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -37,15 +39,26 @@ public class StartSceneController implements Initializable{
 
     @FXML
     void goMenu(ActionEvent event) throws IOException {
+        //sets the static variables in SystemMain.
+        SystemMain.reading(PathField.getText());
+
         File choosenFile = new File(PathField.getText());
     if (choosenFile.exists()&&choosenFile.isDirectory()){
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/new_main_window.fxml"));
-        GUIMain.showScene(new Scene(loader.load()));
+        loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
+        Parent menuScene = loader.load();
+
+        MenuController controller = loader.getController();
+        controller.initData();
+        GUIMain.showScene(new Scene(menuScene));
     }
-    else
-        GUIMain.showStage("Scenes/PathNotAvalibleWarning.fxml","Warning");
+    else {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(GUIMain.class.getResource("Scenes/PathNotAvalibleWarning.fxml"));
+        GUIMain.showStage(loader.load(), "Warning");
     }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb){

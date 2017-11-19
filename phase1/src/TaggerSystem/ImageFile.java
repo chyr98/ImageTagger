@@ -1,16 +1,13 @@
 package TaggerSystem;
 
-import com.sun.xml.internal.bind.v2.TODO;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import java.io.Serializable;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ImageFile implements Serializable{
     private String name;
+
+    private Folder parent;
 
     /**Stores all the tags this file has ever had.
      * The current tags is stored at the last index of the list.
@@ -30,6 +27,25 @@ public class ImageFile implements Serializable{
     }
 
     /**
+     * Return the current name of the file(the name with current attached tags)*/
+    public String getCurrName(){
+        if (tags.isEmpty())
+            return name;
+        return getNameWithTags(tags.get(tags.size()-1));
+    }
+
+    /**
+     * Return the path of this image file.*/
+    public String getPath(){
+        String ret = this.name;
+        Folder currParent = this.parent;
+        while (currParent.getParent()!=null){
+            ret = currParent.getName().concat("/"+ret);
+            currParent=currParent.getParent();
+        }
+        return SystemMain.fileManager.getPath().concat("/"+ret);
+    }
+    /**
      * Return the name of a file with given tags attached.
      * */
     public String getNameWithTags(ArrayList<Tag> tags){
@@ -39,7 +55,13 @@ public class ImageFile implements Serializable{
         return ret;
     }
 
+    public void setParent(Folder folder){
+        this.parent = folder;
+    }
+
     public void AddTag(Tag tag) throws IOException {
+        if (!SystemMain.tagManager.HasTag(tag))
+            SystemMain.tagManager.AddTag(tag);
         if (this.tags.isEmpty()) {
             ArrayList<Tag> tags = new ArrayList<>();
             tags.add(tag);
@@ -47,7 +69,7 @@ public class ImageFile implements Serializable{
         }
         else {
             if (!this.tags.get(this.tags.size() - 1).contains(tag)) {
-                ArrayList<Tag> clone = this.tags.get(this.tags.size() - 1);
+                ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
                 clone.add(tag);
                 this.tags.add(clone);
                 RenameFile();
@@ -55,6 +77,19 @@ public class ImageFile implements Serializable{
                 throw new IOException("The file already has this tag");
             }
         }
+    }
+
+    public boolean hasTag(Tag tag){
+        if(this.getCurrentTagList()==null)
+            return false;
+        return this.getCurrentTagList().contains(tag);
+    }
+
+    public void deleteTag(Tag tag)throws IOException{
+        ArrayList<Tag> clone = this.tags.get(this.tags.size() - 1);
+        clone.remove(tag);
+        this.tags.add(clone);
+        RenameFile();
     }
 
     public ArrayList<Tag> getCurrentTagList() {

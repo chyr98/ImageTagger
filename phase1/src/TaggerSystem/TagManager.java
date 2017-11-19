@@ -8,7 +8,7 @@ public class TagManager implements Serializable{
     private ArrayList<Tag> tags;
 
     public TagManager(ArrayList<Tag> tags) {
-        tags = new ArrayList<Tag>();
+        this.tags = tags;
     }
 
     public void AddTag(Tag tag) throws IOException {

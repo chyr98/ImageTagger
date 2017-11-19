@@ -1,7 +1,10 @@
 package GUI;
 
+import GUI.Scenes.MenuController;
+import TaggerSystem.SystemMain;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
@@ -27,14 +30,26 @@ public class GUIMain extends Application {
             primaryStage.setResizable(false);
             primaryStage.setOnCloseRequest(event -> saving());
 
+            SystemMain.loading();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(GUIMain.class.getResource("Scenes/StartScene.fxml"));
-            showScene(new Scene(loader.load()));
+
+            if(SystemMain.tagManager==null&&SystemMain.fileManager==null) {
+                loader.setLocation(GUIMain.class.getResource("Scenes/StartScene.fxml"));
+                showScene(new Scene(loader.load()));
+            }
+            else{
+                loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
+                Parent menuScene = loader.load();
+
+                MenuController controller = loader.getController();
+                controller.initData();
+                GUIMain.showScene(new Scene(menuScene));
+            }
 
     }
 
     private void saving(){
-        File targetDirectory = OpenDirectoryChooser();
+        SystemMain.saving();
     }
 
     public static File OpenDirectoryChooser() {
@@ -47,16 +62,15 @@ public class GUIMain extends Application {
         primaryStage.show();
     }
 
-    public static void showStage(String source, String title) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource(source));
+    public static Stage showStage(Scene scene, String title) throws IOException {
 
         Stage stage = new Stage();
         stage.setTitle(title);
         stage.setResizable(false);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(primaryStage);
-        stage.setScene(new Scene(loader.load()));
-        stage.showAndWait();
+        stage.setScene(scene);
+        stage.show();
+        return stage;
     }
 }

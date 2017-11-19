@@ -3,6 +3,7 @@ package GUI.Scenes;
 import GUI.GUIMain;
 import TaggerSystem.Folder;
 import TaggerSystem.ImageFile;
+import TaggerSystem.SystemMain;
 import TaggerSystem.Tag;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,12 +20,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable{
+
+    @FXML
+    private TableView<Folder> tableOfFolders;
+
+    @FXML
+    private TableColumn<Folder, String> folderNames;
 
     @FXML
     private TableView<ImageFile> FileTable;
@@ -34,6 +45,33 @@ public class MenuController implements Initializable{
 
     @FXML
     private ImageView imgDisplay;
+
+    private static Folder currentFolder = SystemMain.fileManager.getFolder();
+
+    public void initData(){
+
+        FileTable.getSelectionModel()
+                .selectedItemProperty()
+                .addListener(
+                        (obs, oldSelection, newSelection) -> {
+                            File image = new File(newSelection.getPath());
+                            Image selectedImage = null;
+                            try {
+                                String url = image.toURI().toURL().toString();
+                                selectedImage = new Image(url,287,213,false,true);
+                            } catch (MalformedURLException e) {
+                                e.printStackTrace();
+                            }
+                            imgDisplay.setImage(selectedImage);
+                        });
+        tableOfFolders.getSelectionModel()
+                .selectedItemProperty()
+                .addListener(
+                        (obs, oldSelection, newSelection) -> {
+                            currentFolder=newSelection;
+                            refresh();
+                        });
+    }
 
     @FXML
     private void openTagMenu() throws IOException {
@@ -66,32 +104,30 @@ public class MenuController implements Initializable{
     @FXML
     private void openMoveToStage() throws IOException {
         if(FileTable.getSelectionModel().getSelectedItem()!=null) {
-            GUIMain.showStage("Scenes/MoveFileScene.fxml", "Moving To..");
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUIMain.class.getResource("Scenes/MoveFileScene.fxml"));
+            GUIMain.showStage(loader.load(), "Moving To..");
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile,String>("name"));
-    // imgDisplay.getImage(new Image());
+        refresh();
+    }
 
-    FileTable.getSelectionModel()
-        .selectedItemProperty()
-        .addListener(
-            (obs, oldSelection, newSelection) -> {
-              if (newSelection instanceof ImageFile){
-                  //Todo: show the image view of the selected image
-              }
-//              if (newSelection instanceof Folder){
-//                  //Todo: open the folder and let the table view shows the items in the folder.
-//              }
-            });
+    private void refresh(){
+        NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile,String>("currName"));
+        folderNames.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
 
-        try {
-            FileTable.setItems(getDummy());
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!currentFolder.getChildren().isEmpty()) {
+            ObservableList<Folder> folders = FXCollections.observableArrayList();
+            folders.addAll(currentFolder.getChildren());
+            tableOfFolders.setItems(folders);
         }
+        ObservableList<ImageFile> files = FXCollections.observableArrayList();
+        files.addAll(currentFolder.getValue());
+        FileTable.setItems(files);
+
     }
 
     private ObservableList<ImageFile> getDummy() throws IOException {

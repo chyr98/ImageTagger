@@ -12,4 +12,8 @@ public class Tag implements Serializable {
     public String getName(){
         return name;
     }
+
+    public boolean equals(Tag other){
+        return other.getName().equals(this.getName());
+    }
 }

@@ -1,7 +1,7 @@
 package GUI.Scenes;
 
 import TaggerSystem.Folder;
-import TaggerSystem.Main;
+import TaggerSystem.SystemMain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,7 +40,7 @@ public class MoveFileController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Folder selectedFolder = Main.fileManager.getFolder();
+        Folder selectedFolder = SystemMain.fileManager.getFolder();
         listOfFolder.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
 
         //Set a listener to open the folder when it is selected.
