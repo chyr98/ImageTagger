@@ -129,7 +129,6 @@ public class ImageFile implements Serializable {
     return tags;
   }
 
-  // TODO: line 84 and 103 has called rename method, but they take no parameter.
   // Rename this ImageFile to a give String in OS.
   // Each time the renameTo is called, the info will be logged.
   public void renameTo(String newName, String path) {
