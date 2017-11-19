@@ -1,16 +1,23 @@
 package TaggerSystem;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class FileManager implements Serializable {
+
+    //The source folder that user has choose to work on.
     private Folder folder;
 
     public FileManager(Folder folder) {
         this.folder = folder;
     }
 
+    public Folder getFolder(){
+        return folder;
+    }
+
     public void DeleteTag(Tag tag) {
-        for (ImageFile file: this.folder.value) {
+        for (ImageFile file: this.folder.getValue()) {
             ArrayList tag_list = file.getCurrentTagList();
             if (tag_list.contains(tag)) {
                 clone = tag_list;

@@ -1,13 +1,28 @@
 package GUI.Scenes;
 
+import TaggerSystem.Folder;
+import TaggerSystem.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-public class MoveFileController {
+import java.io.FileOutputStream;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MoveFileController implements Initializable{
 
     @FXML
-    private TableColumn<?, ?> listOfFolder;
+    private TableView<Folder> tableOfFolder;
+
+    @FXML
+    private TableColumn<Folder, String> listOfFolder;
+
 
     @FXML
     void cancel(ActionEvent event) {
@@ -24,4 +39,23 @@ public class MoveFileController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Folder selectedFolder = Main.fileManager.getFolder();
+        listOfFolder.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
+
+        //Set a listener to open the folder when it is selected.
+        tableOfFolder.getSelectionModel()
+                .selectedItemProperty()
+                .addListener(
+                        (obs, oldSelection, newSelection) -> {
+                            ObservableList<Folder> folders= FXCollections.observableArrayList();
+                            folders.addAll(newSelection.getChildren());
+                            tableOfFolder.setItems(folders);
+                        });
+
+        ObservableList<Folder> folders= FXCollections.observableArrayList();
+        folders.addAll(selectedFolder.getChildren());
+        tableOfFolder.setItems(folders);
+    }
 }
