@@ -60,7 +60,7 @@ public class ImageFile implements Serializable{
         this.parent = folder;
     }
 
-    public void AddTag(Tag tag) throws IOException {
+    public void addTag(Tag tag) throws IOException {
         if (!SystemMain.tagManager.HasTag(tag))
             SystemMain.tagManager.AddTag(tag);
         if (this.tags.isEmpty()) {
@@ -108,7 +108,7 @@ public class ImageFile implements Serializable{
         return tags;
     }
 
-    public void RenameFile() {
+    public void renameFile() {
         String new_name = getNameWithTags(tags.get(tags.size()-1));
         //TODO: use the new_name to rename the file in the OS.
     }

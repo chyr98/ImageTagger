@@ -11,7 +11,7 @@ public class TagManager implements Serializable{
         this.tags = tags;
     }
 
-    public void AddTag(Tag tag) throws IOException {
+    public void addTag(Tag tag) throws IOException {
         if (!this.tags.contains(tag)) {
             this.tags.add(tag);
         } else {
@@ -23,14 +23,14 @@ public class TagManager implements Serializable{
         return tags;
     }
 
-    public Boolean HasTag(Tag tag) {
+    public Boolean hasTag(Tag tag) {
         return this.tags.contains(tag);
     }
 
-    public void DeleteTag(Tag tag) throws IOException {
+    public void deleteTag(Tag tag) throws IOException {
         if (HasTag(tag)) {
             this.tags.remove(tag);
         }
-        SystemMain.fileManager.DeleteTag(tag);
+        SystemMain.fileManager.deleteTag(tag);
     }
 }

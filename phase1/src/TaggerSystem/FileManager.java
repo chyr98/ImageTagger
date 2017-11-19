@@ -21,7 +21,7 @@ public class FileManager implements Serializable {
         return folder;
     }
 
-    public void DeleteTag(Tag tag) throws IOException {
+    public void deleteTag(Tag tag) throws IOException {
         folder.deleteTag(tag);
     }
 
