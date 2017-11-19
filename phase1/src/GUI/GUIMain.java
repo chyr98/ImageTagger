@@ -22,11 +22,14 @@ public class GUIMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-            this.primaryStage = primaryStage;
-            primaryStage.setTitle("Photo Tager");
-            primaryStage.setResizable(false);
-            primaryStage.setOnCloseRequest(event -> saving());
-            showScene("Scenes/StartScene.fxml");
+        this.primaryStage = primaryStage;
+        primaryStage.setTitle("Photo Tager");
+        primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(event -> saving());
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(GUIMain.class.getResource("Scenes/StartScene.fxml"));
+        showScene(new Scene(loader.load()));
 
     }
 
@@ -39,10 +42,8 @@ public class GUIMain extends Application {
         return directoryChooser.showDialog(GUIMain.primaryStage);
     }
 
-    public static void showScene(String source) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource(source));
-        primaryStage.setScene(new Scene(loader.load()));
+    public static void showScene(Scene scene) throws IOException {
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 

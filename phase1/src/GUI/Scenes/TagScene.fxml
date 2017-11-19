@@ -7,18 +7,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Scenes.TagMenuController">
    <children>
-      <TableView layoutX="300.0" prefHeight="221.0" prefWidth="300.0" AnchorPane.bottomAnchor="179.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="imageTagTable" layoutX="300.0" prefHeight="221.0" prefWidth="300.0" AnchorPane.bottomAnchor="179.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
           <TableColumn fx:id="TagsOfTheImage" editable="false" prefWidth="299.0" resizable="false" text="Tags In Image" />
         </columns>
       </TableView>
-      <TableView prefHeight="400.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="allTagTable" prefHeight="400.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="TableOfAllTags" editable="false" prefWidth="310.0" text="Avaliable Tags" />
+          <TableColumn fx:id="AllAvailableTags" editable="false" prefWidth="310.0" text="Avaliable Tags" />
         </columns>
       </TableView>
-      <Button layoutX="420.0" layoutY="274.0" mnemonicParsing="false" onAction="#AddTag" text="Add TaggerSystem.Tag" />
-      <Button layoutX="414.0" layoutY="313.0" mnemonicParsing="false" onAction="#DeleteTag" text="Delete TaggerSystem.Tag" />
+      <Button layoutX="420.0" layoutY="274.0" mnemonicParsing="false" onAction="#AddTag" text="Add Tag" />
+      <Button layoutX="414.0" layoutY="313.0" mnemonicParsing="false" onAction="#DeleteTag" text="Delete Tag" />
       <Button layoutX="430.0" layoutY="347.0" mnemonicParsing="false" onAction="#Back" text="Back" />
    </children>
 </AnchorPane>
