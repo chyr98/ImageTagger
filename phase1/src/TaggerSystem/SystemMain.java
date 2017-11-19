@@ -17,18 +17,15 @@ public class SystemMain {
   private static String[] suffixes = {"jpg", "png"};
 
   public static void reading(String rootPath) {
-
     File rootFile = new File(rootPath);
     // Read the information of files and generate a tree of Files and Folders.
       Folder rootFolder = createFolder(rootFile);
       fileManager = new FileManager(rootFolder,rootPath);
       tagManager = new TagManager(new ArrayList<>());
 
-
   }
 
   public static void loading(){
-    // Read or create fileManager.
     try {
       // read fileManager from file.
       FileInputStream fis = new FileInputStream("fileManager.ser");
@@ -37,10 +34,9 @@ public class SystemMain {
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
     }
-
-    // Read or create tagManager.
-    try {
+    
       // read tagManager from file.
+    try{
       FileInputStream fis = new FileInputStream("tagManager.ser");
       ObjectInputStream ois = new ObjectInputStream(fis);
       tagManager = (TagManager) ois.readObject();
@@ -49,7 +45,7 @@ public class SystemMain {
     }
   }
 
-  public static void saving(){
+  public static void saving() {
     // Save fileManager.
     try {
       // write object to file.
@@ -83,7 +79,8 @@ public class SystemMain {
     File[] files = file.listFiles();
     ArrayList<Folder> folderList = new ArrayList<>();
     ArrayList<ImageFile> imageList = new ArrayList<>();
-    for (File f : files) {
+    // Nothing will happen if the directory is empty.
+    for (File f : file.listFiles()) {
       // Folder(String name, ArrayList<Folder> children, ArrayList<ImageFile> value)
       if (f.isDirectory()) {
         folderList.add(createFolder(f));
