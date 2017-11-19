@@ -41,7 +41,7 @@ public class MoveFileController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Folder selectedFolder = Main.fileManager.getCurrentFolder();
+        Folder selectedFolder = Main.fileManager.getFolder();
         listOfFolder.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
 
         //Set a listener to open the folder when it is selected.

@@ -40,7 +40,7 @@ public class StartSceneController implements Initializable{
         File choosenFile = new File(PathField.getText());
     if (choosenFile.exists()&&choosenFile.isDirectory()){
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
+        loader.setLocation(GUIMain.class.getResource("Scenes/new_main_window.fxml"));
         GUIMain.showScene(new Scene(loader.load()));
     }
     else

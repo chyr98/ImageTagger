@@ -49,12 +49,23 @@ public class TagMenuController implements Initializable{
 
     @FXML
     void AddTag(ActionEvent event) throws IOException {
+        if(allTagTable.getSelectionModel().getSelectedItem()!=null){
+
+        }
+        else{
+
+        }
 
     }
 
     @FXML
     void DeleteTag(ActionEvent event) throws IOException {
-        GUIMain.showStage("Scenes/DeleteConfirmStage.fxml", "Confirmation");
+        if (imageTagTable.getSelectionModel().getSelectedItem()!=null) {
+
+        }
+        if (allTagTable.getSelectionModel().getSelectedItem()!=null) {
+            GUIMain.showStage("Scenes/DeleteConfirmStage.fxml", "Confirmation");
+        }
     }
 
     @FXML

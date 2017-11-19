@@ -2,6 +2,7 @@ package GUI.Scenes;
 
 
 import GUI.GUIMain;
+import TaggerSystem.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +12,13 @@ import java.io.IOException;
 
 public class DeleteConfirmController {
 
+    public void initData(){
+
+    }
+
     @FXML
     void confirm(ActionEvent event) {
-
+        //Main.tagManager.DeleteTag();
     }
 
     @FXML
