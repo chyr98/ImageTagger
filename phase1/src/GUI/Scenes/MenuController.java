@@ -29,123 +29,126 @@ import java.net.URL;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
-public class MenuController implements Initializable{
+public class MenuController implements Initializable {
 
-    @FXML
-    private TableView<Folder> tableOfFolders;
+  @FXML
+  private TableView<Folder> tableOfFolders;
 
-    @FXML
-    private TableColumn<Folder, String> folderNames;
+  @FXML
+  private TableColumn<Folder, String> folderNames;
 
-    @FXML
-    private TableView<ImageFile> FileTable;
+  @FXML
+  private TableView<ImageFile> FileTable;
 
-    @FXML
-    private TableColumn<ImageFile, String> NameColomn;
+  @FXML
+  private TableColumn<ImageFile, String> NameColomn;
 
-    @FXML
-    private ImageView imgDisplay;
+  @FXML
+  private ImageView imgDisplay;
 
-    private static Folder currentFolder = SystemMain.fileManager.getFolder();
+  private static Folder currentFolder = SystemMain.fileManager.getFolder();
 
 
-    @FXML
-    private void openTagMenu() throws IOException {
-        if(FileTable.getSelectionModel().getSelectedItem()!=null) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(GUIMain.class.getResource("Scenes/TagScene.fxml"));
-            Parent tagMenuParent = loader.load();
+  @FXML
+  private void openTagMenu() throws IOException {
+    if (FileTable.getSelectionModel().getSelectedItem() != null) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(GUIMain.class.getResource("Scenes/TagScene.fxml"));
+      Parent tagMenuParent = loader.load();
 
-            TagMenuController controller = loader.getController();
-            controller.initData(FileTable.getSelectionModel().getSelectedItem(),this);
+      TagMenuController controller = loader.getController();
+      controller.initData(FileTable.getSelectionModel().getSelectedItem(), this);
 
-            GUIMain.showScene(new Scene(tagMenuParent));
-        }
+      GUIMain.showScene(new Scene(tagMenuParent));
     }
+  }
 
-    @FXML
-    private void goParent(){
-        if (currentFolder.getParent()!=null) {
-            currentFolder = currentFolder.getParent();
-            refresh();
-        }
+  @FXML
+  private void goParent() {
+    if (currentFolder.getParent() != null) {
+      currentFolder = currentFolder.getParent();
+      refresh();
     }
+  }
 
-    @FXML
-    private void openNameHistory() throws IOException {
-        if(FileTable.getSelectionModel().getSelectedItem()!=null){
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(GUIMain.class.getResource("Scenes/NameHistoryScene.fxml"));
-            Parent historyMenuParent = loader.load();
+  @FXML
+  private void openNameHistory() throws IOException {
+    if (FileTable.getSelectionModel().getSelectedItem() != null) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(GUIMain.class.getResource("Scenes/NameHistoryScene.fxml"));
+      Parent historyMenuParent = loader.load();
 
-            NameHistoryController controller = loader.getController();
-            controller.initData(FileTable.getSelectionModel().getSelectedItem());
+      NameHistoryController controller = loader.getController();
+      controller.initData(FileTable.getSelectionModel().getSelectedItem());
 
-            GUIMain.showScene(new Scene(historyMenuParent));
-        }
+      GUIMain.showScene(new Scene(historyMenuParent));
     }
+  }
 
-    @FXML
-    private void openMoveToStage() throws IOException {
-        if(FileTable.getSelectionModel().getSelectedItem()!=null) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(GUIMain.class.getResource("Scenes/MoveFileScene.fxml"));
-            Parent moveScene = loader.load();
+  @FXML
+  private void openMoveToStage() throws IOException {
+    if (FileTable.getSelectionModel().getSelectedItem() != null) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(GUIMain.class.getResource("Scenes/MoveFileScene.fxml"));
+      Parent moveScene = loader.load();
 
-            MoveFileController controller=loader.getController();
-            controller.initData(FileTable.getSelectionModel().getSelectedItem(), this,
-                    GUIMain.showStage(new Scene(moveScene), "Moving To.."));
-        }
+      MoveFileController controller = loader.getController();
+      controller.initData(FileTable.getSelectionModel().getSelectedItem(), this,
+          GUIMain.showStage(new Scene(moveScene), "Moving To.."));
     }
+  }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        FileTable.getSelectionModel()
-                .selectedItemProperty()
-                .addListener(
-                        (obs, oldSelection, newSelection) -> {
-                            File image = new File(newSelection.getPath());
-                            Image selectedImage = null;
-                            try {
-                                String url = image.toURI().toURL().toString();
-                                selectedImage = new Image(url,287,213,false,true);
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            }
-                            if (selectedImage!=null)
-                                imgDisplay.setImage(selectedImage);
-                        });
-        tableOfFolders.getSelectionModel()
-                .selectedItemProperty()
-                .addListener(
-                        (obs, oldSelection, newSelection) -> {
-                            try {
-                                if (newSelection != null) {
-                                    currentFolder = newSelection;
-                                    refresh();
-                                }
-                            }catch (IndexOutOfBoundsException e){
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    FileTable.getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (obs, oldSelection, newSelection) -> {
+              File image = new File(newSelection.getPath());
+              Image selectedImage = null;
+              try {
+                String url = image.toURI().toURL().toString();
+                selectedImage = new Image(url, 287, 213, false, true);
+              } catch (MalformedURLException e) {
+                e.printStackTrace();
+              }
+              if (selectedImage != null) {
+                imgDisplay.setImage(selectedImage);
+              }
+            });
+    tableOfFolders.getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (obs, oldSelection, newSelection) -> {
+              try {
+                if (newSelection != null) {
+                  currentFolder = newSelection;
+                  refresh();
+                }
+              } catch (IndexOutOfBoundsException e) {
 
-                            }
-                        });
-        refresh();
+              }
+            });
+    refresh();
+  }
+
+  public void refresh() {
+    NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("currName"));
+    folderNames.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
+
+    ObservableList<Folder> folders = FXCollections.observableArrayList();
+    if (currentFolder == null) {
+      currentFolder = SystemMain.fileManager.getFolder();
     }
-
-    public void refresh(){
-        NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile,String>("currName"));
-        folderNames.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
-
-        ObservableList<Folder> folders = FXCollections.observableArrayList();
-        if (currentFolder==null)
-            currentFolder=SystemMain.fileManager.getFolder();
-        if (currentFolder.getChildren()!=null){
-            if(!currentFolder.getChildren().isEmpty())
-            folders.addAll(currentFolder.getChildren());
-        }
-        tableOfFolders.setItems(folders);
-        ObservableList<ImageFile> files = FXCollections.observableArrayList();
-        files.addAll(currentFolder.getValue());
-        FileTable.setItems(files);
-
+    if (currentFolder.getChildren() != null) {
+      if (!currentFolder.getChildren().isEmpty()) {
+        folders.addAll(currentFolder.getChildren());
+      }
     }
+    tableOfFolders.setItems(folders);
+    ObservableList<ImageFile> files = FXCollections.observableArrayList();
+    files.addAll(currentFolder.getValue());
+    FileTable.setItems(files);
+
+  }
 }

@@ -16,59 +16,58 @@ import java.io.IOException;
 
 public class GUIMain extends Application {
 
-    private static Stage primaryStage;
-    private static AnchorPane mainLayout;
+  private static Stage primaryStage;
+  private static AnchorPane mainLayout;
 
-    public static void main(String[] args) {
-        launch(args);
+  public static void main(String[] args) {
+    launch(args);
+  }
+
+  @Override
+  public void start(Stage primaryStage) throws IOException {
+    this.primaryStage = primaryStage;
+    primaryStage.setTitle("Photo Tager");
+    primaryStage.setResizable(false);
+    primaryStage.setOnCloseRequest(event -> saving());
+
+    SystemMain.loading();
+    FXMLLoader loader = new FXMLLoader();
+
+    if (SystemMain.tagManager == null && SystemMain.fileManager == null) {
+      loader.setLocation(GUIMain.class.getResource("Scenes/StartScene.fxml"));
+      showScene(new Scene(loader.load()));
+    } else {
+      loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
+      Parent menuScene = loader.load();
+
+      GUIMain.showScene(new Scene(menuScene));
     }
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-            this.primaryStage = primaryStage;
-            primaryStage.setTitle("Photo Tager");
-            primaryStage.setResizable(false);
-            primaryStage.setOnCloseRequest(event -> saving());
+  }
 
-            SystemMain.loading();
-            FXMLLoader loader = new FXMLLoader();
+  private void saving() {
+    SystemMain.saving();
+  }
 
-            if(SystemMain.tagManager==null&&SystemMain.fileManager==null) {
-                loader.setLocation(GUIMain.class.getResource("Scenes/StartScene.fxml"));
-                showScene(new Scene(loader.load()));
-            }
-            else{
-                loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
-                Parent menuScene = loader.load();
+  public static File OpenDirectoryChooser() {
+    DirectoryChooser directoryChooser = new DirectoryChooser();
+    return directoryChooser.showDialog(GUIMain.primaryStage);
+  }
 
-                GUIMain.showScene(new Scene(menuScene));
-            }
+  public static void showScene(Scene scene) throws IOException {
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
 
-    }
+  public static Stage showStage(Scene scene, String title) throws IOException {
 
-    private void saving(){
-        SystemMain.saving();
-    }
-
-    public static File OpenDirectoryChooser() {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        return directoryChooser.showDialog(GUIMain.primaryStage);
-    }
-
-    public static void showScene(Scene scene) throws IOException {
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static Stage showStage(Scene scene, String title) throws IOException {
-
-        Stage stage = new Stage();
-        stage.setTitle(title);
-        stage.setResizable(false);
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(primaryStage);
-        stage.setScene(scene);
-        stage.show();
-        return stage;
-    }
+    Stage stage = new Stage();
+    stage.setTitle(title);
+    stage.setResizable(false);
+    stage.initModality(Modality.WINDOW_MODAL);
+    stage.initOwner(primaryStage);
+    stage.setScene(scene);
+    stage.show();
+    return stage;
+  }
 }

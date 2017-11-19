@@ -21,47 +21,48 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ResourceBundle;
 
-public class StartSceneController implements Initializable{
+public class StartSceneController implements Initializable {
 
-    @FXML
-    private TextField PathField;
+  @FXML
+  private TextField PathField;
 
-    @FXML
-    private Button startButton;
+  @FXML
+  private Button startButton;
 
-    @FXML
-    void OpenDirectoryChooser() {
-        File selectedDirectory = GUIMain.OpenDirectoryChooser();
-        if(selectedDirectory != null){
-            PathField.setText(selectedDirectory.getAbsolutePath());
-        }
+  @FXML
+  void OpenDirectoryChooser() {
+    File selectedDirectory = GUIMain.OpenDirectoryChooser();
+    if (selectedDirectory != null) {
+      PathField.setText(selectedDirectory.getAbsolutePath());
     }
+  }
 
-    @FXML
-    void goMenu(ActionEvent event) throws IOException {
-        //sets the static variables in SystemMain.
-        SystemMain.reading(PathField.getText());
+  @FXML
+  void goMenu(ActionEvent event) throws IOException {
+    //sets the static variables in SystemMain.
+    SystemMain.reading(PathField.getText());
 
-        File choosenFile = new File(PathField.getText());
-    if (choosenFile.exists()&&choosenFile.isDirectory()){
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
-        Parent menuScene = loader.load();
+    File choosenFile = new File(PathField.getText());
+    if (choosenFile.exists() && choosenFile.isDirectory()) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
+      Parent menuScene = loader.load();
 
-        GUIMain.showScene(new Scene(menuScene));
+      GUIMain.showScene(new Scene(menuScene));
+    } else {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(GUIMain.class.getResource("Scenes/PathNotAvalibleWarning.fxml"));
+      GUIMain.showStage(loader.load(), "Warning");
     }
-    else {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(GUIMain.class.getResource("Scenes/PathNotAvalibleWarning.fxml"));
-        GUIMain.showStage(loader.load(), "Warning");
-    }
-    }
+  }
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb){
-        BooleanBinding pathFieldEmpty = Bindings.createBooleanBinding(() -> {return PathField.getText().isEmpty();},PathField.textProperty());
-        startButton.disableProperty().bind(pathFieldEmpty);
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle rb) {
+    BooleanBinding pathFieldEmpty = Bindings.createBooleanBinding(() -> {
+      return PathField.getText().isEmpty();
+    }, PathField.textProperty());
+    startButton.disableProperty().bind(pathFieldEmpty);
+  }
 
 }

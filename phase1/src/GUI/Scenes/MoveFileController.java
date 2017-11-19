@@ -16,69 +16,69 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MoveFileController implements Initializable{
+public class MoveFileController implements Initializable {
 
-    @FXML
-    private TableView<Folder> tableOfFolder;
+  @FXML
+  private TableView<Folder> tableOfFolder;
 
-    @FXML
-    private TableColumn<Folder, String> listOfFolder;
+  @FXML
+  private TableColumn<Folder, String> listOfFolder;
 
-    private Folder currentFolder;
+  private Folder currentFolder;
 
-    private MenuController parent;
+  private MenuController parent;
 
-    private ImageFile selectedFile;
+  private ImageFile selectedFile;
 
-    private Stage stage;
+  private Stage stage;
 
-    public void initData(ImageFile file, MenuController controller, Stage stage){
-        parent = controller;
-        selectedFile = file;
-        this.stage = stage;
+  public void initData(ImageFile file, MenuController controller, Stage stage) {
+    parent = controller;
+    selectedFile = file;
+    this.stage = stage;
+  }
+
+  @FXML
+  void cancel(ActionEvent event) {
+    parent.refresh();
+    stage.close();
+  }
+
+  @FXML
+  void goParent(ActionEvent event) {
+    if (currentFolder.getParent() != null) {
+      currentFolder = currentFolder.getParent();
+      refresh();
     }
+  }
 
-    @FXML
-    void cancel(ActionEvent event) {
-        parent.refresh();
-        stage.close();
-    }
+  @FXML
+  void move(ActionEvent event) {
 
-    @FXML
-    void goParent(ActionEvent event) {
-        if (currentFolder.getParent()!=null) {
-            currentFolder = currentFolder.getParent();
-            refresh();
-        }
-    }
+  }
 
-    @FXML
-    void move(ActionEvent event) {
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    listOfFolder.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
+    currentFolder = SystemMain.fileManager.getFolder();
 
-    }
+    //Set a listener to open the folder when it is selected.
+    tableOfFolder.getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (obs, oldSelection, newSelection) -> {
+              if (newSelection != null) {
+                currentFolder = newSelection;
+                refresh();
+              }
+            });
+    refresh();
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        listOfFolder.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
-         currentFolder = SystemMain.fileManager.getFolder();
+  }
 
-        //Set a listener to open the folder when it is selected.
-        tableOfFolder.getSelectionModel()
-                .selectedItemProperty()
-                .addListener(
-                        (obs, oldSelection, newSelection) -> {
-                            if(newSelection!=null) {
-                                currentFolder = newSelection;
-                                refresh();
-                            }
-                        });
-        refresh();
-
-    }
-
-    private void refresh(){
-        ObservableList<Folder> folders= FXCollections.observableArrayList();
-        folders.addAll(currentFolder.getChildren());
-        tableOfFolder.setItems(folders);
-    }
+  private void refresh() {
+    ObservableList<Folder> folders = FXCollections.observableArrayList();
+    folders.addAll(currentFolder.getChildren());
+    tableOfFolder.setItems(folders);
+  }
 }

@@ -19,13 +19,13 @@ public class SystemMain {
   public static void reading(String rootPath) {
     File rootFile = new File(rootPath);
     // Read the information of files and generate a tree of Files and Folders.
-      Folder rootFolder = createFolder(rootFile);
-      fileManager = new FileManager(rootFolder,rootPath);
-      tagManager = new TagManager(new ArrayList<>());
+    Folder rootFolder = createFolder(rootFile);
+    fileManager = new FileManager(rootFolder, rootPath);
+    tagManager = new TagManager(new ArrayList<>());
 
   }
 
-  public static void loading(){
+  public static void loading() {
     try {
       // read fileManager from file.
       FileInputStream fis = new FileInputStream("fileManager.ser");
@@ -35,8 +35,8 @@ public class SystemMain {
       e.printStackTrace();
     }
 
-      // read tagManager from file.
-    try{
+    // read tagManager from file.
+    try {
       FileInputStream fis = new FileInputStream("tagManager.ser");
       ObjectInputStream ois = new ObjectInputStream(fis);
       tagManager = (TagManager) ois.readObject();
