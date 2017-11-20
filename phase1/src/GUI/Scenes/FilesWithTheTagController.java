@@ -18,54 +18,54 @@ import java.net.MalformedURLException;
 
 public class FilesWithTheTagController {
 
-    private Tag selectedTag;
+  private Tag selectedTag;
 
-    private Stage stage;
+  private Stage stage;
 
-    private TagMenuController parent;
+  private TagMenuController parent;
 
-    public void initData(Tag selectedTag, Stage stage, TagMenuController parent){
-        this.stage=stage;
-        this.selectedTag = selectedTag;
-        this.parent = parent;
+  public void initData(Tag selectedTag, Stage stage, TagMenuController parent) {
+    this.stage = stage;
+    this.selectedTag = selectedTag;
+    this.parent = parent;
 
-        TableOfImages.getSelectionModel()
-                .selectedItemProperty()
-                .addListener(
-                        (obs, oldSelection, newSelection) -> {
-                            File image = new File(newSelection.getPath());
-                            Image selectedImage = null;
-                            try {
-                                String url = image.toURI().toURL().toString();
-                                selectedImage = new Image(url, 359, 315, false, true);
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            }
-                            if (selectedImage != null) {
-                                ImageDisplay.setImage(selectedImage);
-                            }
-                        });
+    TableOfImages.getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (obs, oldSelection, newSelection) -> {
+              File image = new File(newSelection.getPath());
+              Image selectedImage = null;
+              try {
+                String url = image.toURI().toURL().toString();
+                selectedImage = new Image(url, 359, 315, false, true);
+              } catch (MalformedURLException e) {
+                e.printStackTrace();
+              }
+              if (selectedImage != null) {
+                ImageDisplay.setImage(selectedImage);
+              }
+            });
 
-        ColumnOfImages.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
+    ColumnOfImages.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
 
-        ObservableList<ImageFile> files = FXCollections.observableArrayList();
-        files.addAll(SystemMain.fileManager.getFilesWithTag(selectedTag));
-        TableOfImages.setItems(files);
-    }
+    ObservableList<ImageFile> files = FXCollections.observableArrayList();
+    files.addAll(SystemMain.fileManager.getFilesWithTag(selectedTag));
+    TableOfImages.setItems(files);
+  }
 
-    @FXML
-    private TableView<ImageFile> TableOfImages;
+  @FXML
+  private TableView<ImageFile> TableOfImages;
 
-    @FXML
-    private TableColumn<ImageFile, String> ColumnOfImages;
+  @FXML
+  private TableColumn<ImageFile, String> ColumnOfImages;
 
-    @FXML
-    private ImageView ImageDisplay;
+  @FXML
+  private ImageView ImageDisplay;
 
-    @FXML
-    void goBack() {
-        stage.close();
-        parent.refresh();
-    }
+  @FXML
+  void goBack() {
+    stage.close();
+    parent.refresh();
+  }
 
 }

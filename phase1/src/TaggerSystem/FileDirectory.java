@@ -1,7 +1,6 @@
 package TaggerSystem;
 
 import java.io.File;
-import java.nio.file.FileSystem;
 import java.nio.file.Path;
 
 public class FileDirectory {
@@ -18,15 +17,15 @@ public class FileDirectory {
   }
 
   /**
-   * Return the comlete pathName of FileDirectory
+   * Return the comlete path String of FileDirectory
    *
-   * @return String pathName
+   * @return String of path
    */
-  public String pathName() {
+  public String getPath() {
     if (this.parent == null) {
       return SystemMain.fileManager.getPath();
     }
-    return parent.pathName() + File.pathSeparator + this.getName();
+    return parent.getPath() + File.pathSeparator + this.getName();
   }
 
   /**
@@ -35,7 +34,7 @@ public class FileDirectory {
    * @return Path path
    */
   public Path toPath() {
-    return (new File(this.pathName())).toPath();
+    return (new File(this.getPath())).toPath();
   }
 
 }
