@@ -3,15 +3,8 @@ package TaggerSystem;
 import java.io.File;
 import java.io.Serializable;
 import java.io.IOException;
-import java.lang.annotation.Target;
 import java.nio.file.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
-import java.util.logging.Handler;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class ImageFile extends FileDirectory implements Serializable {
 
