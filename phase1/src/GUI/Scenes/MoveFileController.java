@@ -78,6 +78,7 @@ public class MoveFileController implements Initializable {
 
   private void refresh() {
     ObservableList<Folder> folders = FXCollections.observableArrayList();
+    listOfFolder.setText(currentFolder.getName());
     folders.addAll(currentFolder.getChildren());
     tableOfFolder.setItems(folders);
   }
