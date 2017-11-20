@@ -23,7 +23,7 @@ public class FileDirectory {
    */
   public String pathName() {
     if (this.parent == null) {
-      return SystemMain.fileManager.getPath() + "/" + this.getName();
+      return SystemMain.fileManager.getPath();
     }
     return parent.pathName() + "/" + this.getName();
   }
