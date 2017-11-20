@@ -5,7 +5,6 @@ Hangyu Feng:
     ImageFile.moveTo (with Yuxiao Chen)
     Tag.equals (with Hehao Wu)
     ImageFile.renameTo
-  Drew UML diagram
 
 
 Yuxiao Chen:
