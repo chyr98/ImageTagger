@@ -38,7 +38,6 @@ public class Folder implements Serializable {
     }
   }
 
-
   public ArrayList<ImageFile> getFileWithTag(Tag tag) {
     ArrayList<ImageFile> ret = new ArrayList<>();
     for (ImageFile file : this.value) {
