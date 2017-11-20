@@ -3,6 +3,8 @@ package TaggerSystem;
 import java.io.File;
 import java.io.Serializable;
 import java.io.IOException;
+import java.lang.annotation.Target;
+import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -153,5 +155,42 @@ public class ImageFile implements Serializable {
         currTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd H:m")) + "  Old: " + currName
             + "; New: " + newName + ";";
     nameLog.info(msg);
+  }
+
+  /**
+   * Moves the file to a target folder.
+   */
+  public void moveTo(Folder targetFolder) throws IOException {
+    if(!targetFolder.getValue().contains(this)) {
+      this.parent.getValue().remove(this);
+      targetFolder.getValue().add(this);
+      this.parent = targetFolder;
+
+      try{
+
+        File aFile =new File(this.getPath());
+        Path moveFrom = FileSystems.getDefault().getPath(this.getPath());
+        Path target = FileSystems.getDefault().getPath(targetFolder.getPath()+ "/" + aFile.getName());
+
+        Files.move(moveFrom, target, StandardCopyOption.REPLACE_EXISTING);
+
+
+      }catch(Exception e){
+        e.printStackTrace();
+      }
+
+    }
+    else{
+      throw new IOException("The Folder has file with same name.");
+    }
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other instanceof ImageFile) {
+      return ((ImageFile) other).getCurrName().equals(this.getCurrName());
+    } else {
+      return false;
+    }
   }
 }
