@@ -12,18 +12,24 @@ public class FileDirectory {
     this.name = name;
   }
 
-  /** Return the comlete pathName of FileDirectory
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Return the comlete pathName of FileDirectory
    *
    * @return String pathName
    */
   public String pathName() {
     if (this.parent == null) {
-      return SystemMain.fileManager.getPath();
+      return SystemMain.fileManager.getPath() + "/" + this.getName();
     }
-    return parent.pathName() + "/" + name;
+    return parent.pathName() + "/" + this.getName();
   }
 
-  /** Return a Path Object refer to this FileDicrctory.
+  /**
+   * Return a Path Object refer to this FileDicrctory.
    *
    * @return Path path
    */
