@@ -1,6 +1,8 @@
 Hangyu Feng:
-  SystemMain
-  FileDirectory
-  ImageFile.moveTo (with Yuxiao Chen)
-  Tag.equals (with Hehao Wu)
-  ImageFile.renameTo
+  Wrote:
+    SystemMain
+    FileDirectory
+    ImageFile.moveTo (with Yuxiao Chen)
+    Tag.equals (with Hehao Wu)
+    ImageFile.renameTo
+  Drew UML diagram
