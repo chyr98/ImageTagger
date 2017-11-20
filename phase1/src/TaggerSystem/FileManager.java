@@ -33,15 +33,7 @@ public class FileManager implements Serializable {
     return folder.getFileWithTag(tag);
   }
 
-//    public ArrayList<ImageFile> getAllFiles() {
-//        FinalList = new ArrayList<ImageFile> ();
-//        for (thing : this.folder) {
-//            if (thing.isinstanceof(Imagefile)) {
-//                FinalList.add(thing);
-//            } else {
-//                thing.getAllFiles();
-//            }
-//        }
-//        return FinalList;
-//    }
+    public ArrayList<ImageFile> getAllFiles() {
+        return folder.getAllImages();
+    }
 }
