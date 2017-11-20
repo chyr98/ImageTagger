@@ -13,11 +13,7 @@ import java.util.logging.Handler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-public class ImageFile implements Serializable {
-
-  private String name;
-
-  private Folder parent;
+public class ImageFile extends FileDirectory implements Serializable {
 
   /**
    * Stores all the tags this file has ever had. The current tags is stored at the last index of the
@@ -26,7 +22,7 @@ public class ImageFile implements Serializable {
   private ArrayList<ArrayList<Tag>> tags;
 
   public ImageFile(String name) {
-    this.name = name;
+    super(name);
     this.tags = new ArrayList<>();
     this.tags.add(new ArrayList<>());
   }

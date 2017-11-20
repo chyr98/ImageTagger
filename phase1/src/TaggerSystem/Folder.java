@@ -5,15 +5,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Folder implements Serializable {
+public class Folder extends FileDirectory implements Serializable {
 
-  private String name;
-  private Folder parent;
   private ArrayList<Folder> children;
   private ArrayList<ImageFile> value;
 
   public Folder(String name, ArrayList<Folder> children, ArrayList<ImageFile> value) {
-    this.name = name;
+    super(name);
     this.children = children;
     this.value = value;
     for (Folder child : this.children) {
@@ -56,12 +54,14 @@ public class Folder implements Serializable {
   }
 
   /**
-   * A recursive method that returns all the ImageFiles under this Folder and subFolders*/
-  public ArrayList<ImageFile> getAllImages(){
+   * A recursive method that returns all the ImageFiles under this Folder and subFolders
+   */
+  public ArrayList<ImageFile> getAllImages() {
     ArrayList<ImageFile> ret = new ArrayList<>();
     ret.addAll(this.getValue());
-    for (Folder child:this.children)
+    for (Folder child : this.children) {
       ret.addAll(child.getAllImages());
+    }
     return ret;
   }
 
@@ -71,8 +71,9 @@ public class Folder implements Serializable {
   public String getPath() {
     String ret = name;
 
-    if(this.parent==null)
+    if (this.parent == null) {
       return SystemMain.fileManager.getPath();
+    }
 
     Folder currParent = this.parent;
     while (currParent.getParent() != null) {
