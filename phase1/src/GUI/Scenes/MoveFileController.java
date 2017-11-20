@@ -65,6 +65,8 @@ public class MoveFileController implements Initializable {
   void move(ActionEvent event) throws IOException {
       Folder targetFolder = currentFolder;
       selectedFile.moveTo(targetFolder);
+
+      refresh();
   }
 
   @Override

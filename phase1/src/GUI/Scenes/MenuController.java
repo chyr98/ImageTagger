@@ -112,7 +112,7 @@ public class MenuController implements Initializable {
   @FXML
   void ShowAllImages(){
       if (!onlyImage){
-        NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("currName"));
+        NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
 
         ObservableList<ImageFile> files = FXCollections.observableArrayList();
         files.addAll(SystemMain.fileManager.getAllFiles());
@@ -149,7 +149,7 @@ public class MenuController implements Initializable {
   }
 
   public void refresh() {
-    NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("currName"));
+    NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
     folderNames.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
 
     ObservableList<Folder> folders = FXCollections.observableArrayList();

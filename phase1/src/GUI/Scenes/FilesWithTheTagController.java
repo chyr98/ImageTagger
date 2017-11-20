@@ -46,7 +46,7 @@ public class FilesWithTheTagController {
                             }
                         });
 
-        ColumnOfImages.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("currName"));
+        ColumnOfImages.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
 
         ObservableList<ImageFile> files = FXCollections.observableArrayList();
         files.addAll(SystemMain.fileManager.getFilesWithTag(selectedTag));
