@@ -26,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
@@ -47,6 +48,8 @@ public class MenuController implements Initializable {
   private ImageView imgDisplay;
 
   private static Folder currentFolder = SystemMain.fileManager.getFolder();
+
+  private boolean onlyImage = false;
 
 
   @FXML
@@ -104,6 +107,24 @@ public class MenuController implements Initializable {
       currentFolder = tableOfFolders.getSelectionModel().getSelectedItem();
       refresh();
     }
+  }
+
+  @FXML
+  void ShowAllImages(){
+      if (!onlyImage){
+        NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("currName"));
+
+        ObservableList<ImageFile> files = FXCollections.observableArrayList();
+        files.addAll(SystemMain.fileManager.getAllFiles());
+        FileTable.setItems(files);
+
+        ObservableList<Folder> folders = FXCollections.observableArrayList();
+        folders.addAll(new ArrayList<>());
+        tableOfFolders.setItems(folders);
+      }
+      else
+        refresh();
+      onlyImage=!onlyImage;
   }
 
   @Override

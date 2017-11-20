@@ -1,5 +1,6 @@
 package TaggerSystem;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -52,6 +53,16 @@ public class Folder implements Serializable {
     }
     return ret;
 
+  }
+
+  /**
+   * A recursive method that returns all the ImageFiles under this Folder and subFolders*/
+  public ArrayList<ImageFile> getAllImages(){
+    ArrayList<ImageFile> ret = new ArrayList<>();
+    ret.addAll(this.getValue());
+    for (Folder child:this.children)
+      ret.addAll(child.getAllImages());
+    return ret;
   }
 
   /**
