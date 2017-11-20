@@ -46,6 +46,14 @@ public class MoveFileController implements Initializable {
   }
 
   @FXML
+  void open(){
+    if (tableOfFolder.getSelectionModel().getSelectedItem()!=null) {
+      currentFolder = tableOfFolder.getSelectionModel().getSelectedItem();
+      refresh();
+    }
+  }
+
+  @FXML
   void goParent(ActionEvent event) {
     if (currentFolder.getParent() != null) {
       currentFolder = currentFolder.getParent();
@@ -64,22 +72,13 @@ public class MoveFileController implements Initializable {
     listOfFolder.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
     currentFolder = SystemMain.fileManager.getFolder();
 
-    //Set a listener to open the folder when it is selected.
-    tableOfFolder.getSelectionModel()
-        .selectedItemProperty()
-        .addListener(
-            (obs, oldSelection, newSelection) -> {
-              if (newSelection != null) {
-                currentFolder = newSelection;
-                refresh();
-              }
-            });
     refresh();
 
   }
 
   private void refresh() {
     ObservableList<Folder> folders = FXCollections.observableArrayList();
+    listOfFolder.setText(currentFolder.getName());
     folders.addAll(currentFolder.getChildren());
     tableOfFolder.setItems(folders);
   }
