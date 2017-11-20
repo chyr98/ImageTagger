@@ -19,3 +19,8 @@ Yuxiao Chen:
     Tag.equals (with Hehao Wu)
     ImageFile.renameTo
   Drew UML diagram
+
+
+Hehao Wu:
+Write Tag, TagManager and basic structural of File.
+Write Tag.equals(with Hangyu Feng and Yuxiao Chen)
