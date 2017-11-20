@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>TaggerSystem</OriginalElement>
+  <nodes>
+    <node x="334.0" y="197.0">TaggerSystem.Folder</node>
+    <node x="0.0" y="481.0">TaggerSystem.FileManager</node>
+    <node x="252.0" y="0.0">TaggerSystem.FileDirectory</node>
+    <node x="0.0" y="151.0">TaggerSystem.ImageFile</node>
+    <node x="621.0" y="481.0">TaggerSystem.TagManager</node>
+    <node x="365.0" y="481.0">TaggerSystem.SystemMain</node>
+    <node x="0.0" y="673.0">TaggerSystem.Tag</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="TaggerSystem.Folder" target="TaggerSystem.FileDirectory">
+      <point x="0.0" y="-96.5" />
+      <point x="491.0" y="126.0" />
+      <point x="360.0" y="126.0" />
+      <point x="36.0" y="50.5" />
+    </edge>
+    <edge source="TaggerSystem.ImageFile" target="TaggerSystem.FileDirectory">
+      <point x="0.0" y="-142.5" />
+      <point x="157.0" y="126.0" />
+      <point x="288.0" y="126.0" />
+      <point x="-36.0" y="50.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="146.0" y="172.5" />
+  <SelectedNodes>
+    <node>TaggerSystem.ImageFile</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

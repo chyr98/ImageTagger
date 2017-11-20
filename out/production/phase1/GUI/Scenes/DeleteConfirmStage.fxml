@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Scenes.DeleteConfirmController">
+  <children>
+    <Text layoutX="30.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0"
+      text="Are you sure to delete this tag?(It will delete the tag from all the files that have it.)"
+      wrappingWidth="240.396484375"/>
+    <Button layoutX="212.0" layoutY="61.0" mnemonicParsing="false" onAction="#confirm" text="Yes"/>
+    <Button layoutX="254.0" layoutY="61.0" mnemonicParsing="false" onAction="#reject" text="No"/>
+  </children>
+</AnchorPane>
