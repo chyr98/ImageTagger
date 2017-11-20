@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -53,8 +54,9 @@ public class MoveFileController implements Initializable {
   }
 
   @FXML
-  void move(ActionEvent event) {
-
+  void move(ActionEvent event) throws IOException {
+      Folder targetFolder = currentFolder;
+      selectedFile.moveTo(targetFolder);
   }
 
   @Override

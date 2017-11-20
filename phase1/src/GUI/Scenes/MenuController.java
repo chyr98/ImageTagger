@@ -98,6 +98,14 @@ public class MenuController implements Initializable {
     }
   }
 
+  @FXML
+  void openFolder(){
+    if(tableOfFolders.getSelectionModel().getSelectedItem()!= null){
+      currentFolder = tableOfFolders.getSelectionModel().getSelectedItem();
+      refresh();
+    }
+  }
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     FileTable.getSelectionModel()
@@ -114,20 +122,6 @@ public class MenuController implements Initializable {
               }
               if (selectedImage != null) {
                 imgDisplay.setImage(selectedImage);
-              }
-            });
-    tableOfFolders
-        .getSelectionModel()
-        .selectedItemProperty()
-        .addListener(
-            (obs, oldSelection, newSelection) -> {
-              try {
-                if (newSelection != null) {
-                  currentFolder = newSelection;
-                  refresh();
-                }
-              } catch (IndexOutOfBoundsException e) {
-                System.out.println("error");
               }
             });
     refresh();
@@ -150,6 +144,7 @@ public class MenuController implements Initializable {
     ObservableList<ImageFile> files = FXCollections.observableArrayList();
     files.addAll(currentFolder.getValue());
     FileTable.setItems(files);
+
 
   }
 }
