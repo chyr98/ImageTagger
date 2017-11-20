@@ -66,7 +66,8 @@ public class MoveFileController implements Initializable {
       Folder targetFolder = currentFolder;
       selectedFile.moveTo(targetFolder);
 
-      refresh();
+      parent.refresh();
+      stage.close();
   }
 
   @Override

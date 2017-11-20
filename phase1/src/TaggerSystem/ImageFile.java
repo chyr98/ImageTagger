@@ -138,12 +138,12 @@ public class ImageFile extends FileDirectory implements Serializable {
    */
   public void moveTo(Folder targetFolder) throws IOException {
     if (!targetFolder.getValue().contains(this)) {
+      Path sourcePath = this.toPath();
       this.parent.getValue().remove(this);
       targetFolder.addImage(this);
       this.parent = targetFolder;
 
-      Path sourcePath = this.toPath();
-      Path targetPath = targetFolder.toPath();
+      Path targetPath = new File(targetFolder.getPath()+File.pathSeparator+this.getName()).toPath();
       Files.move(sourcePath, targetPath);
     } else {
       throw new IOException("The Folder has file with same name.");
