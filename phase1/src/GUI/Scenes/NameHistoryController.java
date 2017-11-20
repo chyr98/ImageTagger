@@ -74,7 +74,7 @@ public class NameHistoryController implements Initializable {
       ArrayList<Tag> selectedTags = tableOfNames.getSelectionModel().getSelectedItem();
       selectedImage.getAllTagLists().remove(selectedTags);
       selectedImage.getAllTagLists().add(selectedTags);
-      selectedImage.renameTo(selectedImage.getCurrName(),path);
+      selectedImage.renameTo(selectedImage.getName(),path);
       refresh();
     }
   }
