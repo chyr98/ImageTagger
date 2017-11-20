@@ -1,7 +1,6 @@
 package TaggerSystem;
 
 import java.io.File;
-import java.nio.file.FileSystem;
 import java.nio.file.Path;
 
 public class FileDirectory {
@@ -26,7 +25,7 @@ public class FileDirectory {
     if (this.parent == null) {
       return SystemMain.fileManager.getPath();
     }
-    return parent.pathName() + File.pathSeparator + this.getName();
+    return parent.pathName() + File.separator + this.getName();
   }
 
   /**

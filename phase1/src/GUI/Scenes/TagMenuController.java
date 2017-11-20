@@ -1,4 +1,3 @@
-//<<<<<<< HEAD
 package GUI.Scenes;
 
 import GUI.GUIMain;
@@ -7,7 +6,6 @@ import TaggerSystem.SystemMain;
 import TaggerSystem.Tag;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,7 +44,7 @@ public class TagMenuController implements Initializable {
 
 
     @FXML
-    void AddTag(ActionEvent event) throws IOException {
+    void AddTag() throws IOException {
 
         if (!tagNameIn.getText().isEmpty()) {
             selectedImage.addTag(new Tag(tagNameIn.getText()));
@@ -81,7 +79,7 @@ public class TagMenuController implements Initializable {
   }
 
   @FXML
-  void DeleteTag(ActionEvent event) throws IOException {
+  void DeleteTag() throws IOException {
     if (imageTagTable.getSelectionModel().getSelectedItem() != null) {
       selectedImage.deleteTag(imageTagTable.getSelectionModel().getSelectedItem());
     }

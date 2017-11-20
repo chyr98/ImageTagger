@@ -6,21 +6,17 @@ import TaggerSystem.Tag;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
-public class NameHistoryController implements Initializable {
+public class NameHistoryController{
 
   @FXML
   private TableView<ArrayList<Tag>> tableOfNames;
@@ -61,7 +57,7 @@ public class NameHistoryController implements Initializable {
   }
 
   @FXML
-  void Cancel(ActionEvent event) throws IOException {
+  void Cancel() throws IOException {
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
     GUIMain.showScene(new Scene(loader.load()));
@@ -77,10 +73,5 @@ public class NameHistoryController implements Initializable {
       selectedImage.renameTo(selectedImage.getName(),path);
       refresh();
     }
-  }
-
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-
   }
 }

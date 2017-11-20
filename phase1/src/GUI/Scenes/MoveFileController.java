@@ -5,7 +5,6 @@ import TaggerSystem.ImageFile;
 import TaggerSystem.SystemMain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -40,7 +39,7 @@ public class MoveFileController implements Initializable {
   }
 
   @FXML
-  void cancel(ActionEvent event) {
+  void cancel() {
     parent.refresh();
     stage.close();
   }
@@ -54,7 +53,7 @@ public class MoveFileController implements Initializable {
   }
 
   @FXML
-  void goParent(ActionEvent event) {
+  void goParent() {
     if (currentFolder.getParent() != null) {
       currentFolder = currentFolder.getParent();
       refresh();
@@ -62,7 +61,7 @@ public class MoveFileController implements Initializable {
   }
 
   @FXML
-  void move(ActionEvent event) throws IOException {
+  void move() throws IOException {
       Folder targetFolder = currentFolder;
       selectedFile.moveTo(targetFolder);
 

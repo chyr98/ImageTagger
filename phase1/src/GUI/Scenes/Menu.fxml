@@ -9,8 +9,8 @@
 
 <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Scenes.MenuController">
   <children>
-    <Button disable="" layoutX="441.0" layoutY="355.0" mnemonicParsing="false" onAction="#openNameHistory" text="Name History" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="70.0" />
-    <Button layoutX="442.0" layoutY="320.0" mnemonicParsing="false" onAction="#openTagMenu" text="Manage Tags" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="71.0" />
+    <Button disable="" layoutX="486.0" layoutY="355.0" mnemonicParsing="false" onAction="#openNameHistory" text="Name History" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="25.0" />
+    <Button layoutX="487.0" layoutY="320.0" mnemonicParsing="false" onAction="#openTagMenu" text="Manage Tags" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="26.0" />
     <Accordion layoutX="63.0" layoutY="34.0" />
     <TableView fx:id="FileTable" editable="true" layoutX="144.0" prefHeight="400.0" prefWidth="171.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
       <columns>
@@ -18,8 +18,8 @@
       </columns>
     </TableView>
     <ImageView fx:id="imgDisplay" fitHeight="213.0" fitWidth="287.0" layoutX="308.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
-    <Button layoutX="450.0" layoutY="285.0" mnemonicParsing="false" onAction="#openMoveToStage" text="Move To..." AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="79.0" />
-    <TableView fx:id="tableOfFolders" layoutX="1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <Button layoutX="495.0" layoutY="285.0" mnemonicParsing="false" onAction="#openMoveToStage" text="Move To..." AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="34.0" />
+    <TableView fx:id="tableOfFolders" layoutX="1.0" prefHeight="400.0" prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
       <columns>
         <TableColumn fx:id="folderNames" prefWidth="143.0" text="Folders" />
       </columns>
