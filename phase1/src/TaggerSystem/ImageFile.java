@@ -137,6 +137,8 @@ public class ImageFile extends FileDirectory implements Serializable {
    * Moves the file to a target folder.
    */
   public void moveTo(Folder targetFolder) throws IOException {
+    System.out.println(this.getPath());
+    System.out.println(this.pathName());
     if (!targetFolder.getValue().contains(this)) {
       this.parent.getValue().remove(this);
       targetFolder.addImage(this);
