@@ -23,6 +23,10 @@ public class Folder implements Serializable {
     }
   }
 
+  public void addImage(ImageFile imageFile) {
+    this.value.add(imageFile);
+  }
+
   public void deleteTag(Tag tag) throws IOException {
     for (ImageFile file : this.value) {
       file.deleteTag(tag);
