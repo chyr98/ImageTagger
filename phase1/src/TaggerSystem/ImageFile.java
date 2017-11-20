@@ -131,8 +131,9 @@ public class ImageFile implements Serializable {
     return tags;
   }
 
-  /** Rename this ImageFile to a give String in OS.
-   *  Each time the renameTo is called, the info will be logged.
+  /**
+   * Rename this ImageFile to a give String in OS. Each time the renameTo is called, the info will
+   * be logged.
    */
   public void renameTo(String newName, String path) {
     File curr = new File(path);
@@ -146,26 +147,15 @@ public class ImageFile implements Serializable {
    * Moves the file to a target folder.
    */
   public void moveTo(Folder targetFolder) throws IOException {
-    if(!targetFolder.getValue().contains(this)) {
+    if (!targetFolder.getValue().contains(this)) {
       this.parent.getValue().remove(this);
-      targetFolder.getValue().add(this);
+      targetFolder.addImage(this);
       this.parent = targetFolder;
 
-      try{
-
-        File aFile =new File(this.getPath());
-        Path moveFrom = FileSystems.getDefault().getPath(this.getPath());
-        Path target = FileSystems.getDefault().getPath(targetFolder.getPath()+ "/" + aFile.getName());
-
-        Files.move(moveFrom, target, StandardCopyOption.REPLACE_EXISTING);
-
-
-      }catch(Exception e){
-        e.printStackTrace();
-      }
-
-    }
-    else{
+      Path sourcePath = this.toPath();
+      Path targetPath = targetFolder.toPath();
+      Files.move(sourcePath, targetPath);
+    } else {
       throw new IOException("The Folder has file with same name.");
     }
   }
