@@ -28,17 +28,10 @@ public class ImageFile extends FileDirectory implements Serializable {
   }
 
   /**
-   * Return the original name of this file(the name without any tag).
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
    * Return the path of this image file.
    */
   public String getPath() {
-    String ret = this.getCurrName();
+    String ret = this.getName();
     Folder currParent = this.parent;
     while (currParent.getParent() != null) {
       ret = currParent.getName().concat("/" + ret);
@@ -50,7 +43,8 @@ public class ImageFile extends FileDirectory implements Serializable {
   /**
    * Return the current name of the file(the name with current attached tags)
    */
-  public String getCurrName() {
+  @Override
+  public String getName() {
     if (tags.isEmpty()) {
       return name;
     }
@@ -92,7 +86,7 @@ public class ImageFile extends FileDirectory implements Serializable {
         throw new IOException("The file already has this tag");
       }
     }
-    renameTo(getCurrName(), path);
+    renameTo(getName(), path);
   }
 
   public boolean hasTag(Tag tag) {
@@ -108,7 +102,7 @@ public class ImageFile extends FileDirectory implements Serializable {
       ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
       clone.remove(tag);
       this.tags.add(clone);
-      renameTo(getCurrName(), path);
+      renameTo(getName(), path);
     }
   }
 
@@ -159,7 +153,7 @@ public class ImageFile extends FileDirectory implements Serializable {
   @Override
   public boolean equals(Object other) {
     if (other instanceof ImageFile) {
-      return ((ImageFile) other).getCurrName().equals(this.getCurrName());
+      return ((ImageFile) other).getName().equals(this.getName());
     } else {
       return false;
     }

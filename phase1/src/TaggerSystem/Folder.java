@@ -83,10 +83,6 @@ public class Folder extends FileDirectory implements Serializable {
     return SystemMain.fileManager.getPath().concat("/" + ret);
   }
 
-  public String getName() {
-    return name;
-  }
-
   public ArrayList<Folder> getChildren() {
     return children;
   }
