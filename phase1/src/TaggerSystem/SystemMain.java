@@ -1,7 +1,12 @@
 package TaggerSystem;
 
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * This is the class for all executions at the time the program is opened. It has the following
@@ -13,6 +18,10 @@ public class SystemMain {
   public static FileManager fileManager;
 
   public static TagManager tagManager;
+
+  private static FileHandler fileHandler;
+
+  private static Logger nameLog = Logger.getLogger("nameLog.txt");
 
   private static String[] suffixes = {"jpg", "png"};
 
@@ -91,6 +100,24 @@ public class SystemMain {
       }
     }
     return new Folder(file.getName(), folderList, imageList);
+  }
+
+  public static void log(String oldName, String newName) {
+    // if fileHandler hasn't been created, create one and add to Logger.
+    if (fileHandler == null) {
+      try {
+        fileHandler = new FileHandler("nameLog.txt", true);
+        fileHandler.setFormatter(new SimpleFormatter());
+        nameLog.addHandler(fileHandler);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    // set message.
+    LocalDateTime currTime = LocalDateTime.now();
+    String msg = "Old: " + oldName + "; New: " + newName + ";";
+    nameLog.info(msg);
   }
 
 }

@@ -131,30 +131,15 @@ public class ImageFile implements Serializable {
     return tags;
   }
 
-  // TODO: line 84 and 103 has called rename method, but they take no parameter.
-  // Rename this ImageFile to a give String in OS.
-  // Each time the renameTo is called, the info will be logged.
+  /** Rename this ImageFile to a give String in OS.
+   *  Each time the renameTo is called, the info will be logged.
+   */
   public void renameTo(String newName, String path) {
     File curr = new File(path);
-    String currName = curr.getName();
+    String oldName = curr.getName();
     curr.renameTo(new File(curr.getParentFile(), newName));
-
-    // set Logger.
-    Logger nameLog = Logger.getLogger("nameLog.txt");
-    try {
-      FileHandler fileHandler = new FileHandler("nameLog.txt");
-      fileHandler.setFormatter(new SimpleFormatter());
-      nameLog.addHandler(fileHandler);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    // set message.
-    LocalDateTime currTime = LocalDateTime.now();
-    String msg =
-        currTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd H:m")) + "  Old: " + currName
-            + "; New: " + newName + ";";
-    nameLog.info(msg);
+    // log this rename step.
+    SystemMain.log(oldName, newName);
   }
 
   /**
