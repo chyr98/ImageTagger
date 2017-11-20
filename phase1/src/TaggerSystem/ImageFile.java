@@ -28,13 +28,6 @@ public class ImageFile extends FileDirectory implements Serializable {
   }
 
   /**
-   * Return the original name of this file(the name without any tag).
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
    * Return the path of this image file.
    */
   public String getPath() {
