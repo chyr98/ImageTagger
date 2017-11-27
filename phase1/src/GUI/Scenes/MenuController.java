@@ -109,7 +109,7 @@ public class MenuController implements Initializable {
       NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
 
       ObservableList<ImageFile> files = FXCollections.observableArrayList();
-      files.addAll(SystemMain.fileManager.getAllFiles());
+      files.addAll(currentFolder.getAllImages());
       FileTable.setItems(files);
 
       ObservableList<Folder> folders = FXCollections.observableArrayList();

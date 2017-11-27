@@ -5,7 +5,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -16,7 +15,6 @@ import java.io.IOException;
 public class GUIMain extends Application {
 
   private static Stage primaryStage;
-  private static AnchorPane mainLayout;
 
   public static void main(String[] args) {
     launch(args);
@@ -25,7 +23,7 @@ public class GUIMain extends Application {
   @Override
   public void start(Stage stage) throws IOException {
     primaryStage = stage;
-    primaryStage.setTitle("Photo Tager");
+    primaryStage.setTitle("Photo Tagger");
     primaryStage.setResizable(false);
     primaryStage.setOnCloseRequest(event -> SystemMain.saving());
 

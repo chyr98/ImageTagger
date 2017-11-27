@@ -22,7 +22,7 @@ public class SystemMain {
 
   private static Logger nameLog = Logger.getLogger("nameLog.txt");
 
-  private static String[] suffixes = {"jpg", "png"};
+  private static String[] suffixes = {"jpg", "png","JPG","PNG"};
 
   public static void reading(String rootPath) {
     File rootFile = new File(rootPath);
