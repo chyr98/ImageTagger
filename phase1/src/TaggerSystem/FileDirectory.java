@@ -1,9 +1,10 @@
 package TaggerSystem;
 
 import java.io.File;
+import java.io.Serializable;
 import java.nio.file.Path;
 
-public class FileDirectory {
+public class FileDirectory implements Serializable{
 
   protected String name;
   protected Folder parent;

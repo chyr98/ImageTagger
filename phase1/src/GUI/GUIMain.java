@@ -32,7 +32,7 @@ public class GUIMain extends Application {
     SystemMain.loading();
     FXMLLoader loader = new FXMLLoader();
 
-    if (SystemMain.tagManager == null || SystemMain.fileManager == null) {
+    if (SystemMain.tagManager == null && SystemMain.fileManager == null) {
       loader.setLocation(GUIMain.class.getResource("Scenes/StartScene.fxml"));
       showScene(new Scene(loader.load()));
     } else {
