@@ -23,16 +23,16 @@ public class GUIMain extends Application {
   }
 
   @Override
-  public void start(Stage primaryStage) throws IOException {
-    this.primaryStage = primaryStage;
+  public void start(Stage stage) throws IOException {
+    primaryStage = stage;
     primaryStage.setTitle("Photo Tager");
     primaryStage.setResizable(false);
-    primaryStage.setOnCloseRequest(event -> saving());
+    primaryStage.setOnCloseRequest(event -> SystemMain.saving());
 
     SystemMain.loading();
     FXMLLoader loader = new FXMLLoader();
 
-    if (SystemMain.tagManager == null && SystemMain.fileManager == null) {
+    if (SystemMain.tagManager == null || SystemMain.fileManager == null) {
       loader.setLocation(GUIMain.class.getResource("Scenes/StartScene.fxml"));
       showScene(new Scene(loader.load()));
     } else {
@@ -42,10 +42,6 @@ public class GUIMain extends Application {
       GUIMain.showScene(new Scene(menuScene));
     }
 
-  }
-
-  private void saving() {
-    SystemMain.saving();
   }
 
   public static File OpenDirectoryChooser() {

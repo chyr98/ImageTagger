@@ -45,8 +45,8 @@ public class MoveFileController implements Initializable {
   }
 
   @FXML
-  void open(){
-    if (tableOfFolder.getSelectionModel().getSelectedItem()!=null) {
+  void open() {
+    if (tableOfFolder.getSelectionModel().getSelectedItem() != null) {
       currentFolder = tableOfFolder.getSelectionModel().getSelectedItem();
       refresh();
     }
@@ -65,8 +65,9 @@ public class MoveFileController implements Initializable {
       Folder targetFolder = currentFolder;
       selectedFile.moveTo(targetFolder);
 
-      parent.refresh();
-      stage.close();
+
+    parent.refresh();
+    stage.close();
   }
 
   @Override

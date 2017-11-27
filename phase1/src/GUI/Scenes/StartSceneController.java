@@ -4,6 +4,7 @@ import GUI.GUIMain;
 import TaggerSystem.SystemMain;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,10 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 public class StartSceneController implements Initializable {
@@ -34,7 +38,7 @@ public class StartSceneController implements Initializable {
   }
 
   @FXML
-  void goMenu() throws IOException {
+  void goMenu(ActionEvent event) throws IOException {
     //sets the static variables in SystemMain.
     SystemMain.reading(PathField.getText());
 

@@ -21,19 +21,6 @@ public class ImageFile extends FileDirectory implements Serializable {
   }
 
   /**
-   * Return the path of this image file.
-   */
-  public String getPath() {
-    String ret = this.getName();
-    Folder currParent = this.parent;
-    while (currParent.getParent() != null) {
-      ret = currParent.getName().concat("/" + ret);
-      currParent = currParent.getParent();
-    }
-    return SystemMain.fileManager.getPath().concat("/" + ret);
-  }
-
-  /**
    * Return the current name of the file(the name with current attached tags)
    */
   @Override
@@ -137,6 +124,7 @@ public class ImageFile extends FileDirectory implements Serializable {
       this.parent = targetFolder;
 
       Path targetPath = new File(targetFolder.getPath()+File.separator+this.getName()).toPath();
+
       Files.move(sourcePath, targetPath);
     } else {
       throw new IOException("The Folder has file with same name.");

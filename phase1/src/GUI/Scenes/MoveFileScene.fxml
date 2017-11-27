@@ -15,6 +15,6 @@
     <Button layoutX="125.0" layoutY="362.0" mnemonicParsing="false" onAction="#move" text="Move" />
     <Button layoutX="184.0" layoutY="362.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
     <Button layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#goParent" text="Back" />
-      <Button layoutX="67.0" layoutY="362.0" mnemonicParsing="false" onAction="#open" text="Open" />
+    <Button layoutX="67.0" layoutY="362.0" mnemonicParsing="false" onAction="#open" text="Open" />
   </children>
 </AnchorPane>

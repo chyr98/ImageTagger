@@ -42,7 +42,6 @@ public class TagMenuController implements Initializable {
   private MenuController parent;
 
 
-
     @FXML
     void AddTag() throws IOException {
 
@@ -53,7 +52,8 @@ public class TagMenuController implements Initializable {
             selectedImage.addTag(allTagTable.getSelectionModel().getSelectedItem());
         }
         refresh();
-    }
+  }
+
   /**
    * This method accepts a image file to initialize the view with.
    */
@@ -62,11 +62,12 @@ public class TagMenuController implements Initializable {
     TagsOfTheImage.setCellValueFactory(new PropertyValueFactory<Tag, String>("name"));
     ObservableList<Tag> tags = FXCollections.observableArrayList();
 
-    if (selectedImage!=null && selectedImage.getCurrentTagList()!=null)
-        tags.addAll(selectedImage.getCurrentTagList());
+    if (selectedImage != null && selectedImage.getCurrentTagList() != null) {
+      tags.addAll(selectedImage.getCurrentTagList());
+    }
     imageTagTable.setItems(tags);
-    this.parent=parent;
-}
+    this.parent = parent;
+  }
 
 
   public void refresh() {
@@ -108,15 +109,16 @@ public class TagMenuController implements Initializable {
 
   @FXML
   void goFilesWithTag() throws IOException {
-      if(allTagTable.getSelectionModel().getSelectedItem()!=null) {
-          FXMLLoader loader = new FXMLLoader();
-          loader.setLocation(GUIMain.class.getResource("Scenes/AllFilesWithTheTagScene.fxml"));
-          Parent scene = loader.load();
+    if (allTagTable.getSelectionModel().getSelectedItem() != null) {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(GUIMain.class.getResource("Scenes/AllFilesWithTheTagScene.fxml"));
+      Parent scene = loader.load();
 
-          FilesWithTheTagController controller = loader.getController();
-          controller.initData(allTagTable.getSelectionModel().getSelectedItem(),
-          GUIMain.showStage(new Scene(scene),allTagTable.getSelectionModel().getSelectedItem().getName()),this);
-      }
+      FilesWithTheTagController controller = loader.getController();
+      controller.initData(allTagTable.getSelectionModel().getSelectedItem(),
+          GUIMain.showStage(new Scene(scene),
+              allTagTable.getSelectionModel().getSelectedItem().getName()), this);
+    }
   }
 
 

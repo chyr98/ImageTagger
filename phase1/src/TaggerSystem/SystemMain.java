@@ -34,8 +34,8 @@ public class SystemMain {
   }
 
   public static void loading() {
+    // read fileManager from file.
     try {
-      // read fileManager from file.
       FileInputStream fis = new FileInputStream("fileManager.ser");
       ObjectInputStream ois = new ObjectInputStream(fis);
       fileManager = (FileManager) ois.readObject();
