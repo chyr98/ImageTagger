@@ -28,21 +28,22 @@
          <children>
             <VBox prefHeight="123.0" prefWidth="75.0" spacing="20.0">
                <children>
-                <Button mnemonicParsing="false" onAction="#openFolder" text="Open" />
+                <Button mnemonicParsing="false" onAction="#openFolder" prefHeight="25.0" prefWidth="110.0" text="Open" />
                 <Button mnemonicParsing="false" onAction="#ShowAllImages" text="All Images" />
-                <Button mnemonicParsing="false" onAction="#goParent" text="Back" />
+                <Button mnemonicParsing="false" onAction="#goParent" prefHeight="25.0" prefWidth="100.0" text="Back" />
                </children>
             </VBox>
             <VBox prefHeight="123.0" prefWidth="84.0" spacing="20.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#reStart" text="New Project" />
+                  <Button mnemonicParsing="false" onAction="#showLogStage" prefHeight="25.0" prefWidth="97.0" text="History" />
                </children>
             </VBox>
             <VBox prefHeight="123.0" prefWidth="92.0" spacing="20.0">
                <children>
                 <Button disable="" mnemonicParsing="false" onAction="#openNameHistory" text="Name History" />
-                <Button mnemonicParsing="false" onAction="#openMoveToStage" text="Move To..." />
-                <Button mnemonicParsing="false" onAction="#openTagMenu" text="Manage Tags" />
+                <Button mnemonicParsing="false" onAction="#openMoveToStage" prefHeight="25.0" prefWidth="126.0" text="Move To..." />
+                <Button mnemonicParsing="false" onAction="#openTagMenu" prefHeight="25.0" prefWidth="127.0" text="Manage Tags" />
                </children>
             </VBox>
          </children>

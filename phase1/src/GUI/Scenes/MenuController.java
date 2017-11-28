@@ -109,6 +109,13 @@ public class MenuController implements Initializable {
   }
 
   @FXML
+  void showLogStage() throws IOException {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(GUIMain.class.getResource("Scenes/logDisplayStage.fxml"));
+    GUIMain.showStage(new Scene(loader.load()), "History");
+  }
+
+  @FXML
   void ShowAllImages() {
     if (!onlyImage) {
       NameColumn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
