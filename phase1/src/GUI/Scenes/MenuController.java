@@ -11,11 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,12 +38,15 @@ public class MenuController implements Initializable {
   private TableView<ImageFile> FileTable;
 
   @FXML
-  private TableColumn<ImageFile, String> NameColomn;
+  private TableColumn<ImageFile, String> NameColumn;
+
+  @FXML
+  private Text imagePath;
 
   @FXML
   private ImageView imgDisplay;
 
-  private static Folder currentFolder = SystemMain.fileManager.getFolder();
+  private static Folder currentFolder;
 
   private boolean onlyImage = false;
 
@@ -106,7 +111,7 @@ public class MenuController implements Initializable {
   @FXML
   void ShowAllImages() {
     if (!onlyImage) {
-      NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
+      NameColumn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
 
       ObservableList<ImageFile> files = FXCollections.observableArrayList();
       files.addAll(currentFolder.getAllImages());
@@ -123,11 +128,14 @@ public class MenuController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    currentFolder = SystemMain.fileManager.getFolder();
     FileTable.getSelectionModel()
         .selectedItemProperty()
         .addListener(
             (obs, oldSelection, newSelection) -> {
-              File image = new File(newSelection.getPath());
+              String path = newSelection.getPath();
+              imagePath.setText("Path: "+ path);
+              File image = new File(path);
               Image selectedImage = null;
               try {
                 String url = image.toURI().toURL().toString();
@@ -142,8 +150,15 @@ public class MenuController implements Initializable {
     refresh();
   }
 
+  @FXML
+  void reStart() throws IOException {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(GUIMain.class.getResource("Scenes/StartScene.fxml"));
+    GUIMain.showScene(new Scene(loader.load()));
+  }
+
   public void refresh() {
-    NameColomn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
+    NameColumn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
     folderNames.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
 
     ObservableList<Folder> folders = FXCollections.observableArrayList();

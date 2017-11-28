@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -24,6 +25,19 @@ public class FilesWithTheTagController {
 
   private TagMenuController parent;
 
+  @FXML
+  private TableView<ImageFile> TableOfImages;
+
+  @FXML
+  private TableColumn<ImageFile, String> ColumnOfImages;
+
+  @FXML
+  private ImageView ImageDisplay;
+
+  @FXML
+  private Text imagePath;
+
+
   public void initData(Tag selectedTag, Stage stage, TagMenuController parent) {
     this.stage = stage;
     this.selectedTag = selectedTag;
@@ -33,7 +47,9 @@ public class FilesWithTheTagController {
         .selectedItemProperty()
         .addListener(
             (obs, oldSelection, newSelection) -> {
-              File image = new File(newSelection.getPath());
+              String path = newSelection.getPath();
+              imagePath.setText("Path: "+path);
+              File image = new File(path);
               Image selectedImage = null;
               try {
                 String url = image.toURI().toURL().toString();
@@ -52,15 +68,6 @@ public class FilesWithTheTagController {
     files.addAll(SystemMain.fileManager.getFilesWithTag(selectedTag));
     TableOfImages.setItems(files);
   }
-
-  @FXML
-  private TableView<ImageFile> TableOfImages;
-
-  @FXML
-  private TableColumn<ImageFile, String> ColumnOfImages;
-
-  @FXML
-  private ImageView ImageDisplay;
 
   @FXML
   void goBack() {

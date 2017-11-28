@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Scenes.FilesWithTheTagController">
    <children>
@@ -15,6 +15,7 @@
         </columns>
       </TableView>
       <ImageView fx:id="ImageDisplay" fitHeight="315.0" fitWidth="359.0" layoutX="241.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="536.0" layoutY="346.0" mnemonicParsing="false" onAction="#goBack" text="back" />
+      <Button layoutX="545.0" layoutY="361.0" mnemonicParsing="false" onAction="#goBack" text="back" />
+      <Text fx:id="imagePath" layoutX="245.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path:" wrappingWidth="351.13671875" />
    </children>
 </AnchorPane>

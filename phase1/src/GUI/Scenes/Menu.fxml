@@ -6,31 +6,47 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="600.0"
-  xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="GUI.Scenes.MenuController">
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Scenes.MenuController">
   <children>
-    <Button disable="" layoutX="486.0" layoutY="355.0" mnemonicParsing="false" onAction="#openNameHistory" text="Name History" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="25.0" />
-    <Button layoutX="487.0" layoutY="320.0" mnemonicParsing="false" onAction="#openTagMenu" text="Manage Tags" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="26.0" />
     <Accordion layoutX="63.0" layoutY="34.0" />
     <TableView fx:id="FileTable" editable="true" layoutX="144.0" prefHeight="400.0" prefWidth="171.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
       <columns>
-        <TableColumn fx:id="NameColomn" prefWidth="170.0" text="ImageFiles"/>
+        <TableColumn fx:id="NameColumn" prefWidth="170.0" text="ImageFiles" />
       </columns>
     </TableView>
     <ImageView fx:id="imgDisplay" fitHeight="213.0" fitWidth="287.0" layoutX="308.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
-    <Button layoutX="495.0" layoutY="285.0" mnemonicParsing="false" onAction="#openMoveToStage" text="Move To..." AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="34.0" />
     <TableView fx:id="tableOfFolders" layoutX="1.0" prefHeight="400.0" prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
       <columns>
-        <TableColumn fx:id="folderNames" prefWidth="143.0" text="Folders"/>
+        <TableColumn fx:id="folderNames" prefWidth="143.0" text="Folders" />
       </columns>
     </TableView>
-    <Button layoutX="320.0" layoutY="355.0" mnemonicParsing="false" onAction="#goParent"
-      text="Back"/>
-    <Button layoutX="322.0" layoutY="320.0" mnemonicParsing="false" onAction="#ShowAllImages"
-      text="All Images"/>
-    <Button layoutX="322.0" layoutY="285.0" mnemonicParsing="false" onAction="#openFolder"
-      text="Open"/>
+      <HBox layoutX="317.0" layoutY="275.0" prefHeight="123.0" prefWidth="281.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <VBox prefHeight="123.0" prefWidth="75.0" spacing="20.0">
+               <children>
+                <Button mnemonicParsing="false" onAction="#openFolder" text="Open" />
+                <Button mnemonicParsing="false" onAction="#ShowAllImages" text="All Images" />
+                <Button mnemonicParsing="false" onAction="#goParent" text="Back" />
+               </children>
+            </VBox>
+            <VBox prefHeight="123.0" prefWidth="84.0" spacing="20.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#reStart" text="New Project" />
+               </children>
+            </VBox>
+            <VBox prefHeight="123.0" prefWidth="92.0" spacing="20.0">
+               <children>
+                <Button disable="" mnemonicParsing="false" onAction="#openNameHistory" text="Name History" />
+                <Button mnemonicParsing="false" onAction="#openMoveToStage" text="Move To..." />
+                <Button mnemonicParsing="false" onAction="#openTagMenu" text="Manage Tags" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Text fx:id="imagePath" layoutX="320.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path:" wrappingWidth="281.0000005811453" />
   </children>
 </AnchorPane>
