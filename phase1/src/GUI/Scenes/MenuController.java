@@ -52,10 +52,10 @@ public class MenuController implements Initializable {
 
 
   /**
-   * Catch the event when Manage Tags button is clicked, and display the
-   * tag menu scene of the selected image that allows user to add or delete tags
-   * in that image and the all available tags.
-   * */
+   * Catch the event when Manage Tags button is clicked, and display the tag menu scene of the
+   * selected image that allows user to add or delete tags in that image and the all available
+   * tags.
+   */
   @FXML
   private void openTagMenu() throws IOException {
     if (FileTable.getSelectionModel().getSelectedItem() != null) {

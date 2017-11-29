@@ -16,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class NameHistoryController{
+public class NameHistoryController {
 
   @FXML
   private TableView<ArrayList<Tag>> tableOfNames;

@@ -62,9 +62,8 @@ public class MoveFileController implements Initializable {
 
   @FXML
   void move() throws IOException {
-      Folder targetFolder = currentFolder;
-      selectedFile.moveTo(targetFolder);
-
+    Folder targetFolder = currentFolder;
+    selectedFile.moveTo(targetFolder);
 
     parent.refresh();
     stage.close();

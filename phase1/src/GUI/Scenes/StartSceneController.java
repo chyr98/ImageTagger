@@ -56,8 +56,8 @@ public class StartSceneController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     BooleanBinding pathFieldEmpty = Bindings.createBooleanBinding(() ->
-      PathField.getText().isEmpty()
-    , PathField.textProperty());
+            PathField.getText().isEmpty()
+        , PathField.textProperty());
     startButton.disableProperty().bind(pathFieldEmpty);
   }
 
