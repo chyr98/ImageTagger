@@ -46,7 +46,7 @@ public class MenuController implements Initializable {
   @FXML
   private ImageView imgDisplay;
 
-  private static Folder currentFolder;
+  public static Folder currentFolder;
 
   private boolean onlyImage = false;
 
@@ -135,7 +135,6 @@ public class MenuController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    currentFolder = SystemMain.fileManager.getFolder();
     FileTable.getSelectionModel()
         .selectedItemProperty()
         .addListener(

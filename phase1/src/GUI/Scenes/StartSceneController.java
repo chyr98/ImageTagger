@@ -43,7 +43,7 @@ public class StartSceneController implements Initializable {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
       Parent menuScene = loader.load();
-
+      MenuController.currentFolder=SystemMain.fileManager.getFolder();
       GUIMain.showScene(new Scene(menuScene));
     } else {
       FXMLLoader loader = new FXMLLoader();

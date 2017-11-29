@@ -1,5 +1,6 @@
 package GUI;
 
+import GUI.Scenes.MenuController;
 import TaggerSystem.SystemMain;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +37,7 @@ public class GUIMain extends Application {
     } else {
       loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
       Parent menuScene = loader.load();
-
+      MenuController.currentFolder=SystemMain.fileManager.getFolder();
       GUIMain.showScene(new Scene(menuScene));
     }
 

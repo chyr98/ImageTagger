@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -48,8 +49,9 @@ public class TagMenuController implements Initializable {
         if (!tagNameIn.getText().isEmpty()) {
             selectedImage.addTag(new Tag(tagNameIn.getText()));
             tagNameIn.setText("");
-        } else if (allTagTable.getSelectionModel().getSelectedItem() != null) {
-            selectedImage.addTag(allTagTable.getSelectionModel().getSelectedItem());
+        } else if (!allTagTable.getSelectionModel().getSelectedItems().isEmpty()) {
+          for(Tag t : allTagTable.getSelectionModel().getSelectedItems())
+            selectedImage.addTag(t);
         }
         refresh();
   }
@@ -89,7 +91,7 @@ public class TagMenuController implements Initializable {
 
   @FXML
   void DeleteTagFromAll() throws IOException {
-    if (allTagTable.getSelectionModel().getSelectedItem() != null) {
+    if (allTagTable.getSelectionModel().getSelectedItems().size() == 1) {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(GUIMain.class.getResource("Scenes/DeleteConfirmStage.fxml"));
       Parent deleteConfirmationScene = loader.load();
@@ -109,7 +111,7 @@ public class TagMenuController implements Initializable {
 
   @FXML
   void goFilesWithTag() throws IOException {
-    if (allTagTable.getSelectionModel().getSelectedItem() != null) {
+    if (allTagTable.getSelectionModel().getSelectedItems().size() == 1) {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(GUIMain.class.getResource("Scenes/AllFilesWithTheTagScene.fxml"));
       Parent scene = loader.load();
@@ -131,6 +133,7 @@ public class TagMenuController implements Initializable {
       tags.addAll(SystemMain.tagManager.getTagList());
     }
     allTagTable.setItems(tags);
+    allTagTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
   }
 }
 
