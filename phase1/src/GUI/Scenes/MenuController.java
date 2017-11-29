@@ -71,7 +71,8 @@ public class MenuController implements Initializable {
   }
 
   /**
-   * Catch the event when Back button is clicked, and display the 
+   * Catch the event when Back button is clicked, and let the table display the items in
+   * current folder's parent folder.
    * */
   @FXML
   private void goParent() {
@@ -81,6 +82,9 @@ public class MenuController implements Initializable {
     }
   }
 
+  /**
+   * Catch the event when Name History
+   * */
   @FXML
   private void openNameHistory() throws IOException {
     if (FileTable.getSelectionModel().getSelectedItem() != null) {
@@ -149,11 +153,14 @@ public class MenuController implements Initializable {
             (obs, oldSelection, newSelection) -> {
               String path = newSelection.getPath();
               imagePath.setText("Path: "+ path);
-              File image = new File(path);
               Image selectedImage = null;
               try {
-                String url = image.toURI().toURL().toString();
-                selectedImage = new Image(url, 287, 213, false, true);
+                String url = new File(path).toURI().toURL().toString();
+                Image image = new Image(url);
+                if(image.getWidth()/287>image.getHeight()/213)
+                  selectedImage = new Image(url, 287, image.getHeight()*(287/image.getWidth()), false, true);
+                else
+                  selectedImage = new Image(url, image.getWidth()*(213/image.getWidth()), 213, false, true);
               } catch (MalformedURLException e) {
                 e.printStackTrace();
               }
