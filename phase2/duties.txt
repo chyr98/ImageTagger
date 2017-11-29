@@ -1,0 +1,20 @@
+Hangyu Feng:
+  Wrote:
+    SystemMain
+    FileDirectory
+    ImageFile.moveTo (with Yuxiao Chen)
+    Tag.equals (with Hehao Wu)
+    ImageFile.renameTo
+  Drew:
+    UML diagram
+
+
+Yuxiao Chen:
+   Mainly worked on the GUI.
+   Connect the GUI to the back end system.
+   help.txt
+
+
+Hehao Wu:
+Write Tag, TagManager and basic structural of File.
+Write Tag.equals(with Hangyu Feng and Yuxiao Chen)
