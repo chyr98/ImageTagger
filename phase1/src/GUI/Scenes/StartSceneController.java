@@ -43,7 +43,7 @@ public class StartSceneController implements Initializable {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
       Parent menuScene = loader.load();
-      MenuController.currentFolder=SystemMain.fileManager.getFolder();
+      MenuController.currentFolder = SystemMain.fileManager.getFolder();
       GUIMain.showScene(new Scene(menuScene));
     } else {
       FXMLLoader loader = new FXMLLoader();
@@ -56,8 +56,8 @@ public class StartSceneController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     BooleanBinding pathFieldEmpty = Bindings.createBooleanBinding(() ->
-      PathField.getText().isEmpty()
-    , PathField.textProperty());
+            PathField.getText().isEmpty()
+        , PathField.textProperty());
     startButton.disableProperty().bind(pathFieldEmpty);
   }
 

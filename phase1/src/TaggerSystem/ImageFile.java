@@ -123,7 +123,7 @@ public class ImageFile extends FileDirectory implements Serializable {
       targetFolder.addImage(this);
       this.parent = targetFolder;
 
-      Path targetPath = new File(targetFolder.getPath()+File.separator+this.getName()).toPath();
+      Path targetPath = new File(targetFolder.getPath() + File.separator + this.getName()).toPath();
 
       Files.move(sourcePath, targetPath);
     } else {

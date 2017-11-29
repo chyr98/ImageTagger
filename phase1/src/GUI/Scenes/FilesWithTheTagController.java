@@ -48,7 +48,7 @@ public class FilesWithTheTagController {
         .addListener(
             (obs, oldSelection, newSelection) -> {
               String path = newSelection.getPath();
-              imagePath.setText("Path: "+path);
+              imagePath.setText("Path: " + path);
               File image = new File(path);
               Image selectedImage = null;
               try {

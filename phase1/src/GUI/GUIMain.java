@@ -37,7 +37,7 @@ public class GUIMain extends Application {
     } else {
       loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
       Parent menuScene = loader.load();
-      MenuController.currentFolder=SystemMain.fileManager.getFolder();
+      MenuController.currentFolder = SystemMain.fileManager.getFolder();
       GUIMain.showScene(new Scene(menuScene));
     }
 
