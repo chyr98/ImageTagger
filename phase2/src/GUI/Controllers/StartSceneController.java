@@ -1,4 +1,4 @@
-package GUI.Scenes;
+package GUI.Controllers;
 
 import GUI.GUIMain;
 import TaggerSystem.SystemMain;

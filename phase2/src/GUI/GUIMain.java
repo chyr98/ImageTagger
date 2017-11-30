@@ -1,6 +1,6 @@
 package GUI;
 
-import GUI.Scenes.MenuController;
+import GUI.Controllers.MenuController;
 import TaggerSystem.SystemMain;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
