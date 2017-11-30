@@ -25,6 +25,9 @@ public class StartSceneController implements Initializable {
   @FXML
   private Button startButton;
 
+  /**
+   * Catch the event when Browse button is clicked. Open the directory chooser from the OS.
+   * */
   @FXML
   void OpenDirectoryChooser() {
     File selectedDirectory = GUIMain.OpenDirectoryChooser();
@@ -33,6 +36,10 @@ public class StartSceneController implements Initializable {
     }
   }
 
+  /**
+   * Catch the event when start button is clicked. Set up the <code>SystemMain<code/> to work with
+   * the entered root directory and go to the menu scene to work on the project.
+   * */
   @FXML
   void goMenu() throws IOException {
     //sets the static variables in SystemMain.

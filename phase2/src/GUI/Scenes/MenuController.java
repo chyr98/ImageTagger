@@ -141,7 +141,8 @@ public class MenuController implements Initializable {
   }
 
   /**
-   * Catch the event when
+   * Catch the event when All Images button is clicked, and display all the images under current directory and its
+   * subdirectories in the FileTable.
    * */
   @FXML
   void ShowAllImages() {
@@ -191,6 +192,10 @@ public class MenuController implements Initializable {
     refresh();
   }
 
+  /**
+   * Catch the event when New Project button is clicked, and bring the user to the start scene that allows
+   * user to choose another root directory to start with.
+   * */
   @FXML
   void reStart() throws IOException {
     FXMLLoader loader = new FXMLLoader();
@@ -198,6 +203,9 @@ public class MenuController implements Initializable {
     GUIMain.showScene(new Scene(loader.load()));
   }
 
+  /**
+   * Refresh the scene to catch the changes in back end data and display the updated information to user.
+   * */
   public void refresh() {
     NameColumn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
     folderNames.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));
