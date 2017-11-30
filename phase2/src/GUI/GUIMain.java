@@ -43,16 +43,33 @@ public class GUIMain extends Application {
 
   }
 
+  /**
+   * Open the directory chooser from the OS.
+   *
+   * @return The file got chosen in the chooser.
+   * */
   public static File OpenDirectoryChooser() {
     DirectoryChooser directoryChooser = new DirectoryChooser();
     return directoryChooser.showDialog(GUIMain.primaryStage);
   }
 
+  /**
+   * Display a scene in the <code>primaryStage<code/>.
+   *
+   * @param scene The scene should be displayed.
+   * */
   public static void showScene(Scene scene) throws IOException {
     primaryStage.setScene(scene);
     primaryStage.show();
   }
 
+  /**
+   * Create a new stage and display it on top of the <code>primaryStage<code/>.
+   *
+   * @param scene The scene that should be shown on the new stage.
+   * @param title The title of the new stage.
+   * @return The stage that is created.
+   * */
   public static Stage showStage(Scene scene, String title) throws IOException {
 
     Stage stage = new Stage();
