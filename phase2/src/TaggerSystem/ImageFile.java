@@ -14,10 +14,10 @@ public class ImageFile extends FileDirectory implements Serializable {
    */
   private ArrayList<ArrayList<Tag>> tags;
 
-  public ImageFile(String name) {
+  public ImageFile(String name, ArrayList<Tag> tags) {
     super(name);
     this.tags = new ArrayList<>();
-    this.tags.add(new ArrayList<>());
+    this.tags.add(tags);
   }
 
   /**
@@ -48,7 +48,7 @@ public class ImageFile extends FileDirectory implements Serializable {
     this.parent = folder;
   }
 
-  public void addTag(Tag tag) throws IOException {
+  public void addTag(Tag tag) {
     String path = getPath();
     if (!SystemMain.tagManager.hasTag(tag)) {
       SystemMain.tagManager.addTag(tag);
@@ -62,8 +62,6 @@ public class ImageFile extends FileDirectory implements Serializable {
         ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
         clone.add(tag);
         this.tags.add(clone);
-      } else {
-        throw new IOException("The file already has this tag");
       }
     }
     renameTo(getName(), path);
@@ -76,7 +74,7 @@ public class ImageFile extends FileDirectory implements Serializable {
     return this.getCurrentTagList().contains(tag);
   }
 
-  public void deleteTag(Tag tag) throws IOException {
+  public void deleteTag(Tag tag) {
     if ((!this.tags.isEmpty()) && this.tags.get(tags.size() - 1).contains(tag)) {
       String path = getPath();
       ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();

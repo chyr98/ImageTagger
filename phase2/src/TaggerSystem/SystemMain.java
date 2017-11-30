@@ -27,9 +27,9 @@ public class SystemMain {
   public static void reading(String rootPath) {
     File rootFile = new File(rootPath);
     // Read the information of files and generate a tree of Files and Folders.
+    tagManager = new TagManager(new ArrayList<>());
     Folder rootFolder = createFolder(rootFile);
     fileManager = new FileManager(rootFolder, rootPath);
-    tagManager = new TagManager(new ArrayList<>());
 
   }
 
@@ -94,7 +94,22 @@ public class SystemMain {
         folderList.add(createFolder(f));
         // So far we only add .jpg and .png files.
       } else if (f.getName().matches(".*\\." + String.join("|.*\\.", suffixes))) {
-        imageList.add(new ImageFile(f.getName()));
+        String fileName = f.getName();
+        ArrayList<Tag> tempTags = new ArrayList<>();
+        String[] tagNames = fileName.split(" @");
+        if (tagNames.length>1){
+          for (int i = 1;i<tagNames.length-1;i++){
+            Tag tempTag = new Tag(tagNames[i].trim());
+            tagManager.addTag(tempTag);
+            tempTags.add(tempTag);
+          }
+          String lastTag = tagNames[tagNames.length-1];
+          Tag tempTag = new Tag(lastTag.substring(0, lastTag.length()-4));
+          tagManager.addTag(tempTag);
+          tempTags.add(tempTag);
+          fileName=tagNames[0].concat(fileName.substring(fileName.length()-4));
+        }
+        imageList.add(new ImageFile(fileName,tempTags));
         System.out.println(f.getPath());
       }
     }
