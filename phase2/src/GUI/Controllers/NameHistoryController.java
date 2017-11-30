@@ -16,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class NameHistoryController {
+public class NameHistoryController implements RefreshableController{
 
   @FXML
   private TableView<ArrayList<Tag>> tableOfNames;
@@ -60,7 +60,7 @@ public class NameHistoryController {
    * Refresh the scene to catch the changes in back end data and display the updated information to
    * user.
    */
-  private void refresh() {
+  public void refresh() {
     ObservableList<ArrayList<Tag>> tagLists = FXCollections.observableArrayList();
     if (selectedImage != null) {
       tagLists.addAll(selectedImage.getAllTagLists());

@@ -12,8 +12,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MoveFileController implements Initializable {
@@ -28,7 +30,7 @@ public class MoveFileController implements Initializable {
 
   private MenuController parent;
 
-  private ImageFile selectedFile;
+  private ArrayList<ImageFile> selectedFile;
 
   private Stage stage;
 
@@ -41,9 +43,19 @@ public class MoveFileController implements Initializable {
    */
   public void initData(ImageFile file, MenuController controller, Stage stage) {
     parent = controller;
-    selectedFile = file;
+    ArrayList<ImageFile> tempList = new ArrayList<>();
+    tempList.add(file);
+    selectedFile = tempList;
     this.stage = stage;
   }
+
+  public void initData(ArrayList<ImageFile> files, Stage stage){
+    selectedFile = files;
+    this.stage = stage;
+  }
+
+
+
 
   /**
    * Catch the event when Cancel button is clicked. Cancel the moving event, close the stage and go
@@ -51,7 +63,8 @@ public class MoveFileController implements Initializable {
    */
   @FXML
   void cancel() {
-    parent.refresh();
+    if (parent!=null)
+      parent.refresh();
     stage.close();
   }
 
@@ -86,9 +99,17 @@ public class MoveFileController implements Initializable {
   @FXML
   void move() throws IOException {
     Folder targetFolder = currentFolder;
-    selectedFile.moveTo(targetFolder);
-
-    parent.refresh();
+    if(selectedFile.size()==1) {
+      for(ImageFile file : selectedFile)
+        file.moveTo(targetFolder);
+    }
+    else{
+      for(ImageFile file : selectedFile)
+        file.copyTo(targetFolder);
+    }
+    if(parent!=null) {
+      parent.refresh();
+    }
     stage.close();
   }
 

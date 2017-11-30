@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TagMenuController implements Initializable {
+public class TagMenuController implements Initializable,RefreshableController {
 
   @FXML
   private TableView<Tag> imageTagTable;

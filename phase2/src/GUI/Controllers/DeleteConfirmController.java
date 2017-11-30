@@ -14,7 +14,7 @@ public class DeleteConfirmController {
 
   private Stage stage;
 
-  private TagMenuController parent;
+  private RefreshableController parent;
 
   /**
    * Initialize the controller with some information from the tag menu scene.
@@ -23,7 +23,7 @@ public class DeleteConfirmController {
    * @param stage The stage that this scene is displayed on.
    * @param parent The <code>TagMenuController<code/> that this scene is called from.
    */
-  public void initData(Tag tag, Stage stage, TagMenuController parent) {
+  public void initData(Tag tag, Stage stage, RefreshableController parent) {
     tagToDelete = tag;
     this.stage = stage;
     this.parent = parent;

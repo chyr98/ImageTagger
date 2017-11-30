@@ -25,7 +25,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class MenuController implements Initializable {
+public class MenuController implements Initializable, RefreshableController {
 
   @FXML
   private TableView<Folder> tableOfFolders;
@@ -66,6 +66,11 @@ public class MenuController implements Initializable {
       controller.initData(FileTable.getSelectionModel().getSelectedItem(), this);
 
       GUIMain.showScene(new Scene(tagMenuParent));
+    }
+    else{
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(GUIMain.class.getResource("Scenes/GeneralTagScene.fxml"));
+      GUIMain.showScene(new Scene(loader.load()));
     }
   }
 

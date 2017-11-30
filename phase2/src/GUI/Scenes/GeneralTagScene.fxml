@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.GeneralTagsController">
+   <children>
+      <TableView fx:id="allTagTable" layoutX="13.0" layoutY="10.0" prefHeight="374.0" prefWidth="346.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="allTags" prefWidth="345.0" text="Tags" />
+        </columns>
+      </TableView>
+      <VBox layoutX="416.0" layoutY="200.0" prefHeight="172.0" prefWidth="225.0" spacing="20.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#addTag" prefHeight="25.0" prefWidth="331.0" text="Add Tag" />
+            <Button mnemonicParsing="false" onAction="#deleteTag" prefHeight="25.0" prefWidth="258.0" text="Delete Tag" />
+            <Button mnemonicParsing="false" onAction="#viewFiles" prefHeight="25.0" prefWidth="269.0" text="View Files With Tag" />
+            <Button mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="253.0" text="Cancel" />
+         </children>
+      </VBox>
+      <TextField fx:id="inputField" layoutY="374.0" prefHeight="25.0" prefWidth="346.0" />
+   </children>
+</AnchorPane>

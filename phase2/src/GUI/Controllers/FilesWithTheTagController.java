@@ -1,11 +1,15 @@
 package GUI.Controllers;
 
+import GUI.GUIMain;
 import TaggerSystem.ImageFile;
 import TaggerSystem.SystemMain;
 import TaggerSystem.Tag;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class FilesWithTheTagController {
@@ -23,7 +28,7 @@ public class FilesWithTheTagController {
 
   private Stage stage;
 
-  private TagMenuController parent;
+  private RefreshableController parent;
 
   @FXML
   private TableView<ImageFile> TableOfImages;
@@ -45,7 +50,7 @@ public class FilesWithTheTagController {
    * @param stage The stage that this scene is displayed on.
    * @param parent The <code>TagMenuController<code/> that this scene is called from.
    */
-  public void initData(Tag selectedTag, Stage stage, TagMenuController parent) {
+  public void initData(Tag selectedTag, Stage stage, RefreshableController parent) {
     this.stage = stage;
     this.selectedTag = selectedTag;
     this.parent = parent;
@@ -60,7 +65,7 @@ public class FilesWithTheTagController {
               Image selectedImage = null;
               try {
                 String url = image.toURI().toURL().toString();
-                selectedImage = new Image(url, 359, 315, false, true);
+                selectedImage = new Image(url, ImageDisplay.getFitWidth(), ImageDisplay.getFitHeight(), false, true);
               } catch (MalformedURLException e) {
                 e.printStackTrace();
               }
@@ -83,6 +88,17 @@ public class FilesWithTheTagController {
   void goBack() {
     stage.close();
     parent.refresh();
+  }
+
+  @FXML
+  void copyFilesWithTag() throws IOException {
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(GUIMain.class.getResource("Scenes/MoveFileScene.fxml"));
+      Parent moveScene = loader.load();
+
+      MoveFileController controller = loader.getController();
+      controller.initData(SystemMain.fileManager.getFilesWithTag(selectedTag),
+              GUIMain.showStage(new Scene(moveScene), "Copying To.."));
   }
 
 }

@@ -17,5 +17,6 @@
       <ImageView fx:id="ImageDisplay" fitHeight="320.0" fitWidth="435.0" layoutX="266.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="633.0" layoutY="361.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="53.0" text="back" />
       <Text fx:id="imagePath" layoutX="266.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path:" wrappingWidth="434.99999752640724" />
+      <Button layoutX="266.0" layoutY="361.0" mnemonicParsing="false" onAction="#copyFilesWithTag" prefHeight="25.0" prefWidth="250.0" text="Copy Files With The Tag To.." />
    </children>
 </AnchorPane>
