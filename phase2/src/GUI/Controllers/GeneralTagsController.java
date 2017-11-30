@@ -32,7 +32,8 @@ public class GeneralTagsController implements Initializable, RefreshableControll
 
 
     /**
-     * Catch the event when Add Tag button is clicked.
+     * Catch the event when Add Tag button is clicked. Add the tag with name entered
+     * in the text field to the tag set.
      * */
     @FXML
     void addTag() {
@@ -43,6 +44,9 @@ public class GeneralTagsController implements Initializable, RefreshableControll
         }
     }
 
+    /**
+     * Catch the event when Cancel button is clicked. Go back to the menu scene.
+     * */
     @FXML
     void cancel() throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -50,6 +54,10 @@ public class GeneralTagsController implements Initializable, RefreshableControll
         GUIMain.showScene(new Scene(loader.load()));
     }
 
+    /**
+     * Catch the event when Delete Tag button is clicked. Display a warning message to tell user
+     * that the tag will be deleted from all files.
+     * */
     @FXML
     void deleteTag() throws IOException {
         if (allTagTable.getSelectionModel().getSelectedItem()!=null) {
@@ -63,6 +71,10 @@ public class GeneralTagsController implements Initializable, RefreshableControll
         }
     }
 
+    /**
+     * Catch the event when View Files With Tag button is clicked. Display a table includes
+     * all files with the selected tag.
+     * */
     @FXML
     void viewFiles() throws IOException {
         if (allTagTable.getSelectionModel().getSelectedItem() != null) {

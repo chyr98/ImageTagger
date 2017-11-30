@@ -209,10 +209,7 @@ public class MenuController implements Initializable, RefreshableController {
     GUIMain.showScene(new Scene(loader.load()));
   }
 
-  /**
-   * Refresh the scene to catch the changes in back end data and display the updated information to
-   * user.
-   */
+  @Override
   public void refresh() {
     NameColumn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
     folderNames.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));

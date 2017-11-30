@@ -90,6 +90,10 @@ public class FilesWithTheTagController {
     parent.refresh();
   }
 
+  /**
+   * Catch the event when Copy Files With The Tag To.. button is clicked. Open the folder
+   * selection menu to select the target folder and copy the files with this tag to the folder.
+   * */
   @FXML
   void copyFilesWithTag() throws IOException {
       FXMLLoader loader = new FXMLLoader();
