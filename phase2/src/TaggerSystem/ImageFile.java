@@ -124,6 +124,20 @@ public class ImageFile extends FileDirectory implements Serializable {
   }
 
   /**
+   * Rename this ImageFile to a given String in OS. Each time the renameTo is called and any change
+   * is made, the info will be logged.
+   */
+  public void renameTo(String newName) {
+    File curr = this.toFile();
+    String oldName = curr.getName();
+    curr.renameTo(new File(curr.getParentFile(), newName));
+    // log this rename step if any change is made.
+    if (oldName != newName) {
+      SystemMain.log(oldName, newName);
+    }
+  }
+
+  /**
    * Rename this ImageFile to a give String in OS. Each time the renameTo is called, the info will
    * be logged.
    *
@@ -148,15 +162,17 @@ public class ImageFile extends FileDirectory implements Serializable {
     if (targetFolder != this.parent) {
       Path sourcePath = this.toPath();
       this.parent.getValue().remove(this);
-      targetFolder.addImage(this);
-      this.parent = targetFolder;
+      String newName = this.newName(targetFolder);
 
-      Path targetPath = new File(targetFolder.getPath() + File.separator + this.getName()).toPath();
+      Path targetPath = new File(targetFolder.getPath() + File.separator + newName).toPath();
 
       try {
         Files.move(sourcePath, targetPath);
       } catch (IOException e) {
       }
+
+      this.name = newName;
+      targetFolder.addImage(this);
     }
   }
 
