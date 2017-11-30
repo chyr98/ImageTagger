@@ -130,8 +130,10 @@ public class ImageFile extends FileDirectory implements Serializable {
     File curr = this.toFile();
     String oldName = curr.getName();
     curr.renameTo(new File(curr.getParentFile(), newName));
-    // log this rename step.
-    SystemMain.log(oldName, newName);
+    // log this rename step if any change is made.
+    if (oldName != newName) {
+      SystemMain.log(oldName, newName);
+    }
   }
 
   /**
