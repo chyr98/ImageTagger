@@ -42,11 +42,12 @@ public class StartSceneController implements Initializable {
    */
   @FXML
   void goMenu() throws IOException {
-    //sets the static variables in SystemMain.
-    SystemMain.reading(PathField.getText());
 
     File choosenFile = new File(PathField.getText());
     if (choosenFile.exists() && choosenFile.isDirectory()) {
+      //sets the static variables in SystemMain.
+      SystemMain.reading(PathField.getText());
+
       MenuController.currentFolder = SystemMain.fileManager.getFolder();
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(GUIMain.class.getResource("Scenes/Menu.fxml"));
@@ -55,7 +56,7 @@ public class StartSceneController implements Initializable {
     } else {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(GUIMain.class.getResource("Scenes/PathNotAvalibleWarning.fxml"));
-      GUIMain.showStage(loader.load(), "Warning");
+      GUIMain.showStage(new Scene(loader.load()), "Warning");
     }
   }
 
