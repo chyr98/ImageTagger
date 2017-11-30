@@ -123,20 +123,6 @@ public class ImageFile extends FileDirectory implements Serializable {
   }
 
   /**
-   * Rename this ImageFile to a give String in OS. Each time the renameTo is called, the info will
-   * be logged.
-   */
-  public void renameTo(String newName) {
-    File curr = this.toFile();
-    String oldName = curr.getName();
-    curr.renameTo(new File(curr.getParentFile(), newName));
-    // log this rename step if any change is made.
-    if (oldName != newName) {
-      SystemMain.log(oldName, newName);
-    }
-  }
-
-  /**
    * Moves the file to a target folder. If the targetFolder is the current folder where this image
    * lies in, nothing will happen.
    */
