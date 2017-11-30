@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import org.w3c.dom.NameList;
 
 public class ImageFile extends FileDirectory implements Serializable {
 
@@ -18,34 +20,6 @@ public class ImageFile extends FileDirectory implements Serializable {
     super(name);
     this.tags = new ArrayList<>();
     this.tags.add(tags);
-  }
-
-  /**
-   * Return the current name of the file(the name with current attached tags)
-   */
-  @Override
-  public String getName() {
-    if (tags.isEmpty()) {
-      return name;
-    }
-    return getNameWithTags(tags.get(tags.size() - 1));
-  }
-
-
-  /**
-   * Return the name of a file with given tags attached.
-   */
-  public String getNameWithTags(ArrayList<Tag> tags) {
-    String ret = name.substring(0, name.length() - 4);
-    for (Tag tag : tags) {
-      ret = ret.concat(" @" + tag.getName());
-    }
-    ret = ret.concat(name.substring(name.length() - 4));
-    return ret;
-  }
-
-  public void setParent(Folder folder) {
-    this.parent = folder;
   }
 
   public void addTag(Tag tag) {
@@ -67,11 +41,41 @@ public class ImageFile extends FileDirectory implements Serializable {
     renameTo(getName(), path);
   }
 
-  public boolean hasTag(Tag tag) {
-    if (this.getCurrentTagList() == null) {
-      return false;
+  public void copyTo(Folder targetFolder) throws IOException {
+    String newName = this.newName(targetFolder);
+    ImageFile newImage = new ImageFile(newName, this.getCurrentTagList());
+    targetFolder.addImage(newImage);
+
+    Path sourcePath = this.toPath();
+    Path targetPath = newImage.toPath();
+    Files.copy(sourcePath, targetPath);
+  }
+
+  /**
+   * Return the current name of the file(the name with current attached tags)
+   */
+  @Override
+  public String getName() {
+    if (tags.isEmpty()) {
+      return name;
     }
-    return this.getCurrentTagList().contains(tag);
+    return getNameWithTags(tags.get(tags.size() - 1));
+  }
+
+  /**
+   * Return the name of a file with given tags attached.
+   */
+  public String getNameWithTags(ArrayList<Tag> tags) {
+    String ret = name.substring(0, name.length() - 4);
+    for (Tag tag : tags) {
+      ret = ret.concat(" @" + tag.getName());
+    }
+    ret = ret.concat(name.substring(name.length() - 4));
+    return ret;
+  }
+
+  public void setParent(Folder folder) {
+    this.parent = folder;
   }
 
   public void deleteTag(Tag tag) {
@@ -81,6 +85,15 @@ public class ImageFile extends FileDirectory implements Serializable {
       clone.remove(tag);
       this.tags.add(clone);
       renameTo(getName(), path);
+    }
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other instanceof ImageFile) {
+      return ((ImageFile) other).getName().equals(this.getName());
+    } else {
+      return false;
     }
   }
 
@@ -99,6 +112,13 @@ public class ImageFile extends FileDirectory implements Serializable {
     return tags;
   }
 
+  public boolean hasTag(Tag tag) {
+    if (this.getCurrentTagList() == null) {
+      return false;
+    }
+    return this.getCurrentTagList().contains(tag);
+  }
+
   /**
    * Rename this ImageFile to a give String in OS. Each time the renameTo is called, the info will
    * be logged.
@@ -115,26 +135,28 @@ public class ImageFile extends FileDirectory implements Serializable {
    * Moves the file to a target folder.
    */
   public void moveTo(Folder targetFolder) throws IOException {
-    if (!targetFolder.getValue().contains(this)) {
-      Path sourcePath = this.toPath();
-      this.parent.getValue().remove(this);
-      targetFolder.addImage(this);
-      this.parent = targetFolder;
-
-      Path targetPath = new File(targetFolder.getPath()+File.separator+this.getName()).toPath();
-
-      Files.move(sourcePath, targetPath);
-    } else {
-      throw new IOException("The Folder has file with same name.");
-    }
+    Path sourcePath = this.toPath();
+    this.name = this.newName(targetFolder);
+    targetFolder.addImage(this);
+    Path targetPath = this.toPath();
+    Files.move(sourcePath, targetPath);
   }
 
-  @Override
-  public boolean equals(Object other) {
-    if (other instanceof ImageFile) {
-      return ((ImageFile) other).getName().equals(this.getName());
-    } else {
-      return false;
+  /**
+   * Return a new name as described below: if there is no same name in target Folder, then keep name
+   * unchanged. if there is a file with the same name, then add (copy) to the start of the filename
+   * until there is no such file with same name.
+   *
+   * @return String newName
+   */
+  private String newName(Folder targetFolder) {
+    HashSet<String> nameSet = targetFolder.hashSet();
+    String currName = this.getName();
+    while (nameSet.contains(currName)) {
+      currName = "(copy)" + currName;
     }
+    return currName;
   }
+
+
 }
