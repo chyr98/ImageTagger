@@ -49,7 +49,6 @@ public class SystemMain {
       ObjectInputStream ois = new ObjectInputStream(fis);
       fileManager = (FileManager) ois.readObject();
     } catch (IOException | ClassNotFoundException e) {
-      e.printStackTrace();
     }
 
     // read tagManager from file.
@@ -58,7 +57,6 @@ public class SystemMain {
       ObjectInputStream ois = new ObjectInputStream(fis);
       tagManager = (TagManager) ois.readObject();
     } catch (IOException | ClassNotFoundException e) {
-      e.printStackTrace();
     }
   }
 
@@ -77,7 +75,6 @@ public class SystemMain {
       oos.writeObject(fileManager);
       oos.close();
     } catch (IOException e) {
-      e.printStackTrace();
     }
 
     // Save TaggerSystem.TagManager.
@@ -91,7 +88,6 @@ public class SystemMain {
       oos.writeObject(tagManager);
       oos.close();
     } catch (IOException e) {
-      e.printStackTrace();
     }
   }
 

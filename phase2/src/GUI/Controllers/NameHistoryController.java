@@ -56,10 +56,7 @@ public class NameHistoryController implements RefreshableController{
     refresh();
   }
 
-  /**
-   * Refresh the scene to catch the changes in back end data and display the updated information to
-   * user.
-   */
+  @Override
   public void refresh() {
     ObservableList<ArrayList<Tag>> tagLists = FXCollections.observableArrayList();
     if (selectedImage != null) {

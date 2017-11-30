@@ -23,7 +23,6 @@ public class logDisplayController implements Initializable {
         displayArea.appendText(sc.nextLine() + System.lineSeparator());
       }
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
     }
   }
 }
