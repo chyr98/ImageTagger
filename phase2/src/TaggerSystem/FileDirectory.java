@@ -47,19 +47,6 @@ public class FileDirectory implements Serializable {
     return (new HashSet<>(Arrays.asList(this.toFile().list())));
   }
 
-  /**
-   * Rename this FileDirectory to a given String in OS. Each time the renameTo is called and any change
-   * is made, the info will be logged.
-   */
-  public void renameTo(String newName) {
-    File curr = this.toFile();
-    String oldName = curr.getName();
-    curr.renameTo(new File(curr.getParentFile(), newName));
-    // log this rename step if any change is made.
-    if (oldName != newName) {
-      SystemMain.log(oldName, newName);
-    }
-  }
 
   /**
    * Returns a File object as an abstract pathname for this FileDirectory.

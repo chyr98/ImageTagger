@@ -9,6 +9,12 @@ public class Folder extends FileDirectory implements Serializable {
   private ArrayList<Folder> children;
   private ArrayList<ImageFile> value;
 
+  public Folder(String name) {
+    super(name);
+    this.children = new ArrayList<>();
+    this.value = new ArrayList<>();
+  }
+
   public Folder(String name, ArrayList<Folder> children, ArrayList<ImageFile> value) {
     super(name);
     this.children = children;
