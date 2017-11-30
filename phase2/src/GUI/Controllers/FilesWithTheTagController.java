@@ -61,11 +61,18 @@ public class FilesWithTheTagController {
             (obs, oldSelection, newSelection) -> {
               String path = newSelection.getPath();
               imagePath.setText("Path: " + path);
-              File image = new File(path);
+              File file = new File(path);
               Image selectedImage = null;
               try {
-                String url = image.toURI().toURL().toString();
-                selectedImage = new Image(url, ImageDisplay.getFitWidth(), ImageDisplay.getFitHeight(), false, true);
+                String url = file.toURI().toURL().toString();
+                Image image = new Image(url);
+                if (image.getWidth() / ImageDisplay.getFitWidth() > image.getHeight() / ImageDisplay.getFitHeight()) {
+                    selectedImage = new Image(url, ImageDisplay.getFitWidth(),
+                            image.getHeight() * (ImageDisplay.getFitWidth() / image.getWidth()), false, true);
+                } else {
+                    selectedImage = new Image(url, image.getWidth() * (ImageDisplay.getFitHeight() / image.getWidth()), ImageDisplay.getFitHeight(),
+                            false, true);
+                }
               } catch (MalformedURLException e) {
                 e.printStackTrace();
               }
