@@ -32,6 +32,11 @@ public class NameHistoryController{
 
   private ImageFile selectedImage;
 
+  /**
+   * Initialize the controller with some information from the menu scene.
+   *
+   * @param image The selected image to display the name history.
+   * */
   public void initData(ImageFile image) {
     selectedImage = image;
     Names.setCellValueFactory(
@@ -49,6 +54,10 @@ public class NameHistoryController{
     refresh();
   }
 
+  /**
+   * Refresh the scene to catch the changes in back end data and display the
+   * updated information to user.
+   * */
   private void refresh() {
     ObservableList<ArrayList<Tag>> tagLists = FXCollections.observableArrayList();
     if (selectedImage != null) {
@@ -57,6 +66,9 @@ public class NameHistoryController{
     tableOfNames.setItems(tagLists);
   }
 
+  /**
+   * Catch the event when Cancel button is clicked. Go back to the menu scene.
+   * */
   @FXML
   void Cancel() throws IOException {
     FXMLLoader loader = new FXMLLoader();
@@ -64,6 +76,10 @@ public class NameHistoryController{
     GUIMain.showScene(new Scene(loader.load()));
   }
 
+  /**
+   * Catch the event when Apply To Now button is clicked. Use the selected set of tags to be
+   * the current set of tags and rename the file.
+   * */
   @FXML
   void ApplyToNow() {
     if (tableOfNames.getSelectionModel().getSelectedItem() != null) {

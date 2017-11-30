@@ -38,6 +38,13 @@ public class FilesWithTheTagController {
   private Text imagePath;
 
 
+  /**
+   * Initialize the controller with some information from the tag menu scene.
+   *
+   * @param selectedTag All the images with this tag should be displayed on the table.
+   * @param stage The stage that this scene is displayed on.
+   * @param parent The <code>TagMenuController<code/> that this scene is called from.
+   * */
   public void initData(Tag selectedTag, Stage stage, TagMenuController parent) {
     this.stage = stage;
     this.selectedTag = selectedTag;
@@ -69,6 +76,9 @@ public class FilesWithTheTagController {
     TableOfImages.setItems(files);
   }
 
+  /**
+   * Catch the event when Back button is clicked. Close the stage.
+   * */
   @FXML
   void goBack() {
     stage.close();
