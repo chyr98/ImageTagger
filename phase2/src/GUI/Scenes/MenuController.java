@@ -167,20 +167,24 @@ public class MenuController implements Initializable {
         .selectedItemProperty()
         .addListener(
             (obs, oldSelection, newSelection) -> {
-              String path = newSelection.getPath();
-              imagePath.setText("Path: "+ path);
-              Image selectedImage = null;
-              try {
-                String url = new File(path).toURI().toURL().toString();
-                Image image = new Image(url);
-                if(image.getWidth()/287>image.getHeight()/213)
-                  selectedImage = new Image(url, 287, image.getHeight()*(287/image.getWidth()), false, true);
-                else
-                  selectedImage = new Image(url, image.getWidth()*(213/image.getWidth()), 213, false, true);
-              } catch (MalformedURLException e) {
-                e.printStackTrace();
+              if(newSelection == null){
+                imagePath.setText("Path: ");
+                imgDisplay.setImage(null);
               }
-              if (selectedImage != null) {
+              else {
+                String path = newSelection.getPath();
+                imagePath.setText("Path: " + path);
+                Image selectedImage = null;
+                try {
+                  String url = new File(path).toURI().toURL().toString();
+                  Image image = new Image(url);
+                  if (image.getWidth() / 287 > image.getHeight() / 213)
+                    selectedImage = new Image(url, 287, image.getHeight() * (287 / image.getWidth()), false, true);
+                  else
+                    selectedImage = new Image(url, image.getWidth() * (213 / image.getWidth()), 213, false, true);
+                } catch (MalformedURLException e) {
+                  e.printStackTrace();
+                }
                 imgDisplay.setImage(selectedImage);
               }
             });

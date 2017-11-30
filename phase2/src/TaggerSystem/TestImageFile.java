@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ImageFileTest {
 
+    private Object ArrayList;
+
     @Test
     public void testNameOfEmptyImageFile() {
         ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[]]);
