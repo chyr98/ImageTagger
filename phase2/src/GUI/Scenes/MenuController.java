@@ -83,7 +83,8 @@ public class MenuController implements Initializable {
   }
 
   /**
-   * Catch the event when Name History
+   * Catch the event when Name History button is clicked, and display the scenes shows all previous
+   * name for the selected image and allows user to choose any of them to rename the image.
    * */
   @FXML
   private void openNameHistory() throws IOException {
@@ -99,6 +100,10 @@ public class MenuController implements Initializable {
     }
   }
 
+  /**
+   * Catch the event when Move To.. button is clicked, and display the scene that allows user to
+   * select a folder and move to selected image into that folder.
+   * */
   @FXML
   private void openMoveToStage() throws IOException {
     if (FileTable.getSelectionModel().getSelectedItem() != null) {
@@ -112,6 +117,10 @@ public class MenuController implements Initializable {
     }
   }
 
+  /**
+   * Catch the event when Open button is clicked, and display the subdirectories and files inside selected
+   * directory on the tables.
+   * */
   @FXML
   void openFolder() {
     if (tableOfFolders.getSelectionModel().getSelectedItem() != null) {
@@ -120,6 +129,10 @@ public class MenuController implements Initializable {
     }
   }
 
+  /**
+   * Catch the event when History button is clicked, and display a scene contains information in the log file,
+   * which is the history of all renaming events.
+   * */
   @FXML
   void showLogStage() throws IOException {
     FXMLLoader loader = new FXMLLoader();
@@ -127,6 +140,9 @@ public class MenuController implements Initializable {
     GUIMain.showStage(new Scene(loader.load()), "History");
   }
 
+  /**
+   * Catch the event when
+   * */
   @FXML
   void ShowAllImages() {
     if (!onlyImage) {
