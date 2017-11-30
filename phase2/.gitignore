@@ -1,0 +1,12 @@
+# Compile source #
+##################
+*.class
+*.ser
+
+# Packages #
+############
+*.jar
+
+# Logs #
+########
+*.log
