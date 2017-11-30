@@ -32,6 +32,7 @@ public class ImageFile extends FileDirectory implements Serializable {
 
 
   public void addTag(Tag tag) {
+    String path = getPath();
     if (!SystemMain.tagManager.hasTag(tag)) {
       SystemMain.tagManager.addTag(tag);
     }
@@ -46,7 +47,7 @@ public class ImageFile extends FileDirectory implements Serializable {
         this.tags.add(clone);
       }
     }
-    renameTo(getName());
+    renameTo(getName(), path);
   }
 
   public void copyTo(Folder targetFolder) throws IOException {
@@ -87,7 +88,7 @@ public class ImageFile extends FileDirectory implements Serializable {
       ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
       clone.remove(tag);
       this.tags.add(clone);
-      renameTo(getName());
+      renameTo(getName(), path);
     }
   }
 
@@ -125,9 +126,12 @@ public class ImageFile extends FileDirectory implements Serializable {
   /**
    * Rename this ImageFile to a give String in OS. Each time the renameTo is called, the info will
    * be logged.
+   *
+   * @param newName The name that the image file want to be renamed to.
+   * @param path The path of the image with the original tag set.
    */
-  public void renameTo(String newName) {
-    File curr = this.toFile();
+  public void renameTo(String newName,String path) {
+    File curr = new File(path);
     String oldName = curr.getName();
     curr.renameTo(new File(curr.getParentFile(), newName));
     // log this rename step if any change is made.
@@ -140,13 +144,19 @@ public class ImageFile extends FileDirectory implements Serializable {
    * Moves the file to a target folder. If the targetFolder is the current folder where this image
    * lies in, nothing will happen.
    */
-  public void moveTo(Folder targetFolder) throws IOException {
+  public void moveTo(Folder targetFolder){
     if (targetFolder != this.parent) {
       Path sourcePath = this.toPath();
-      this.renameTo(this.newName(targetFolder));
+      this.parent.getValue().remove(this);
       targetFolder.addImage(this);
-      Path targetPath = this.toPath();
-      Files.move(sourcePath, targetPath);
+      this.parent = targetFolder;
+
+      Path targetPath = new File(targetFolder.getPath() + File.separator + this.getName()).toPath();
+
+      try {
+        Files.move(sourcePath, targetPath);
+      } catch (IOException e) {
+      }
     }
   }
 

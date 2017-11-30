@@ -85,10 +85,11 @@ public class NameHistoryController {
   @FXML
   void ApplyToNow() {
     if (tableOfNames.getSelectionModel().getSelectedItem() != null) {
+      String path = selectedImage.getPath();
       ArrayList<Tag> selectedTags = tableOfNames.getSelectionModel().getSelectedItem();
       selectedImage.getAllTagLists().remove(selectedTags);
       selectedImage.getAllTagLists().add(selectedTags);
-      selectedImage.renameTo(selectedImage.getName());
+      selectedImage.renameTo(selectedImage.getName(), path);
       refresh();
     }
   }
