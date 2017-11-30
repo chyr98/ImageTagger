@@ -123,6 +123,7 @@ public class ImageFile extends FileDirectory implements Serializable {
     return this.getCurrentTagList().contains(tag);
   }
 
+
   /**
    * Rename this ImageFile to a give String in OS. Each time the renameTo is called, the info will
    * be logged.
