@@ -14,6 +14,12 @@ public class Tag implements Serializable {
     return name;
   }
 
+  /**
+   * Returns true if Other Object is a Tag and has same name as this Tag. Otherwise returns false.
+   *
+   * @param other An object we want to check
+   * @return boolean
+   */
   @Override
   public boolean equals(Object other) {
     if (other instanceof Tag) {
