@@ -17,13 +17,12 @@ public class FileDirectory implements Serializable {
     this.name = name;
   }
 
-  public FileDirectory(String name, Folder parent) {
-    this.name = name;
-    this.parent = parent;
-  }
-
   public String getName() {
     return name;
+  }
+
+  public Folder getParent() {
+    return parent;
   }
 
   /**
@@ -39,8 +38,8 @@ public class FileDirectory implements Serializable {
   }
 
   /**
-   * Returns an HashSet of Strings contains all Filenames and subdirectories in this
-   * fileDirectory. This method works like dir and ls in command line.
+   * Returns an HashSet of Strings contains all Filenames and subdirectories in this fileDirectory.
+   * This method works like dir and ls in command line.
    *
    * @return HashSet<String>
    */
@@ -64,6 +63,11 @@ public class FileDirectory implements Serializable {
    */
   public Path toPath() {
     return (new File(this.getPath())).toPath();
+  }
+
+  @Override
+  public String toString() {
+    return this.name;
   }
 
   public void setParent(Folder parent) {

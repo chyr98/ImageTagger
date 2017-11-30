@@ -43,22 +43,23 @@ public class TagMenuController implements Initializable {
   private MenuController parent;
 
 
-    /**
-     * Catch the event that Add Tag button is clicked and if there is a tag entered
-     * in the text field, the text entered will be convert to a tag and add to the image.
-     * Otherwise, if a tag is selected in the table of all tags, then the selected tag
-     * will be add to the image.*/
-    @FXML
-    void AddTag() throws IOException {
+  /**
+   * Catch the event that Add Tag button is clicked and if there is a tag entered in the text field,
+   * the text entered will be convert to a tag and add to the image. Otherwise, if a tag is selected
+   * in the table of all tags, then the selected tag will be add to the image.
+   */
+  @FXML
+  void AddTag() throws IOException {
 
-        if (!tagNameIn.getText().isEmpty()) {
-            selectedImage.addTag(new Tag(tagNameIn.getText()));
-            tagNameIn.setText("");
-        } else if (!allTagTable.getSelectionModel().getSelectedItems().isEmpty()) {
-          for(Tag t : allTagTable.getSelectionModel().getSelectedItems())
-            selectedImage.addTag(t);
-        }
-        refresh();
+    if (!tagNameIn.getText().isEmpty()) {
+      selectedImage.addTag(new Tag(tagNameIn.getText()));
+      tagNameIn.setText("");
+    } else if (!allTagTable.getSelectionModel().getSelectedItems().isEmpty()) {
+      for (Tag t : allTagTable.getSelectionModel().getSelectedItems()) {
+        selectedImage.addTag(t);
+      }
+    }
+    refresh();
   }
 
   /**
@@ -78,9 +79,9 @@ public class TagMenuController implements Initializable {
 
 
   /**
-   * Refresh the scene to catch the changes in back end data and display the
-   * updated information to user.
-   * */
+   * Refresh the scene to catch the changes in back end data and display the updated information to
+   * user.
+   */
   public void refresh() {
     ObservableList<Tag> tags1 = FXCollections.observableArrayList();
     tags1.addAll(selectedImage.getCurrentTagList());
@@ -91,9 +92,9 @@ public class TagMenuController implements Initializable {
   }
 
   /**
-   * Catch the event when Delete Tag button is clicked and delete the selected tag from
-   * the image if there is any.
-   * */
+   * Catch the event when Delete Tag button is clicked and delete the selected tag from the image if
+   * there is any.
+   */
   @FXML
   void DeleteTag() throws IOException {
     if (imageTagTable.getSelectionModel().getSelectedItem() != null) {
@@ -103,9 +104,9 @@ public class TagMenuController implements Initializable {
   }
 
   /**
-   * Catch the event when Delete Tag From All button is clicked and display a warning message
-   * to tell user the result of delete a tag generally.
-   * */
+   * Catch the event when Delete Tag From All button is clicked and display a warning message to
+   * tell user the result of delete a tag generally.
+   */
   @FXML
   void DeleteTagFromAll() throws IOException {
     if (allTagTable.getSelectionModel().getSelectedItems().size() == 1) {
@@ -121,7 +122,7 @@ public class TagMenuController implements Initializable {
 
   /**
    * Catch the event when Back button is clicked, and go back to the menu scene.
-   * */
+   */
   @FXML
   void Back() throws IOException {
     FXMLLoader loader = new FXMLLoader();
@@ -130,9 +131,9 @@ public class TagMenuController implements Initializable {
   }
 
   /**
-   * Catch the event when View Files With Tag button is clicked, display a scene
-   * that displays a table of all images with the selected tag.
-   * */
+   * Catch the event when View Files With Tag button is clicked, display a scene that displays a
+   * table of all images with the selected tag.
+   */
   @FXML
   void goFilesWithTag() throws IOException {
     if (allTagTable.getSelectionModel().getSelectedItems().size() == 1) {

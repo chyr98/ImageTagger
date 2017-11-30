@@ -22,7 +22,7 @@ public class SystemMain {
 
   private static Logger nameLog = Logger.getLogger("nameLog.txt");
 
-  private static String[] suffixes = {"jpg", "png","JPG","PNG"};
+  private static String[] suffixes = {"jpg", "png", "JPG", "PNG"};
 
   public static void reading(String rootPath) {
     File rootFile = new File(rootPath);
@@ -97,19 +97,19 @@ public class SystemMain {
         String fileName = f.getName();
         ArrayList<Tag> tempTags = new ArrayList<>();
         String[] tagNames = fileName.split(" @");
-        if (tagNames.length>1){
-          for (int i = 1;i<tagNames.length-1;i++){
+        if (tagNames.length > 1) {
+          for (int i = 1; i < tagNames.length - 1; i++) {
             Tag tempTag = new Tag(tagNames[i].trim());
             tagManager.addTag(tempTag);
             tempTags.add(tempTag);
           }
-          String lastTag = tagNames[tagNames.length-1];
-          Tag tempTag = new Tag(lastTag.substring(0, lastTag.length()-4));
+          String lastTag = tagNames[tagNames.length - 1];
+          Tag tempTag = new Tag(lastTag.substring(0, lastTag.length() - 4));
           tagManager.addTag(tempTag);
           tempTags.add(tempTag);
-          fileName=tagNames[0].concat(fileName.substring(fileName.length()-4));
+          fileName = tagNames[0].concat(fileName.substring(fileName.length() - 4));
         }
-        imageList.add(new ImageFile(fileName,tempTags));
+        imageList.add(new ImageFile(fileName, tempTags));
         System.out.println(f.getPath());
       }
     }

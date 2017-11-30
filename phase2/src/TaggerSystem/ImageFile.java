@@ -22,8 +22,16 @@ public class ImageFile extends FileDirectory implements Serializable {
     this.tags.add(tags);
   }
 
+  public ImageFile(String name, ArrayList<Tag> tags, Folder parent) {
+    super(name);
+    this.tags = new ArrayList<>();
+    this.tags.add(tags);
+    this.parent = parent;
+    parent.getValue().add(this);
+  }
+
+
   public void addTag(Tag tag) {
-    String path = getPath();
     if (!SystemMain.tagManager.hasTag(tag)) {
       SystemMain.tagManager.addTag(tag);
     }
@@ -38,13 +46,12 @@ public class ImageFile extends FileDirectory implements Serializable {
         this.tags.add(clone);
       }
     }
-    renameTo(getName(), path);
+    renameTo(getName());
   }
 
   public void copyTo(Folder targetFolder) throws IOException {
     String newName = this.newName(targetFolder);
-    ImageFile newImage = new ImageFile(newName, this.getCurrentTagList());
-    targetFolder.addImage(newImage);
+    ImageFile newImage = new ImageFile(newName, this.getCurrentTagList(), targetFolder);
 
     Path sourcePath = this.toPath();
     Path targetPath = newImage.toPath();
@@ -74,17 +81,13 @@ public class ImageFile extends FileDirectory implements Serializable {
     return ret;
   }
 
-  public void setParent(Folder folder) {
-    this.parent = folder;
-  }
-
   public void deleteTag(Tag tag) {
     if ((!this.tags.isEmpty()) && this.tags.get(tags.size() - 1).contains(tag)) {
       String path = getPath();
       ArrayList<Tag> clone = (ArrayList<Tag>) this.tags.get(this.tags.size() - 1).clone();
       clone.remove(tag);
       this.tags.add(clone);
-      renameTo(getName(), path);
+      renameTo(getName());
     }
   }
 
@@ -123,8 +126,8 @@ public class ImageFile extends FileDirectory implements Serializable {
    * Rename this ImageFile to a give String in OS. Each time the renameTo is called, the info will
    * be logged.
    */
-  public void renameTo(String newName, String path) {
-    File curr = new File(path);
+  public void renameTo(String newName) {
+    File curr = this.toFile();
     String oldName = curr.getName();
     curr.renameTo(new File(curr.getParentFile(), newName));
     // log this rename step.
@@ -132,12 +135,13 @@ public class ImageFile extends FileDirectory implements Serializable {
   }
 
   /**
-   * Moves the file to a target folder.
+   * Moves the file to a target folder. If the targetFolder is the current folder where this image
+   * lies in, nothing will happen.
    */
   public void moveTo(Folder targetFolder) throws IOException {
     if (targetFolder != this.parent) {
       Path sourcePath = this.toPath();
-      this.name = this.newName(targetFolder);
+      this.renameTo(this.newName(targetFolder));
       targetFolder.addImage(this);
       Path targetPath = this.toPath();
       Files.move(sourcePath, targetPath);

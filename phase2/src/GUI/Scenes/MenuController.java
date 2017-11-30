@@ -52,10 +52,10 @@ public class MenuController implements Initializable {
 
 
   /**
-   * Catch the event when Manage Tags button is clicked, and display the
-   * tag menu scene of the selected image that allows user to add or delete tags
-   * in that image and the all available tags.
-   * */
+   * Catch the event when Manage Tags button is clicked, and display the tag menu scene of the
+   * selected image that allows user to add or delete tags in that image and the all available
+   * tags.
+   */
   @FXML
   private void openTagMenu() throws IOException {
     if (FileTable.getSelectionModel().getSelectedItem() != null) {
@@ -71,9 +71,9 @@ public class MenuController implements Initializable {
   }
 
   /**
-   * Catch the event when Back button is clicked, and let the table display the items in
-   * current folder's parent folder.
-   * */
+   * Catch the event when Back button is clicked, and let the table display the items in current
+   * folder's parent folder.
+   */
   @FXML
   private void goParent() {
     if (currentFolder.getParent() != null) {
@@ -85,7 +85,7 @@ public class MenuController implements Initializable {
   /**
    * Catch the event when Name History button is clicked, and display the scenes shows all previous
    * name for the selected image and allows user to choose any of them to rename the image.
-   * */
+   */
   @FXML
   private void openNameHistory() throws IOException {
     if (FileTable.getSelectionModel().getSelectedItem() != null) {
@@ -103,7 +103,7 @@ public class MenuController implements Initializable {
   /**
    * Catch the event when Move To.. button is clicked, and display the scene that allows user to
    * select a folder and move to selected image into that folder.
-   * */
+   */
   @FXML
   private void openMoveToStage() throws IOException {
     if (FileTable.getSelectionModel().getSelectedItem() != null) {
@@ -118,9 +118,9 @@ public class MenuController implements Initializable {
   }
 
   /**
-   * Catch the event when Open button is clicked, and display the subdirectories and files inside selected
-   * directory on the tables.
-   * */
+   * Catch the event when Open button is clicked, and display the subdirectories and files inside
+   * selected directory on the tables.
+   */
   @FXML
   void openFolder() {
     if (tableOfFolders.getSelectionModel().getSelectedItem() != null) {
@@ -130,9 +130,9 @@ public class MenuController implements Initializable {
   }
 
   /**
-   * Catch the event when History button is clicked, and display a scene contains information in the log file,
-   * which is the history of all renaming events.
-   * */
+   * Catch the event when History button is clicked, and display a scene contains information in the
+   * log file, which is the history of all renaming events.
+   */
   @FXML
   void showLogStage() throws IOException {
     FXMLLoader loader = new FXMLLoader();
@@ -141,9 +141,9 @@ public class MenuController implements Initializable {
   }
 
   /**
-   * Catch the event when All Images button is clicked, and display all the images under current directory and its
-   * subdirectories in the FileTable.
-   * */
+   * Catch the event when All Images button is clicked, and display all the images under current
+   * directory and its subdirectories in the FileTable.
+   */
   @FXML
   void ShowAllImages() {
     if (!onlyImage) {
@@ -168,21 +168,23 @@ public class MenuController implements Initializable {
         .selectedItemProperty()
         .addListener(
             (obs, oldSelection, newSelection) -> {
-              if(newSelection == null){
+              if (newSelection == null) {
                 imagePath.setText("Path: ");
                 imgDisplay.setImage(null);
-              }
-              else {
+              } else {
                 String path = newSelection.getPath();
                 imagePath.setText("Path: " + path);
                 Image selectedImage = null;
                 try {
                   String url = new File(path).toURI().toURL().toString();
                   Image image = new Image(url);
-                  if (image.getWidth() / 287 > image.getHeight() / 213)
-                    selectedImage = new Image(url, 287, image.getHeight() * (287 / image.getWidth()), false, true);
-                  else
-                    selectedImage = new Image(url, image.getWidth() * (213 / image.getWidth()), 213, false, true);
+                  if (image.getWidth() / 287 > image.getHeight() / 213) {
+                    selectedImage = new Image(url, 287,
+                        image.getHeight() * (287 / image.getWidth()), false, true);
+                  } else {
+                    selectedImage = new Image(url, image.getWidth() * (213 / image.getWidth()), 213,
+                        false, true);
+                  }
                 } catch (MalformedURLException e) {
                   e.printStackTrace();
                 }
@@ -193,9 +195,9 @@ public class MenuController implements Initializable {
   }
 
   /**
-   * Catch the event when New Project button is clicked, and bring the user to the start scene that allows
-   * user to choose another root directory to start with.
-   * */
+   * Catch the event when New Project button is clicked, and bring the user to the start scene that
+   * allows user to choose another root directory to start with.
+   */
   @FXML
   void reStart() throws IOException {
     FXMLLoader loader = new FXMLLoader();
@@ -204,8 +206,9 @@ public class MenuController implements Initializable {
   }
 
   /**
-   * Refresh the scene to catch the changes in back end data and display the updated information to user.
-   * */
+   * Refresh the scene to catch the changes in back end data and display the updated information to
+   * user.
+   */
   public void refresh() {
     NameColumn.setCellValueFactory(new PropertyValueFactory<ImageFile, String>("name"));
     folderNames.setCellValueFactory(new PropertyValueFactory<Folder, String>("name"));

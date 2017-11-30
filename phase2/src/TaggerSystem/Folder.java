@@ -22,6 +22,7 @@ public class Folder extends FileDirectory implements Serializable {
   }
 
   public void addImage(ImageFile imageFile) {
+    imageFile.getParent().getValue().remove(imageFile);
     imageFile.setParent(this);
     this.value.add(imageFile);
   }
@@ -74,11 +75,4 @@ public class Folder extends FileDirectory implements Serializable {
     return value;
   }
 
-  public Folder getParent() {
-    return parent;
-  }
-
-  public void setParent(Folder parent) {
-    this.parent = parent;
-  }
 }

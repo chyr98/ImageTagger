@@ -10,20 +10,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class logDisplayController implements Initializable{
+public class logDisplayController implements Initializable {
 
-    @FXML
-    private TextArea displayArea;
+  @FXML
+  private TextArea displayArea;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        try {
-            Scanner sc = new Scanner(new File("nameLog.txt"));
-            while (sc.hasNextLine()){
-                displayArea.appendText(sc.nextLine()+System.lineSeparator());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    try {
+      Scanner sc = new Scanner(new File("nameLog.txt"));
+      while (sc.hasNextLine()) {
+        displayArea.appendText(sc.nextLine() + System.lineSeparator());
+      }
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
     }
+  }
 }

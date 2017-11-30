@@ -44,7 +44,7 @@ public class FilesWithTheTagController {
    * @param selectedTag All the images with this tag should be displayed on the table.
    * @param stage The stage that this scene is displayed on.
    * @param parent The <code>TagMenuController<code/> that this scene is called from.
-   * */
+   */
   public void initData(Tag selectedTag, Stage stage, TagMenuController parent) {
     this.stage = stage;
     this.selectedTag = selectedTag;
@@ -55,7 +55,7 @@ public class FilesWithTheTagController {
         .addListener(
             (obs, oldSelection, newSelection) -> {
               String path = newSelection.getPath();
-              imagePath.setText("Path: "+path);
+              imagePath.setText("Path: " + path);
               File image = new File(path);
               Image selectedImage = null;
               try {
@@ -78,7 +78,7 @@ public class FilesWithTheTagController {
 
   /**
    * Catch the event when Back button is clicked. Close the stage.
-   * */
+   */
   @FXML
   void goBack() {
     stage.close();
