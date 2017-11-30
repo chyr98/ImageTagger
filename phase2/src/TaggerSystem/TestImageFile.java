@@ -7,27 +7,27 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ImageFileTest {
 
-    private Object ArrayList;
-
     @Test
     public void testNameOfEmptyImageFile() {
-        Tag a = "";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a]]);
+        ArrayList l = new ArrayList<ArrayList<Tag>>();
+        ImageFile picture = new ImageFile("abc", l);
         assertEquals("abc", picture.getName());
     }
 
     @Test
     public void testNameOfImageFileWithTag() {
-        Tag a = "@good";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a]]);
+        Tag a = new Tag("@good");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a]]);
+        ImageFile picture = new ImageFile("abc", l);
         assertEquals("abc@good", picture.getName());
     }
 
     @Test
     public void testAddingDifferentTag() {
-        Tag a = "@good";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a]]);
-        Tag b = "@csc";
+        Tag a = new Tag("@good");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a]]);
+        ImageFile picture = new ImageFile("abc", l);
+        Tag b = new Tag("@csc");
         picture.addTag(b);
         assertEquals("abc@good@csc", picture.getName());
         assertTrue(picture.tags.size == 2);
@@ -35,86 +35,103 @@ public class ImageFileTest {
 
     @Test
     public void testAddingSameTag() {
-        Tag a = "@good";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a]]);
-        picture.addTag(Tag "@good");
+        Tag a = new Tag("@good");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a]]);
+        ImageFile picture = new ImageFile("abc", l);
+        picture.addTag(Tag("@good"));
         assertEquals("abc@good", picture.getName());
         assertTrue(picture.tags.size == 1);
     }
 
     @Test
     public void testImageFileHasTag() {
-        Tag a = "@good";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a]]);
-        assertTrue(picture.hasTag(Tag "@good"));
+        Tag a = new Tag("@good");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a]]);
+        ImageFile picture = new ImageFile("abc", l);
+        assertTrue(picture.hasTag(a));
     }
 
     @Test
     public void testImageFileDoesNotHasTag() {
-        Tag a = "@good";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [["@good"]]);
-        assertFalse(picture.hasTag(Tag "@csc"));
+        Tag a = new Tag("@good");
+        Tag b = new Tag("@csc");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a]]);
+        ImageFile picture = new ImageFile("abc", l);
+        assertFalse(picture.hasTag(b));
     }
 
     @Test
     public void testGetCurrentTagList1() {
-        Tag a = "@good";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a]]);
-        assertEquals([Tag "@good"], picture.getCurrentTagList());
+        Tag a = new Tag("@good");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a]]);
+        ImageFile picture = new ImageFile("abc", l);
+        ArrayList m = new ArrayList<Tag>([a]);
+        assertEquals(m, picture.getCurrentTagList());
     }
 
     @Test
     public void testGetCurrentTagList2() {
-        Tag a = "@good";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a]]);
-        Tag b = "@csc";
+        Tag a = new Tag("@good");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a]]);
+        ImageFile picture = new ImageFile("abc", l);
+        Tag b = new Tag("@csc");
         picture.addTag(b);
+        ArrayList m = new ArrayList<Tag>([a, b]);
         assertTrue(picture.tags.size == 2);
-        assertEquals([Tag "@good", Tag "@csc"], picture.getCurrentTagList());
+        assertEquals([a, b], picture.getCurrentTagList());
     }
 
     @Test
     public void testGetCurrentTagList3() {
-        Tag a = "@good";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a]]);
+        Tag a = new Tag("@good");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a]]);
+        ImageFile picture = new ImageFile("abc", l]);
         picture.addTag(a);
+        ArrayList m = new ArrayList<Tag>([a]);
         assertTrue(picture.tags.size == 1);
-        assertEquals([Tag "@good"], picture.getCurrentTagList());
+        assertEquals(m, picture.getCurrentTagList());
     }
 
     @Test
     public void testDeleteTag() {
-        Tag a = "@good";
-        Tag b = "@csc";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a, b]]);
-        picture.deleteTag(Tag "@csc");
+        Tag a = new Tag("@good");
+        Tag b = new Tag("@csc");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a, b]]);
+        ImageFile picture = new ImageFile("abc", l);
+        picture.deleteTag(Tag("@csc"));
+        ArrayList m = new ArrayList<Tag>([a]);
         assertTrue(picture.tags.size == 2);
-        assertEquals([Tag "@good"], picture.getCurrentTagList());
+        assertEquals(m, picture.getCurrentTagList());
     }
 
     @Test
     public void testGetAllTagLists() {
-        Tag a = "@good";
-        Tag b = "@csc";
-        ImageFile picture = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a], [a, b]]);
-        assertEquals([[Tag "@good"], [Tag "@good", Tag "@csc"]], picture.getAllTagLists()):
+        Tag a = new Tag("@good");
+        Tag b = new Tag("@csc");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a],[a,b]]);
+        ImageFile picture = new ImageFile(name "abc", l);
+        assertEquals(l, picture.getAllTagLists());
     }
 
     @Test
     public void testTwoImageFileAreEqual() {
-        Tag a = "@good";
-        Tag b = "@csc";
-        ImageFile picture1 = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a], [a, b]]);
-        ImageFile picture2 = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[b], [a, b]]);
+        Tag a = new Tag("@good");
+        Tag b = new Tag("@csc");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a], [a, b]]);
+        ArrayList m = new ArrayList<ArrayList<Tag>>([[b], [a, b]]);
+        ImageFile picture1 = new ImageFile(name "abc", l);
+        ImageFile picture2 = new ImageFile(name "abc", m);
         assertTrue(picture1.equals(picture2));
     }
 
     @Test
     public void testTwoImageFileAreNotEqual() {
-        Tag a = "@good";
-        Tag b = "@csc";
-        ImageFile picture1 = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a], [a, b]]);
-        ImageFile picture2 = new ImageFile(name "abc", ArrayList<ArrayList<Tag>> [[a, b], [b]]);
+        Tag a = new Tag("@good");
+        Tag b = new Tag("@csc");
+        ArrayList l = new ArrayList<ArrayList<Tag>>([[a], [a, b]]);
+        ArrayList m = new ArrayList<ArrayList<Tag>>([[a,b], [b]]);
+        ImageFile picture1 = new ImageFile(name "abc", l);
+        ImageFile picture2 = new ImageFile(name "abc", m);
         assertFalse(picture1.equals(picture2));
     }
 }
