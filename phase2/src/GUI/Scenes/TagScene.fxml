@@ -13,7 +13,7 @@
         <TableColumn fx:id="TagsOfTheImage" editable="false" prefWidth="343.0" resizable="false" text="Tags In Image" />
       </columns>
     </TableView>
-    <TableView fx:id="allTagTable" prefHeight="350.0" prefWidth="357.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="343.0" AnchorPane.topAnchor="0.0">
+    <TableView fx:id="allTagTable" prefHeight="358.0" prefWidth="357.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="343.0" AnchorPane.topAnchor="0.0">
       <columns>
         <TableColumn fx:id="AllAvailableTags" editable="false" prefWidth="356.0" text="Avaliable Tags" />
       </columns>
@@ -22,7 +22,7 @@
     <Button layoutX="474.0" layoutY="308.0" mnemonicParsing="false" onAction="#DeleteTag" prefHeight="25.0" prefWidth="108.0" text="Delete Tag" />
     <Button layoutX="495.0" layoutY="348.0" mnemonicParsing="false" onAction="#Back" prefHeight="25.0" prefWidth="66.0" text="Back" />
     <TextField fx:id="tagNameIn" layoutX="356.0" layoutY="221.0" prefHeight="25.0" prefWidth="344.0" />
-    <Button layoutY="360.0" mnemonicParsing="false" onAction="#DeleteTagFromAll" prefHeight="25.0" prefWidth="144.0" text="Delete Tag From All" />
-    <Button layoutX="219.0" layoutY="360.0" mnemonicParsing="false" onAction="#goFilesWithTag" prefHeight="25.0" prefWidth="137.0" text="View Files With Tag" />
+    <Button layoutY="361.0" mnemonicParsing="false" onAction="#DeleteTagFromAll" prefHeight="25.0" prefWidth="182.0" text="Delete Tag From All" />
+    <Button layoutX="183.0" layoutY="361.0" mnemonicParsing="false" onAction="#goFilesWithTag" prefHeight="25.0" prefWidth="174.0" text="View Files With Tag" />
   </children>
 </AnchorPane>
