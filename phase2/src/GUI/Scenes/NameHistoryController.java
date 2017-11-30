@@ -48,8 +48,10 @@ public class NameHistoryController {
         .addListener(
             (obs, oldSelection, newSelection) -> {
               ObservableList<Tag> tags = FXCollections.observableArrayList();
-              tags.addAll(newSelection);
-              tableOfTags.setItems(tags);
+              if (newSelection!=null) {
+                tags.addAll(newSelection);
+                tableOfTags.setItems(tags);
+              }
             });
     refresh();
   }

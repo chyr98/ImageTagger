@@ -178,11 +178,11 @@ public class MenuController implements Initializable {
                 try {
                   String url = new File(path).toURI().toURL().toString();
                   Image image = new Image(url);
-                  if (image.getWidth() / 287 > image.getHeight() / 213) {
-                    selectedImage = new Image(url, 287,
-                        image.getHeight() * (287 / image.getWidth()), false, true);
+                  if (image.getWidth() / imgDisplay.getFitWidth() > image.getHeight() / imgDisplay.getFitHeight()) {
+                    selectedImage = new Image(url, imgDisplay.getFitWidth(),
+                        image.getHeight() * (imgDisplay.getFitWidth() / image.getWidth()), false, true);
                   } else {
-                    selectedImage = new Image(url, image.getWidth() * (213 / image.getWidth()), 213,
+                    selectedImage = new Image(url, image.getWidth() * (imgDisplay.getFitHeight() / image.getWidth()), imgDisplay.getFitHeight(),
                         false, true);
                   }
                 } catch (MalformedURLException e) {
