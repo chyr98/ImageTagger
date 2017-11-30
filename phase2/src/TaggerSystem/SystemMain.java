@@ -24,15 +24,24 @@ public class SystemMain {
 
   private static String[] suffixes = {"jpg", "png", "JPG", "PNG"};
 
+  /**
+   * Creates a tree of folders related to the given directory and sub-directories in operating
+   * system and initializes a new TagManager and a new FileManager.
+   *
+   * @param rootPath the pathname string of root directory
+   */
   public static void reading(String rootPath) {
     File rootFile = new File(rootPath);
     // Read the information of files and generate a tree of Files and Folders.
     tagManager = new TagManager(new ArrayList<>());
     Folder rootFolder = createFolder(rootFile);
     fileManager = new FileManager(rootFolder, rootPath);
-
   }
 
+  /**
+   * Loads FileManager and TagManager from serialized file restored from previous running of
+   * this program.
+   */
   public static void loading() {
     // read fileManager from file.
     try {
@@ -53,6 +62,9 @@ public class SystemMain {
     }
   }
 
+  /**
+   * Saves FileManager and TagManger for future loading.
+   */
   public static void saving() {
     // Save fileManager.
     try {
@@ -83,8 +95,13 @@ public class SystemMain {
     }
   }
 
+  /**
+   * Creates a tree of Folders from given abstract pathname (java.io.File).
+   *
+   * @param  file       the abstract pathname (java.io.File) of the root directory.
+   * @return rootFolder the root of Folder tree.
+   */
   private static Folder createFolder(File file) {
-    File[] files = file.listFiles();
     ArrayList<Folder> folderList = new ArrayList<>();
     ArrayList<ImageFile> imageList = new ArrayList<>();
     // Nothing will happen if the directory is empty.
@@ -116,6 +133,12 @@ public class SystemMain {
     return new Folder(file.getName(), folderList, imageList);
   }
 
+  /**
+   * Logs the name change and time stamp to nameLog.txt
+   *
+   * @param oldName string of the previous name.
+   * @param newName string of the new name.
+   */
   public static void log(String oldName, String newName) {
     // if fileHandler hasn't been created, create one and add to Logger.
     if (fileHandler == null) {
