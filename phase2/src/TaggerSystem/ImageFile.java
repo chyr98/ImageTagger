@@ -123,19 +123,6 @@ public class ImageFile extends FileDirectory implements Serializable {
     return this.getCurrentTagList().contains(tag);
   }
 
-  /**
-   * Rename this ImageFile to a given String in OS. Each time the renameTo is called and any change
-   * is made, the info will be logged.
-   */
-  public void renameTo(String newName) {
-    File curr = this.toFile();
-    String oldName = curr.getName();
-    curr.renameTo(new File(curr.getParentFile(), newName));
-    // log this rename step if any change is made.
-    if (oldName != newName) {
-      SystemMain.log(oldName, newName);
-    }
-  }
 
   /**
    * Rename this ImageFile to a give String in OS. Each time the renameTo is called, the info will
