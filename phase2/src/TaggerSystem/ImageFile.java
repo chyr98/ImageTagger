@@ -52,25 +52,11 @@ public class ImageFile extends FileDirectory implements Serializable {
 
   public void copyTo(Folder targetFolder) throws IOException {
     String newName = this.newName(targetFolder);
-    ImageFile newImage = new ImageFile(newName, this.getCurrentTagList(), targetFolder);
-
+    ImageFile newImage = new ImageFile(newName.split(" @")[0].concat(newName.substring(newName.length()-4)),
+            this.getCurrentTagList(), targetFolder);
     Path sourcePath = this.toPath();
     Path targetPath = newImage.toPath();
     Files.copy(sourcePath, targetPath);
-  }
-
-  /**
-   * Rename this ImageFile to a given String in OS. Each time the renameTo is called and any change
-   * is made, the info will be logged.
-   */
-  public void renameTo(String newName) {
-    File curr = this.toFile();
-    String oldName = curr.getName();
-    curr.renameTo(new File(curr.getParentFile(), newName));
-    // log this rename step if any change is made.
-    if (oldName != newName) {
-      SystemMain.log(oldName, newName);
-    }
   }
 
   /**
