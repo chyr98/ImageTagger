@@ -135,11 +135,13 @@ public class ImageFile extends FileDirectory implements Serializable {
    * Moves the file to a target folder.
    */
   public void moveTo(Folder targetFolder) throws IOException {
-    Path sourcePath = this.toPath();
-    this.name = this.newName(targetFolder);
-    targetFolder.addImage(this);
-    Path targetPath = this.toPath();
-    Files.move(sourcePath, targetPath);
+    if (targetFolder != this.parent) {
+      Path sourcePath = this.toPath();
+      this.name = this.newName(targetFolder);
+      targetFolder.addImage(this);
+      Path targetPath = this.toPath();
+      Files.move(sourcePath, targetPath);
+    }
   }
 
   /**
