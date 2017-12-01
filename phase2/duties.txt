@@ -5,8 +5,11 @@ Hangyu Feng:
     ImageFile.moveTo (with Yuxiao Chen)
     Tag.equals (with Hehao Wu)
     ImageFile.renameTo
+    part of javadoc
+  Help with unit tests
+  Added moveTo and copyTo feature
   Drew:
-    UML diagram
+    UML diagrams
 
 Artur Khasanov:
     Wrote two unit tests for TagManager and Tag classes.
