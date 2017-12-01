@@ -2,7 +2,6 @@ package test;
 
 import TaggerSystem.*;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 import java.util.ArrayList;
 
