@@ -39,7 +39,6 @@ public class ImageFileTests {
     test.add(new ArrayList<>());
     test.add(tag);
     assertEquals(image.getAllTagLists(), test);
-
   }
 
   @Test
