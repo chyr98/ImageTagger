@@ -16,7 +16,9 @@ Artur Khasanov:
 Yuxiao Chen:
    Mainly worked on the GUI.
    Connect the GUI to the back end system.
+   implemented FolderTest.java
    help.txt
+   .gitignore
 
 
 Hehao Wu:
