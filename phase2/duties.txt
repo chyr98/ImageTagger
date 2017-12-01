@@ -8,6 +8,10 @@ Hangyu Feng:
   Drew:
     UML diagram
 
+Artur Khasanov:
+    Wrote two unit tests for TagManager and Tag classes.
+    Also helped with overall GUI update for features.
+
 
 Yuxiao Chen:
    Mainly worked on the GUI.
