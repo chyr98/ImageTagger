@@ -83,6 +83,11 @@ public class ImageFile extends FileDirectory implements Serializable {
     return ret;
   }
 
+  /**
+   * Deletes an tag from the image.
+   *
+   * @param tag tag to be deleted.
+   */
   public void deleteTag(Tag tag) {
     if ((!this.tags.isEmpty()) && this.tags.get(tags.size() - 1).contains(tag)) {
       String path = getPath();
