@@ -66,12 +66,16 @@ public class FilesWithTheTagController {
               try {
                 String url = file.toURI().toURL().toString();
                 Image image = new Image(url);
-                if (image.getWidth() / ImageDisplay.getFitWidth() > image.getHeight() / ImageDisplay.getFitHeight()) {
-                    selectedImage = new Image(url, ImageDisplay.getFitWidth(),
-                            image.getHeight() * (ImageDisplay.getFitWidth() / image.getWidth()), false, true);
+                if (image.getWidth() / ImageDisplay.getFitWidth() > image.getHeight() / ImageDisplay
+                    .getFitHeight()) {
+                  selectedImage = new Image(url, ImageDisplay.getFitWidth(),
+                      image.getHeight() * (ImageDisplay.getFitWidth() / image.getWidth()), false,
+                      true);
                 } else {
-                    selectedImage = new Image(url, image.getWidth() * (ImageDisplay.getFitHeight() / image.getWidth()), ImageDisplay.getFitHeight(),
-                            false, true);
+                  selectedImage = new Image(url,
+                      image.getWidth() * (ImageDisplay.getFitHeight() / image.getWidth()),
+                      ImageDisplay.getFitHeight(),
+                      false, true);
                 }
               } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -98,18 +102,18 @@ public class FilesWithTheTagController {
   }
 
   /**
-   * Catch the event when Copy Files With The Tag To.. button is clicked. Open the folder
-   * selection menu to select the target folder and copy the files with this tag to the folder.
-   * */
+   * Catch the event when Copy Files With The Tag To.. button is clicked. Open the folder selection
+   * menu to select the target folder and copy the files with this tag to the folder.
+   */
   @FXML
   void copyFilesWithTag() throws IOException {
-      FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(GUIMain.class.getResource("Scenes/MoveFileScene.fxml"));
-      Parent moveScene = loader.load();
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(GUIMain.class.getResource("Scenes/MoveFileScene.fxml"));
+    Parent moveScene = loader.load();
 
-      MoveFileController controller = loader.getController();
-      controller.initData(SystemMain.fileManager.getFilesWithTag(selectedTag),
-              GUIMain.showStage(new Scene(moveScene), "Copying To.."));
+    MoveFileController controller = loader.getController();
+    controller.initData(SystemMain.fileManager.getFilesWithTag(selectedTag),
+        GUIMain.showStage(new Scene(moveScene), "Copying To.."));
   }
 
 }

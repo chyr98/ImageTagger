@@ -66,8 +66,7 @@ public class MenuController implements Initializable, RefreshableController {
       controller.initData(FileTable.getSelectionModel().getSelectedItem(), this);
 
       GUIMain.showScene(new Scene(tagMenuParent));
-    }
-    else{
+    } else {
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(GUIMain.class.getResource("Scenes/GeneralTagScene.fxml"));
       GUIMain.showScene(new Scene(loader.load()));
@@ -182,11 +181,15 @@ public class MenuController implements Initializable, RefreshableController {
                 try {
                   String url = new File(path).toURI().toURL().toString();
                   Image image = new Image(url);
-                  if (image.getWidth() / imgDisplay.getFitWidth() > image.getHeight() / imgDisplay.getFitHeight()) {
+                  if (image.getWidth() / imgDisplay.getFitWidth() > image.getHeight() / imgDisplay
+                      .getFitHeight()) {
                     selectedImage = new Image(url, imgDisplay.getFitWidth(),
-                        image.getHeight() * (imgDisplay.getFitWidth() / image.getWidth()), false, true);
+                        image.getHeight() * (imgDisplay.getFitWidth() / image.getWidth()), false,
+                        true);
                   } else {
-                    selectedImage = new Image(url, image.getWidth() * (imgDisplay.getFitHeight() / image.getWidth()), imgDisplay.getFitHeight(),
+                    selectedImage = new Image(url,
+                        image.getWidth() * (imgDisplay.getFitHeight() / image.getWidth()),
+                        imgDisplay.getFitHeight(),
                         false, true);
                   }
                 } catch (MalformedURLException e) {

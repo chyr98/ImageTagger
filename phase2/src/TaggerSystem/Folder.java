@@ -25,9 +25,9 @@ public class Folder extends FileDirectory implements Serializable {
    * Creates a Folder by its name, its children and its value. Note: the parent can be set by
    * setParent lately.
    *
-   * @param name     name of this Folder.
+   * @param name name of this Folder.
    * @param children children of this Folder as an ArrayList<Folder>.
-   * @param value    images of this Folder as an ArrayList<ImageFile>.
+   * @param value images of this Folder as an ArrayList<ImageFile>.
    */
   public Folder(String name, ArrayList<Folder> children, ArrayList<ImageFile> value) {
     super(name);
@@ -53,12 +53,10 @@ public class Folder extends FileDirectory implements Serializable {
   }
 
   /**
-   * Deletes an tag from all images in this folder and subFolders. If the tag doesn't exist,
-   * nothing will happen.
-   * Note: images will be renamed for both file in OS and ImageFile in this program.
+   * Deletes an tag from all images in this folder and subFolders. If the tag doesn't exist, nothing
+   * will happen. Note: images will be renamed for both file in OS and ImageFile in this program.
    *
-   * @param  tag the tag to be deleted.
-   * @throws IOException
+   * @param tag the tag to be deleted.
    */
   public void deleteTag(Tag tag) throws IOException {
     for (ImageFile file : this.value) {
@@ -74,7 +72,7 @@ public class Folder extends FileDirectory implements Serializable {
   /**
    * Returns an ArrayList of ImageFiles that has specific tag in this folder and subFolders.
    *
-   * @param  tag works as a searching key.
+   * @param tag works as a searching key.
    * @return ret ArrayList of all ImageFiles has given tag.
    */
   public ArrayList<ImageFile> getFileWithTag(Tag tag) {
