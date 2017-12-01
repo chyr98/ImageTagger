@@ -3,6 +3,10 @@ package test;
 import TaggerSystem.FileDirectory;
 import TaggerSystem.Folder;
 import TaggerSystem.ImageFile;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 import java.util.ArrayList;
 

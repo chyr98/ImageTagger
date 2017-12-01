@@ -3,9 +3,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import TaggerSystem.Folder;
-import TaggerSystem.ImageFile;
-import TaggerSystem.Tag;
+import TaggerSystem.*;
 
 import java.awt.*;
 import java.io.File;
@@ -23,7 +21,8 @@ public class ImageFileTests {
 
   @BeforeAll
   static void initAll() {
-
+    SystemMain.tagManager=new TagManager(new ArrayList<>());
+    SystemMain.fileManager=new FileManager(new Folder("A Folder"), "");
   }
 
   @BeforeEach
@@ -44,21 +43,8 @@ public class ImageFileTests {
   }
 
   @Test
-  void testCopyTo() {
-    Folder subFolder = new Folder("subFolder");
-    Folder root = new Folder("root", new ArrayList<Folder>(Arrays.asList(subFolder)), new ArrayList<ImageFile>());
-    ImageFile image1 = new ImageFile("image1", new ArrayList<Tag>(), root);
-    ImageFile image2 = new ImageFile("image2", new ArrayList<Tag>(), subFolder);
-    try {
-      image1.copyTo(root);
-      image1.copyTo(subFolder);
-      File rootFile = root.toFile();
-      File subFile = subFolder.toFile();
-      assertArrayEquals(rootFile.list(), new String[] {"image1", "(copy)image1"});
-      assertArrayEquals(subFile.list(), new String[] {"image2", "image1"});
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  void testGetName(){
+
   }
 
   @AfterEach
