@@ -1,14 +1,15 @@
 package test;
 
-import TaggerSystem.Tag;
-import TaggerSystem.TagManager;
+import TaggerSystem.*;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 public class TagManagerTest {
+
     @Test
     public void addTag() throws Exception {
         ArrayList ar = new ArrayList();
@@ -45,8 +46,9 @@ public class TagManagerTest {
         TagManager tm = new TagManager(ar);
         Tag tag = new Tag("Sam");
         tm.addTag(tag);
-        // tm.deleteTag(tag);
-        assertEquals(tm.getTagList().size(), 1);
+        SystemMain.fileManager=new FileManager(new Folder("A Folder"), "");
+        tm.deleteTag(tag);
+        assertEquals(tm.getTagList().size(), 0);
     }
 
 }
