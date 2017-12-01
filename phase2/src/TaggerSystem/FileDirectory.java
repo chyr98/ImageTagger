@@ -15,8 +15,6 @@ public class FileDirectory implements Serializable {
 
   /**
    * Creates a new FileDirectory from a name string.
-   *
-   * @param name
    */
   public FileDirectory(String name) {
     this.name = name;
@@ -82,8 +80,8 @@ public class FileDirectory implements Serializable {
   }
 
   /**
-   * Returns the String representation of this FileDirectory. Specifically, returns the name
-   * of this FileDirectory.
+   * Returns the String representation of this FileDirectory. Specifically, returns the name of this
+   * FileDirectory.
    *
    * @return name name string of this FileFirectory.
    */
@@ -93,8 +91,8 @@ public class FileDirectory implements Serializable {
   }
 
   /**
-   * Sets the parent of this FileDirectory and does nothing more.
-   * The parent will not add this FileDirectory to its children or value in this method.
+   * Sets the parent of this FileDirectory and does nothing more. The parent will not add this
+   * FileDirectory to its children or value in this method.
    *
    * @param parent parent Folder assigned to it.
    */

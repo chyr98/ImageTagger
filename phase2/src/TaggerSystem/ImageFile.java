@@ -52,8 +52,9 @@ public class ImageFile extends FileDirectory implements Serializable {
 
   public void copyTo(Folder targetFolder) throws IOException {
     String newName = this.newName(targetFolder);
-    ImageFile newImage = new ImageFile(newName.split(" @")[0].concat(newName.substring(newName.length()-4)),
-            this.getCurrentTagList(), targetFolder);
+    ImageFile newImage = new ImageFile(
+        newName.split(" @")[0].concat(newName.substring(newName.length() - 4)),
+        this.getCurrentTagList(), targetFolder);
     Path sourcePath = this.toPath();
     Path targetPath = newImage.toPath();
     Files.copy(sourcePath, targetPath);
@@ -131,7 +132,7 @@ public class ImageFile extends FileDirectory implements Serializable {
    * @param newName The name that the image file want to be renamed to.
    * @param path The path of the image with the original tag set.
    */
-  public void renameTo(String newName,String path) {
+  public void renameTo(String newName, String path) {
     File curr = new File(path);
     String oldName = curr.getName();
     curr.renameTo(new File(curr.getParentFile(), newName));
@@ -145,7 +146,7 @@ public class ImageFile extends FileDirectory implements Serializable {
    * Moves the file to a target folder. If the targetFolder is the current folder where this image
    * lies in, nothing will happen.
    */
-  public void moveTo(Folder targetFolder){
+  public void moveTo(Folder targetFolder) {
     if (targetFolder != this.parent) {
       Path sourcePath = this.toPath();
       this.parent.getValue().remove(this);

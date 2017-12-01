@@ -33,24 +33,25 @@ public class FolderTest {
         }
     }
 
-    @Test
-    public void deleteTag() throws Exception {
-    }
 
-    @Test
-    public void getFileWithTag() throws Exception {
-    }
+  @Test
+  public void deleteTag() throws Exception {
+  }
 
-    @Test
-    public void getAllImages() throws Exception {
-    }
+  @Test
+  public void getFileWithTag() throws Exception {
+  }
 
-    @Test
-    public void getChildren() throws Exception {
-    }
+  @Test
+  public void getAllImages() throws Exception {
+  }
 
-    @Test
-    public void getValue() throws Exception {
-    }
+  @Test
+  public void getChildren() throws Exception {
+  }
+
+  @Test
+  public void getValue() throws Exception {
+  }
 
 }

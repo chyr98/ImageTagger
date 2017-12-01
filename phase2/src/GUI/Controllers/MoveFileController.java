@@ -49,12 +49,10 @@ public class MoveFileController implements Initializable {
     this.stage = stage;
   }
 
-  public void initData(ArrayList<ImageFile> files, Stage stage){
+  public void initData(ArrayList<ImageFile> files, Stage stage) {
     selectedFile = files;
     this.stage = stage;
   }
-
-
 
 
   /**
@@ -63,8 +61,9 @@ public class MoveFileController implements Initializable {
    */
   @FXML
   void cancel() {
-    if (parent!=null)
+    if (parent != null) {
       parent.refresh();
+    }
     stage.close();
   }
 
@@ -99,15 +98,16 @@ public class MoveFileController implements Initializable {
   @FXML
   void move() throws IOException {
     Folder targetFolder = currentFolder;
-    if(selectedFile.size()==1) {
-      for(ImageFile file : selectedFile)
+    if (selectedFile.size() == 1) {
+      for (ImageFile file : selectedFile) {
         file.moveTo(targetFolder);
-    }
-    else{
-      for(ImageFile file : selectedFile)
+      }
+    } else {
+      for (ImageFile file : selectedFile) {
         file.copyTo(targetFolder);
+      }
     }
-    if(parent!=null) {
+    if (parent != null) {
       parent.refresh();
     }
     stage.close();

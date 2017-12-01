@@ -16,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class NameHistoryController implements RefreshableController{
+public class NameHistoryController implements RefreshableController {
 
   @FXML
   private TableView<ArrayList<Tag>> tableOfNames;
@@ -48,7 +48,7 @@ public class NameHistoryController implements RefreshableController{
         .addListener(
             (obs, oldSelection, newSelection) -> {
               ObservableList<Tag> tags = FXCollections.observableArrayList();
-              if (newSelection!=null) {
+              if (newSelection != null) {
                 tags.addAll(newSelection);
                 tableOfTags.setItems(tags);
               }

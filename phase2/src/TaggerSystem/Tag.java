@@ -28,4 +28,9 @@ public class Tag implements Serializable {
       return false;
     }
   }
+
+  @Override
+  public String toString() {
+    return this.name;
+  }
 }

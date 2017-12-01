@@ -49,8 +49,8 @@ public class FileManager implements Serializable {
    * Returns an ArrayList contains all the ImageFiles in this folder that has the Tag we want.
    *
    * @param tag A Tag we want to search in this Folder
-   * @return ArrayList of ImageFile An ArrayList contains all the ImageFiles in
-   * this folder that has the special Tag.
+   * @return ArrayList of ImageFile An ArrayList contains all the ImageFiles in this folder that has
+   * the special Tag.
    */
   public ArrayList<ImageFile> getFilesWithTag(Tag tag) {
     return folder.getFileWithTag(tag);

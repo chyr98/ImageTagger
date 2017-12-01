@@ -39,8 +39,8 @@ public class SystemMain {
   }
 
   /**
-   * Loads FileManager and TagManager from serialized file restored from previous running of
-   * this program.
+   * Loads FileManager and TagManager from serialized file restored from previous running of this
+   * program.
    */
   public static void loading() {
     // read fileManager from file.
@@ -94,7 +94,7 @@ public class SystemMain {
   /**
    * Creates a tree of Folders from given abstract pathname (java.io.File).
    *
-   * @param  file       the abstract pathname (java.io.File) of the root directory.
+   * @param file the abstract pathname (java.io.File) of the root directory.
    * @return rootFolder the root of Folder tree.
    */
   private static Folder createFolder(File file) {
