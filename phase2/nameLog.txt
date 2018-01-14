@@ -1,6 +1,0 @@
-十一月 30, 2017 9:54:40 下午 TaggerSystem.SystemMain log
-信息: Old: 1 @a.jpg; New: 1.jpg;
-十一月 30, 2017 9:54:40 下午 TaggerSystem.SystemMain log
-信息: Old: 2 @a.jpg; New: 2.jpg;
-十一月 30, 2017 9:54:40 下午 TaggerSystem.SystemMain log
-信息: Old: 3 @a.jpg; New: 3.jpg;
